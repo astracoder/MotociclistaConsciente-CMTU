@@ -1,182 +1,68 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Image, TextInput, TouchableOpacity, Modal } from 'react-native';
+import React from 'react';
+import { Text, SafeAreaView, Image, TextInput, TouchableOpacity } from 'react-native';
+
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
+
+type StackParamList = {
+  Login: undefined;
+  Cadastro: undefined
+}
+
+type NavigationProps = NativeStackNavigationProp<StackParamList, 'Cadastro'>
+
+import CadastroStyles from '../../styles/Cadastro/CadastroStyles.ts';
 
 export default function App() {
-  const [modalVisivel, setModalVisivel] = useState(false);
+  const navigation = useNavigation<NavigationProps>();
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisivel}
-        onRequestClose={() => setModalVisivel(false)}
-      >
-        <View style={styles.modalBackground}>
-          <View style={styles.modalContainer}>
-            <Text style={styles.modalTexto}>Os dados estão corretos?</Text>
+    <SafeAreaView style={CadastroStyles.container}>
+      <SafeAreaView style={CadastroStyles.content}>
+        <Image 
+          style={CadastroStyles.logo} 
+          source={require('../../assets/cmtu_logo.png')} 
+          resizeMode="contain" 
+        />
+        <Text style={CadastroStyles.titulo}>Registro</Text>
+        <Text style={CadastroStyles.subTitulo}>Faça parte dessa família</Text>
 
-            <View style={styles.botaoContainer}>
-              <TouchableOpacity 
-                onPress={() => setModalVisivel(false)}
-                style={[styles.botaoAcao, styles.botaoCorrigir]}
-              >
-                <Text style={styles.buttonText}>CORRIGIR</Text>
-              </TouchableOpacity>
+        <Text style={CadastroStyles.textoInput}>Nome:</Text>
+        <TextInput 
+          style={CadastroStyles.input} 
+          placeholder="Digite o nome completo..." 
+        />
 
-              <TouchableOpacity 
-                onPress={() => setModalVisivel(false)}
-                style={[styles.botaoAcao, styles.botaoSim]}
-              >
-                <Text style={styles.buttonText}>SIM</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-      </Modal>
+        <Text style={CadastroStyles.textoInput}>E-mail:</Text>
+        <TextInput 
+          style={CadastroStyles.input} 
+          placeholder="Digite seu melhor e-mail..." 
+        />
 
-      <View style={{flex: 1, marginVertical: '15%', marginHorizontal: '10%'}}>
+        <Text style={CadastroStyles.textoInput}>Senha:</Text>
+        <TextInput 
+          style={CadastroStyles.input} 
+          placeholder="Digite sua melhor senha..." 
+          secureTextEntry 
+        />
 
-        <View style={{flex: 3}}>
-          <Image style={styles.logoCMTU}
-          source={require('../../assets/cmtu_logo.png')}
-          resizeMode="contain"
-          />
-        </View>
+        <TouchableOpacity style={CadastroStyles.botaoCadastro}>
+          <Text style={CadastroStyles.textoBotaoCadastro}>CADASTRAR</Text>
+        </TouchableOpacity>
 
-        <View style={{flex: 3, justifyContent: 'center', alignItems: 'center'}}>
-          <Text style={styles.titulo}>
-            MOTOCICLISTA
-            CONSCIENTE
-          </Text>
-        </View>
+        <Image 
+          style={CadastroStyles.imagemCadastro} 
+          source={require('../../assets/create_account_2.png')} 
+          resizeMode="contain" 
+        />
 
-        <View style={{flex: 8}}>
 
-        <Text style={{color: '#353535', fontWeight: 'bold'}}>Nome:</Text>
-        <View style={styles.viewInput}>
-            <TextInput
-              style={{width: '85%', height: '60%', fontSize: 16}}
-              placeholder="Digite seu nome completo..."
-            />
-          </View>
-
-          <Text style={{color: '#353535', fontWeight: 'bold'}}>E-mail:</Text>
-          <View style={styles.viewInput}>
-            <TextInput
-              style={{width: '85%', height: '60%', fontSize: 16}}
-              placeholder="Digite seu melhor e-mail..."
-            />
-          </View>
-
-          <Text style={{color: '#353535', fontWeight: 'bold'}}>Senha:</Text>
-          <View style={styles.viewInput}>
-            <TextInput
-              style={{width: '85%', height: '60%', fontSize: 16}}
-              placeholder="Digite sua melhor senha..."
-              secureTextEntry
-            />
-          </View>
-
-        </View>
-
-        <View style={{flex: 8}}>
-          <Image style={styles.logoCMTU}
-            source={require('../../assets/create_account_2.png')}
-            resizeMode="contain"
-          />
-        </View>
-
-        <View style={{flex: 2}}>
-          <TouchableOpacity style={[styles.viewInput, {backgroundColor: '#A6CE39'}]} onPress={() => setModalVisivel(true)}>
-            <Text style={{color: '#353535', fontWeight: 'bold', fontSize: 16}}>
-              CADASTRAR
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-      </View>
+        <TouchableOpacity style={CadastroStyles.secaoCriarConta} onPress={() => navigation.navigate('Login')}>
+          <Text style={CadastroStyles.linkCriarConta}>Já tenho conta, fazer login!</Text>
+        </TouchableOpacity>
+        </SafeAreaView>
     </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  // Modal
-  openButton: {
-    backgroundColor: '#FFD700',
-    padding: 15,
-    borderRadius: 25,
-  },
-  buttonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  modalBackground: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  modalContainer: {
-    width: '80%',
-    backgroundColor: '#333',
-    borderRadius: 15,
-    padding: 20,
-    alignItems: 'center',
-  },
-  modalTexto: {
-    fontSize: 18,
-    color: '#FFF',
-    marginBottom: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  botaoContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-  },
-  botaoAcao: {
-    flex: 1,
-    paddingVertical: 10,
-    borderRadius: 25,
-    alignItems: 'center',
-    marginHorizontal: 5,
-  },
-  botaoCorrigir: {
-    backgroundColor: '#000', // Botão preto
-  },
-  botaoSim: {
-    backgroundColor: '#FFD700', // Botão amarelo
-  },
 
-  //Cadastro
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  logoCMTU: {
-    height: '100%',
-    width: '100%',
-  },
-  titulo: {
-    color: '#353535',
-    fontSize: 30,
-    textAlign: 'center',
-    fontWeight: 'bold',
-  },
-  viewInput: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#ffc800',
-    width: '100%',
-    height: '100%',
-    borderRadius: 50,
-    marginVertical: '4%',
-  }
-
-});

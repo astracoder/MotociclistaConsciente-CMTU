@@ -1,107 +1,63 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Image, TextInput, TouchableOpacity } from 'react-native';
+import {Text, SafeAreaView, Image, TextInput, TouchableOpacity } from 'react-native';
 
-export default function App() {
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
+
+type StackParamList = {
+  Login: undefined;
+  Cadastro: undefined
+}
+
+type NavigationProps = NativeStackNavigationProp<StackParamList, 'Login'>
+
+import LoginStyles from '../../styles/Login/LoginStyles.ts';
+
+export default function Login() {
+  const navigation = useNavigation<NavigationProps>();
+
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <View style={{flex: 1, marginVertical: '15%', marginHorizontal: '10%'}}>
+    <SafeAreaView style={LoginStyles.container}>
+      <SafeAreaView style={LoginStyles.content}>
+        <Image 
+          style={LoginStyles.logo} 
+          source={require('../../assets/cmtu_logo.png')} 
+          resizeMode="contain" 
+        />
+        <Text style={LoginStyles.titulo}>Login</Text>
+        <Text style={LoginStyles.subTitulo}>Bem-vindo de volta</Text>
 
-        <View style={{flex: 3}}>
-          <Image style={styles.logoCMTU}
-          source={require('../../assets/cmtu_logo.png')}
-          resizeMode="contain"
-          />
-        </View>
+        <Text style={LoginStyles.textoInput}>E-mail:</Text>
+        <TextInput 
+          style={LoginStyles.input} 
+          placeholder="Digite seu e-mail..." 
+        />
 
-        <View style={{flex: 4, justifyContent: 'center', alignItems: 'center'}}>
-          <Text style={styles.titulo}>
-            MOTOCICLISTA
-            CONSCIENTE
-          </Text>
-        </View>
+        <Text style={LoginStyles.textoInput}>Senha:</Text>
+        <TextInput 
+          style={LoginStyles.input} 
+          placeholder="Digite sua senha..." 
+          secureTextEntry 
+        />
 
-        <View style={{flex: 6}}>
+        <TouchableOpacity>
+          <Text style={LoginStyles.esqueceuSenha}>Esqueceu a senha?</Text>
+        </TouchableOpacity>
 
-          <Text style={{color: '#353535', fontWeight: 'bold'}}>E-mail:</Text>
-          <View style={styles.viewInput}>
-            <TextInput
-              style={{width: '85%', height: '60%', fontSize: 16}}
-              placeholder="Digite seu e-mail..."
-            />
-          </View>
+        <TouchableOpacity style={LoginStyles.botaoLogin}>
+          <Text style={LoginStyles.textoBotaoLogin}>LOGAR</Text>
+        </TouchableOpacity>
 
-          <Text style={{color: '#353535', fontWeight: 'bold'}}>Senha:</Text>
-          <View style={styles.viewInput}>
-            <TextInput
-              style={{width: '85%', height: '60%', fontSize: 16}}
-              placeholder="Digite sua senha..."
-              secureTextEntry
-            />
-          </View>
+        <Image 
+          style={LoginStyles.imagemLogin} 
+          source={require('../../assets/login_account_2.png')} 
+          resizeMode="contain" 
+        />
 
-        </View>
-
-        <View style={{flex: 1, justifyContent: 'center'}}>
-          <TouchableOpacity>
-            <Text style={{flex: 1, textAlign: 'right', fontSize: 16, textDecorationLine: 'underline',}}>
-              Esqueceu a senha?
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={{flex: 6}}>
-          <Image style={styles.logoCMTU}
-            source={require('../../assets/login_account_2.png')}
-            resizeMode="contain"
-          />
-        </View>
-
-        <View style={{flex: 2}}>
-          <TouchableOpacity style={[styles.viewInput, {backgroundColor: '#A6CE39'}]}>
-            <Text style={{color: '#353535', fontWeight: 'bold', fontSize: 16}}>
-              LOGAR
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={{flex: 2, justifyContent: 'flex-end', alignItems: 'center'}}>
-          <TouchableOpacity>
-            <Text style={{textAlign: 'center', fontSize: 16}}>Você não tem uma conta?</Text>
-            <Text style={{textAlign: 'center', fontSize: 16, color: '#353535', textDecorationLine: 'underline',}}>Crie uma conta</Text>
-          </TouchableOpacity>
-        </View>
-
-      </View>
+        <TouchableOpacity style={LoginStyles.secaoCriarConta} onPress={() => navigation.navigate('Cadastro')}>
+          <Text style={LoginStyles.linkCriarConta}>Não tenho uma conta, criar agora!</Text>
+        </TouchableOpacity>
+      </SafeAreaView>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  logoCMTU: {
-    height: '100%',
-    width: '100%',
-  },
-  titulo: {
-    color: '#353535',
-    fontSize: 30,
-    textAlign: 'center',
-    fontWeight: 'bold',
-  },
-  viewInput: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#ffc800',
-    width: '100%',
-    height: '100%',
-    borderRadius: 50,
-    marginVertical: '4%',
-  }
-
-});
