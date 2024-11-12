@@ -40,11 +40,11 @@ export default function Login() {
           secureTextEntry 
         />
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Reset')}>
           <Text style={LoginStyles.esqueceuSenha}>Esqueceu a senha?</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={LoginStyles.botaoLogin}>
+        <TouchableOpacity onPress={() => navigation.navigate('Menu')}style={LoginStyles.botaoLogin}>
           <Text style={LoginStyles.textoBotaoLogin}>LOGAR</Text>
         </TouchableOpacity>
 

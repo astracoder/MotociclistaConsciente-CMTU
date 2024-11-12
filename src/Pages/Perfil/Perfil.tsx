@@ -1,5 +1,7 @@
 import React from 'react';
-import { Text, SafeAreaView, Image, TextInput, TouchableOpacity } from 'react-native';
+import { Text, View, SafeAreaView, Image, TextInput, TouchableOpacity } from 'react-native';
+
+import Icon from 'react-native-vector-icons/MaterialIcons.js';
 
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
@@ -11,42 +13,48 @@ type StackParamList = {
 
 type NavigationProps = NativeStackNavigationProp<StackParamList, 'Perfil'>
 
-import CadastroStyles from '../../styles/Perfil/PerfilStyles.ts';
+import PerfilStyles from '../../styles/Perfil/PerfilStyles.ts';
 
 export default function App() {
   const navigation = useNavigation<NavigationProps>();
 
   return (
-    <SafeAreaView style={CadastroStyles.container}>
-      <SafeAreaView style={CadastroStyles.content}>
-        <Image 
-          style={CadastroStyles.logo} 
-          source={require('../../assets/cmtu_logo.png')} 
-          resizeMode="contain" 
-        />
-        <Text style={CadastroStyles.titulo}>Edite seus dados</Text>
+      <SafeAreaView style={PerfilStyles.container}>
+        <View style={PerfilStyles.content}>
+          <Image 
+            style={PerfilStyles.logo} 
+            source={require('../../assets/cmtu_logo.png')} 
+            resizeMode="contain" 
+          />
+          <Text style={PerfilStyles.titulo}>Edite seus dados</Text>
 
-        <Text style={CadastroStyles.textoInput}>Nome:</Text>
-        <TextInput 
-          style={CadastroStyles.input} 
-          placeholder="Ex: Flávio de Souza" 
-        />
+          <Text style={PerfilStyles.textoInput}>Nome:</Text>
+          <TextInput 
+            style={PerfilStyles.input} 
+            placeholder="Ex: Flávio de Souza" 
+          />
 
-        <Text style={CadastroStyles.textoInput}>E-mail:</Text>
-        <TextInput 
-          style={CadastroStyles.input} 
-          placeholder="Ex: flavio.souza@email.com" 
-        />
+          <Text style={PerfilStyles.textoInput}>E-mail:</Text>
+          <TextInput 
+            style={PerfilStyles.input} 
+            placeholder="Ex: flavio.souza@email.com" 
+          />
 
-        <TouchableOpacity style={CadastroStyles.botaoMudarSenha}>
-          <Text style={CadastroStyles.textoBotaoMudarSenha}>MUDAR SENHA</Text>
-        </TouchableOpacity>
+          <TouchableOpacity style={PerfilStyles.botaoMudarSenha}>
+            <Text style={PerfilStyles.textoBotaoMudarSenha}>MUDAR SENHA</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity style={CadastroStyles.botaoSalvarDados}>
-          <Text style={CadastroStyles.textoBotaoSalvarDados}>SALVAR ALTERAÇÕES</Text>
-        </TouchableOpacity>
-        </SafeAreaView>
-    </SafeAreaView>
+          <TouchableOpacity style={PerfilStyles.botaoSalvarDados}>
+            <Text style={PerfilStyles.textoBotaoSalvarDados}>SALVAR ALTERAÇÕES</Text>
+          </TouchableOpacity>
+        </View> 
+
+        <View style={PerfilStyles.rodape}>
+          <TouchableOpacity onPress={() => navigation.navigate('Menu')} style={PerfilStyles.iconRodape}>
+            <Icon name="home" size={30} color="#fff" />
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
   );
 }
 
