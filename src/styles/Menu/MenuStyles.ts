@@ -14,9 +14,9 @@ const styles = StyleSheet.create({
     },
     logo: {
       width: '56%',
-      height: 100,
+      height: 40,
       alignSelf: 'center',
-      marginBottom: 20
+      marginBottom: 50,
     },
     motociclistaConsciente: {
       width: '100%',

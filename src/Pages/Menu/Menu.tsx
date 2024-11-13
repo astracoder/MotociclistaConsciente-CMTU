@@ -2,6 +2,7 @@ import React from 'react';
 import {Text, SafeAreaView, Image, TextInput, TouchableOpacity, View } from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons.js';
+import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons.js';
 
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
@@ -22,12 +23,6 @@ export default function Login() {
     <SafeAreaView style={MenuStyles.container}>
       <SafeAreaView style={MenuStyles.content}>
         <Image 
-          style={MenuStyles.logo} 
-          source={require('../../assets/cmtu_logo.png')} 
-          resizeMode="contain" 
-        />
-
-        <Image 
           style={MenuStyles.motociclistaConsciente} 
           source={require('../../assets/moto_consciente_red.png')} 
           resizeMode="contain" 
@@ -41,7 +36,7 @@ export default function Login() {
                 </TouchableOpacity>
 
                 <TouchableOpacity style={MenuStyles.iconContainer}>
-                  <Icon name="emoji-events" size={80} color="#FFF" style={MenuStyles.iconStyle2}/>
+                  <Icon2 name="certificate-outline" size={80} color="#FFF" style={MenuStyles.iconStyle2}/>
                   <Text style={[MenuStyles.textoOpcao, MenuStyles.textoOpcaoMargin]}>Certificados</Text>
                 </TouchableOpacity>
             </View>
@@ -52,19 +47,18 @@ export default function Login() {
                   <Text style={MenuStyles.textoOpcao}>Perfil</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={MenuStyles.iconContainer}>
+                <TouchableOpacity  onPress={() => navigation.navigate('Configuracoes')} style={MenuStyles.iconContainer}>
                   <Icon name="settings" size={80} color="#FFF" style={MenuStyles.iconStyle4}/>
                   <Text style={MenuStyles.textoOpcao}>Configuração</Text>
                 </TouchableOpacity>
             </View>
         </View>
-
-        <View style={MenuStyles.rodape}>
-          <TouchableOpacity onPress={() => navigation.navigate('Menu')} style={MenuStyles.iconRodape}>
-            <Icon name="home" size={30} color="#fff" />
-          </TouchableOpacity>
-        </View>
-
+        
+        <Image 
+          style={MenuStyles.logo} 
+          source={require('../../assets/cmtu_logo.png')} 
+          resizeMode="contain" 
+        />
       </SafeAreaView>
     </SafeAreaView>
   );

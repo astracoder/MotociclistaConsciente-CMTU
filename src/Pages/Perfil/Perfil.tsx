@@ -20,20 +20,18 @@ export default function App() {
 
   return (
       <SafeAreaView style={PerfilStyles.container}>
+      <Image 
+          style={PerfilStyles.motociclistaConsciente} 
+          source={require('../../assets/moto_consciente_red.png')} 
+          resizeMode="contain" 
+        />
         <View style={PerfilStyles.content}>
-          <Image 
-            style={PerfilStyles.logo} 
-            source={require('../../assets/cmtu_logo.png')} 
-            resizeMode="contain" 
-          />
-          <Text style={PerfilStyles.titulo}>Edite seus dados</Text>
-
           <Text style={PerfilStyles.textoInput}>Nome:</Text>
           <TextInput 
             style={PerfilStyles.input} 
             placeholder="Ex: Flávio de Souza" 
           />
-
+  
           <Text style={PerfilStyles.textoInput}>E-mail:</Text>
           <TextInput 
             style={PerfilStyles.input} 

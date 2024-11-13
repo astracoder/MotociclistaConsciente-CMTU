@@ -7,47 +7,42 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     marginHorizontal: '10%', 
     marginVertical: '10%',
   },
-  logo: {
+  motociclistaConsciente: {
     width: '70%',
     height: 100,
     alignSelf: 'center',
-  },
-  titulo: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#404040',
-    textAlign: 'center',
-    marginVertical: 10,
+    marginTop: 35,
+    marginBottom: -80
   },
   textoInput: {
     color: '#404040',
     textAlign: 'left',
     fontSize: 16,
     fontWeight: 'bold',
-    marginBottom: 5,
+    marginBottom: 10
   },
   input: {
     color: '#606060',
     width: '100%',
     height: 50,
     backgroundColor: '#f0f0f0',
-    borderRadius: 8,
+    borderRadius: 32,
     paddingHorizontal: 15,
     fontSize: 14,
-    marginBottom: 20,
+    marginBottom: 30
   },
   botaoMudarSenha: {
     width: '100%',
     height: 50,
     backgroundColor: '#505050',
-    borderRadius: 8,
+    borderRadius: 32,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: 10
   },
   textoBotaoMudarSenha: {
     fontSize: 18,
@@ -58,10 +53,9 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 50,
     backgroundColor: '#A6CE39',
-    borderRadius: 8,
+    borderRadius: 32,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 20,
   },
   textoBotaoSalvarDados: {
     fontSize: 18,
