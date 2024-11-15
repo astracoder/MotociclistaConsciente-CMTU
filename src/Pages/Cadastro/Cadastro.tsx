@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, SafeAreaView, Image, TextInput, TouchableOpacity } from 'react-native';
+import axios from 'axios';
 
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
@@ -16,6 +17,22 @@ import CadastroStyles from '../../styles/Cadastro/CadastroStyles.ts';
 export default function App() {
   const navigation = useNavigation<NavigationProps>();
 
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+
+  const handleCadastro = async () => {
+    if(!nome || !email || !senha) {
+      alert("Preencha todos os dados!");
+    }
+
+    try {
+      const response = await axios.post('http://localhost:5432/')
+    } catch(err) {
+
+    }
+  };
+
   return (
     <SafeAreaView style={CadastroStyles.container}>
       <SafeAreaView style={CadastroStyles.content}>
@@ -31,12 +48,16 @@ export default function App() {
         <TextInput 
           style={CadastroStyles.input} 
           placeholder="Digite o nome completo..." 
+          onChangeText={setNome}
+          textContentType='name'
         />
 
         <Text style={CadastroStyles.textoInput}>E-mail:</Text>
         <TextInput 
           style={CadastroStyles.input} 
           placeholder="Digite seu melhor e-mail..." 
+          onChangeText={setEmail}
+          textContentType='emailAddress'
         />
 
         <Text style={CadastroStyles.textoInput}>Senha:</Text>
@@ -44,9 +65,11 @@ export default function App() {
           style={CadastroStyles.input} 
           placeholder="Digite sua melhor senha..." 
           secureTextEntry 
+          onChangeText={setSenha}
+          textContentType='password'
         />
 
-        <TouchableOpacity style={CadastroStyles.botaoCadastro}>
+        <TouchableOpacity onPress={() => handleCadastro()} style={CadastroStyles.botaoCadastro}>
           <Text style={CadastroStyles.textoBotaoCadastro}>CADASTRAR</Text>
         </TouchableOpacity>
 

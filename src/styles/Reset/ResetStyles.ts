@@ -41,6 +41,10 @@ const styles = StyleSheet.create({
       paddingHorizontal: 15,
       fontSize: 14,
       marginBottom: 15,
+      shadowColor: '#171717',
+      shadowOffset: {width: 3, height: 4},
+      shadowOpacity: 0.2,
+      shadowRadius: 3,
     },
     botaoSalvar: {
       width: '100%',
@@ -48,7 +52,11 @@ const styles = StyleSheet.create({
       paddingVertical: 15,
       borderRadius: 32,
       alignItems: 'center',
-      marginBottom: 10
+      marginBottom: 10,
+      shadowColor: '#171717',
+      shadowOffset: {width: 3, height: 4},
+      shadowOpacity: 0.2,
+      shadowRadius: 3,
     },
     textoBotaoSalvar: {
       fontSize: 18,

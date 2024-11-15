@@ -23,8 +23,6 @@ export default function App() {
     const navigation = useNavigation<NavigationProps>();
     const [isNotificationsEnabled, setNotificationsEnabled] = useState(false);
     const [isDarkModeEnabled, setDarkModeEnabled] = useState(false);
-    const [isLocationEnabled, setLocationEnabled] = useState(false);
-    const [isSoundEnabled, setSoundEnabled] = useState(false);
     const [isUpdate, setUpdate] = useState(false);
     const [isVibration, setVibration] = useState(false);
     const [isTips, setTips] = useState(false);
@@ -75,23 +73,6 @@ export default function App() {
                 </View>
 
                 <View style={ConfiguracoesStyle.switchContainer}>
-                    <Text style={ConfiguracoesStyle.textoSwitch}>Ativar o som do app:</Text>
-                    <Switch
-                        activeText={'On'}
-                        inActiveText={'Off'}
-                        circleSize={25}
-                        barHeight={20}
-                        circleBorderWidth={1}
-                        backgroundActive={'#ed1c24'} 
-                        backgroundInactive={'#bd7174'} 
-                        circleActiveColor={'#f4f3f4'} 
-                        circleInActiveColor={'#f4f3f4'} 
-                        onValueChange={() => setSoundEnabled(!isSoundEnabled)}
-                        value={isSoundEnabled}
-                    />
-                </View>
-
-                <View style={ConfiguracoesStyle.switchContainer}>
                     <Text style={ConfiguracoesStyle.textoSwitch}>Ativar vibração:</Text>
                     <Switch
                         activeText={'On'}
@@ -109,22 +90,6 @@ export default function App() {
                 </View>
 
                 <Text style={ConfiguracoesStyle.label}>Recursos:</Text>
-                <View style={ConfiguracoesStyle.switchContainer}>
-                    <Text style={ConfiguracoesStyle.textoSwitch}>Compartilhar localização:</Text>
-                    <Switch
-                        activeText={'On'}
-                        inActiveText={'Off'}
-                        circleSize={25}
-                        barHeight={20}
-                        circleBorderWidth={1}
-                        backgroundActive={'#ed1c24'} 
-                        backgroundInactive={'#bd7174'} 
-                        circleActiveColor={'#f4f3f4'} 
-                        circleInActiveColor={'#f4f3f4'} 
-                        onValueChange={() => setLocationEnabled(!isLocationEnabled)}
-                        value={isLocationEnabled}
-                    />
-                </View>
 
                 <View style={ConfiguracoesStyle.switchContainer}>
                     <Text style={ConfiguracoesStyle.textoSwitch}>Permitir atualizações automáticas:</Text>
@@ -161,6 +126,9 @@ export default function App() {
                     />
                 </View>
 
+                <TouchableOpacity onPress={() => navigation.navigate('Login')} style={ConfiguracoesStyle.botaoDesconectar}>
+                    <Text style={ConfiguracoesStyle.textoBotaoDesconectar}>DESCONECTAR</Text>
+                </TouchableOpacity>
             </View>
 
             <View style={ConfiguracoesStyle.rodape}>

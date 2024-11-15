@@ -30,12 +30,12 @@ export default function Login() {
 
         <View style={MenuStyles.grid}>
             <View style={MenuStyles.iconLinha}>
-                <TouchableOpacity style={MenuStyles.iconContainer}>
+                <TouchableOpacity onPress={() => navigation.navigate('Modulos')} style={MenuStyles.iconContainer}>
                   <Icon name="menu-book" size={80} color="#FFF" style={MenuStyles.iconStyle1}/>
                   <Text style={[MenuStyles.textoOpcao, MenuStyles.textoOpcaoMargin]}>Módulos</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={MenuStyles.iconContainer}>
+                <TouchableOpacity onPress={() => navigation.navigate('Certificados')} style={MenuStyles.iconContainer}>
                   <Icon2 name="certificate-outline" size={80} color="#FFF" style={MenuStyles.iconStyle2}/>
                   <Text style={[MenuStyles.textoOpcao, MenuStyles.textoOpcaoMargin]}>Certificados</Text>
                 </TouchableOpacity>

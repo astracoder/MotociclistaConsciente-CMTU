@@ -46,6 +46,10 @@ const styles = StyleSheet.create({
       paddingHorizontal: 15,
       fontSize: 14,
       marginBottom: 15,
+      shadowColor: '#171717',
+      shadowOffset: {width: 3, height: 4},
+      shadowOpacity: 0.2,
+      shadowRadius: 3,
     },
     imagemCadastro: {
       width: '60%',
@@ -60,6 +64,10 @@ const styles = StyleSheet.create({
       borderRadius: 32,
       justifyContent: 'center',
       alignItems: 'center',
+      shadowColor: '#171717',
+      shadowOffset: {width: 3, height: 4},
+      shadowOpacity: 0.2,
+      shadowRadius: 3,
     },
     textoBotaoCadastro: {
       fontSize: 18,
