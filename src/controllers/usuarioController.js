@@ -1,10 +1,11 @@
-const bCrypt = require("bcrypt");
-const jwt = require('jsonwebtoken');
-const usuarioModel = require('../models/usuarioModel');
+import bCrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import usuarioModel from '../models/usuarioModel.js';
+
 const SECRET_KEY = "1020";
 
 // Cadastro de usuário
-const cadastrar = (req, res) => {
+export const cadastrar = (req, res) => {
     const { nome, email, senha } = req.body;
     const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const regexSenha = /[A-Za-z\d!@#$%^&*]{8,}/;
@@ -35,7 +36,7 @@ const cadastrar = (req, res) => {
 };
 
 // Login de usuário
-const login = (req, res) => {
+export const login = (req, res) => {
     const { email, senha } = req.body;
     if (!email || !senha) {
         return res.status(400).json({ mensagem: "Email e senha são obrigatórios" });
@@ -56,12 +57,4 @@ const login = (req, res) => {
             return res.status(400).json({ mensagem: "Senha incorreta!" });
         }
     });
-};
-
-// Outros métodos seguem a mesma estrutura, chamando as funções do model para interação com o banco de dados.
-
-module.exports = {
-    cadastrar,
-    login,
-    // outros métodos
 };
