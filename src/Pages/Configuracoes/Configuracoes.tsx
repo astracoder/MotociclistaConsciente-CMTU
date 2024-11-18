@@ -19,7 +19,7 @@ type NavigationProps = NativeStackNavigationProp<StackParamList, 'Configuracoes'
 
 import ConfiguracoesStyle from '../../styles/Configuracoes/ConfiguracoesStyle.ts';
 
-export default function App() {
+export const Configuracoes = () => {
     const navigation = useNavigation<NavigationProps>();
     const [isNotificationsEnabled, setNotificationsEnabled] = useState(false);
     const [isDarkModeEnabled, setDarkModeEnabled] = useState(false);
@@ -126,8 +126,12 @@ export default function App() {
                     />
                 </View>
 
+                <TouchableOpacity onPress={() => navigation.navigate('Reset')} style={ConfiguracoesStyle.botaoMudarSenha}>
+                    <Text style={ConfiguracoesStyle.textoMudarSenha}>Mudar senha</Text>
+                </TouchableOpacity>
+
                 <TouchableOpacity onPress={() => navigation.navigate('Login')} style={ConfiguracoesStyle.botaoDesconectar}>
-                    <Text style={ConfiguracoesStyle.textoBotaoDesconectar}>DESCONECTAR</Text>
+                    <Text style={ConfiguracoesStyle.textoBotaoDesconectar}>Sair</Text>
                 </TouchableOpacity>
             </View>
 

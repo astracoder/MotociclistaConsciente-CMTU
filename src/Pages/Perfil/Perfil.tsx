@@ -15,7 +15,7 @@ type NavigationProps = NativeStackNavigationProp<StackParamList, 'Perfil'>
 
 import PerfilStyles from '../../styles/Perfil/PerfilStyles.ts';
 
-export default function App() {
+export const Perfil = () => {
   const navigation = useNavigation<NavigationProps>();
 
   return (

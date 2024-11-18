@@ -1,5 +1,5 @@
-import express from 'express';
-import { cadastrar, login } from '../controllers/usuarioController.js';
+const express = require('express');
+const { cadastrar, login } = require('../controllers/usuarioController');
 
 const router = express.Router();
 
@@ -13,5 +13,4 @@ router.post('/login', login);
 // router.put('/desativarUsuario', desativarUsuario);
 // router.put('/ativarUsuario', ativarUsuario);
 
-
-export default router;
+module.exports = router;

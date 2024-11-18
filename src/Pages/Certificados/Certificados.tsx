@@ -15,7 +15,7 @@ type NavigationProps = NativeStackNavigationProp<StackParamList, 'Certificados'>
 
 import CertificadosStyles from '../../styles/Certificados/CertificadosStyles.ts';
 
-export default function App() {
+export const Certificados = () => {
   const navigation = useNavigation<NavigationProps>();
 
   return (

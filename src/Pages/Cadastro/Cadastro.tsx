@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, SafeAreaView, Image, TextInput, TouchableOpacity } from 'react-native';
+import { Text, SafeAreaView, Image, TextInput, TouchableOpacity, Alert } from 'react-native';
 import axios from 'axios';
 
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -14,7 +14,7 @@ type NavigationProps = NativeStackNavigationProp<StackParamList, 'Cadastro'>
 
 import CadastroStyles from '../../styles/Cadastro/CadastroStyles.ts';
 
-export default function App() {
+export const Cadastro = () => {
   const navigation = useNavigation<NavigationProps>();
 
   const [nome, setNome] = useState('');
@@ -23,13 +23,18 @@ export default function App() {
 
   const handleCadastro = async () => {
     if(!nome || !email || !senha) {
-      alert("Preencha todos os dados!");
+      Alert.alert("Preencha todos os dados!");
     }
 
     try {
-      const response = await axios.post('http://localhost:5432/')
-    } catch(err) {
+      const response = await axios.post('http://192.168.1.126:3000/usuario/cadastro', {nome, email, senha});
 
+      if (response.status === 200) {
+        console.log(`Nome: ${nome} senha: ${senha}`);
+        navigation.navigate('Login');
+      }
+    } catch(err) {
+      Alert.alert("Não foi possível cadastrar usuário! Consulte o administrador.");
     }
   };
 
@@ -49,6 +54,7 @@ export default function App() {
           style={CadastroStyles.input} 
           placeholder="Digite o nome completo..." 
           onChangeText={setNome}
+          value={nome}
           textContentType='name'
         />
 
@@ -57,6 +63,7 @@ export default function App() {
           style={CadastroStyles.input} 
           placeholder="Digite seu melhor e-mail..." 
           onChangeText={setEmail}
+          value={email}
           textContentType='emailAddress'
         />
 
@@ -66,11 +73,12 @@ export default function App() {
           placeholder="Digite sua melhor senha..." 
           secureTextEntry 
           onChangeText={setSenha}
+          value={senha}
           textContentType='password'
         />
 
         <TouchableOpacity onPress={() => handleCadastro()} style={CadastroStyles.botaoCadastro}>
-          <Text style={CadastroStyles.textoBotaoCadastro}>CADASTRAR</Text>
+          <Text style={CadastroStyles.textoBotaoCadastro}>Cadastrar</Text>
         </TouchableOpacity>
 
         <Image 

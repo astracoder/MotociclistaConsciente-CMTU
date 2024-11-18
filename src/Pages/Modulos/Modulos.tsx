@@ -15,7 +15,7 @@ type NavigationProps = NativeStackNavigationProp<StackParamList, 'Modulos'>
 
 import ModulosStyles from '../../styles/Modulos/ModulosStyles.ts';
 
-export default function App() {
+export const Modulos = () => {
   const navigation = useNavigation<NavigationProps>();
 
   return (

@@ -7,6 +7,8 @@ import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons.js';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 
+import { useUser } from '../../Context/UserContext';
+
 type StackParamList = {
   Login: undefined;
   Cadastro: undefined
@@ -16,8 +18,10 @@ type NavigationProps = NativeStackNavigationProp<StackParamList, 'Login'>
 
 import MenuStyles from '../../styles/Menu/MenuStyles.ts';
 
-export default function Login() {
+export const Menu = () => {
   const navigation = useNavigation<NavigationProps>();
+
+  const { user } = useUser();
 
   return (
     <SafeAreaView style={MenuStyles.container}>
@@ -27,6 +31,8 @@ export default function Login() {
           source={require('../../assets/moto_consciente_red.png')} 
           resizeMode="contain" 
         />
+
+        <Text>{user.email}</Text>
 
         <View style={MenuStyles.grid}>
             <View style={MenuStyles.iconLinha}>
