@@ -1,19 +1,12 @@
 import React from 'react';
 import { Text, View, SafeAreaView, Image, TouchableOpacity } from 'react-native';
-
 import Icon from 'react-native-vector-icons/MaterialIcons.js';
-
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
-
-type StackParamList = {
-  Login: undefined;
-  Cadastro: undefined
-}
+import { StackParamList } from '../../../App';
+import ModulosStyles from '../../styles/Modulos/ModulosStyles.ts';
 
 type NavigationProps = NativeStackNavigationProp<StackParamList, 'Modulos'>
-
-import ModulosStyles from '../../styles/Modulos/ModulosStyles.ts';
 
 export const Modulos = () => {
   const navigation = useNavigation<NavigationProps>();

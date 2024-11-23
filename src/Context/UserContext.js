@@ -1,25 +1,21 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
-// Criar o contexto
 const UserContext = createContext();
 
-// Provider para fornecer os dados do usuário
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null); // Estado para armazenar as informações do usuário
+  const [user, setUser] = useState({ nome: '', email: '' });
 
-  // Função para atualizar as informações do usuário após o login
-  const setUserInfo = (userData) => {
-    setUser(userData);
+  const setUserData = (nome, email) => {
+    setUser({ nome, email });
   };
 
   return (
-    <UserContext.Provider value={{ user, setUserInfo }}>
+    <UserContext.Provider value={{ user, setUserData }}>
       {children}
     </UserContext.Provider>
   );
 };
 
-// Hook para acessar as informações do usuário em outros componentes
 export const useUser = () => {
   return useContext(UserContext);
 };

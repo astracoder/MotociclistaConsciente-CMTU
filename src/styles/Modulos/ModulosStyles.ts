@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     height: 100,
     alignSelf: 'center',
     marginTop: 35,
-    marginBottom: -80
+    marginBottom: -150
   },
   titulo: {
     fontSize: 28,

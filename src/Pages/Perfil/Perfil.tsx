@@ -1,22 +1,17 @@
 import React from 'react';
 import { Text, View, SafeAreaView, Image, TextInput, TouchableOpacity } from 'react-native';
-
 import Icon from 'react-native-vector-icons/MaterialIcons.js';
-
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
-
-type StackParamList = {
-  Login: undefined;
-  Cadastro: undefined
-}
+import { StackParamList } from '../../../App';
+import { useUser } from '../../context/UserContext.js';
+import PerfilStyles from '../../styles/Perfil/PerfilStyles.ts';
 
 type NavigationProps = NativeStackNavigationProp<StackParamList, 'Perfil'>
 
-import PerfilStyles from '../../styles/Perfil/PerfilStyles.ts';
-
 export const Perfil = () => {
   const navigation = useNavigation<NavigationProps>();
+  const { user } = useUser();
 
   return (
       <SafeAreaView style={PerfilStyles.container}>
@@ -25,25 +20,25 @@ export const Perfil = () => {
           source={require('../../assets/moto_consciente_red.png')} 
           resizeMode="contain" 
         />
+
         <View style={PerfilStyles.content}>
+          <Text style={PerfilStyles.titulo}>Edite seu perfil</Text> 
           <Text style={PerfilStyles.textoInput}>Nome:</Text>
           <TextInput 
             style={PerfilStyles.input} 
-            placeholder="Ex: Flávio de Souza" 
+            value={user.nome}
+            aria-disabled
           />
   
           <Text style={PerfilStyles.textoInput}>E-mail:</Text>
           <TextInput 
             style={PerfilStyles.input} 
-            placeholder="Ex: flavio.souza@email.com" 
+            value={user.email}
+            aria-disabled
           />
 
-          <TouchableOpacity style={PerfilStyles.botaoMudarSenha}>
-            <Text style={PerfilStyles.textoBotaoMudarSenha}>MUDAR SENHA</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={PerfilStyles.botaoSalvarDados}>
-            <Text style={PerfilStyles.textoBotaoSalvarDados}>SALVAR ALTERAÇÕES</Text>
+          <TouchableOpacity onPress={() => navigation.navigate('Reset')} style={PerfilStyles.botaoMudarSenha}>
+            <Text style={PerfilStyles.textoBotaoMudarSenha}>Alterar senha</Text>
           </TouchableOpacity>
         </View> 
 

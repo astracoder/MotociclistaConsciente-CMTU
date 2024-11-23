@@ -18,6 +18,13 @@ const styles = StyleSheet.create({
     marginTop: 35,
     marginBottom: -80
   },
+  titulo: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#404040',
+    textAlign: 'center',
+    marginBottom: 50
+  },
   textoInput: {
     color: '#404040',
     textAlign: 'left',
@@ -42,7 +49,7 @@ const styles = StyleSheet.create({
   botaoMudarSenha: {
     width: '100%',
     height: 50,
-    backgroundColor: '#303030',
+    backgroundColor: '#0088C7',
     borderRadius: 32,
     justifyContent: 'center',
     alignItems: 'center',
@@ -56,23 +63,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: 'white',
-  },
-  botaoSalvarDados: {
-    width: '100%',
-    height: 50,
-    backgroundColor: '#A6CE39',
-    borderRadius: 32,
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: '#171717',
-    shadowOffset: {width: 3, height: 4},
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-  },
-  textoBotaoSalvarDados: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#353535',
   },
   rodape: {
     flexDirection: 'row',

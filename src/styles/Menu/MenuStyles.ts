@@ -9,8 +9,15 @@ const styles = StyleSheet.create({
     content: {
       flex: 1,
       backgroundColor: 'white',
+      alignItems: 'center',
       justifyContent: 'space-between', 
       marginTop: '10%'
+    },
+    motociclistaConsciente: {
+      width: '100%',
+      height: 100,
+      alignSelf: 'center',
+      marginBottom: 30
     },
     logo: {
       width: '56%',
@@ -18,28 +25,25 @@ const styles = StyleSheet.create({
       alignSelf: 'center',
       marginBottom: 50,
     },
-    motociclistaConsciente: {
-      width: '100%',
-      height: 100,
-      alignSelf: 'center',
-    },
     titulo: {
-      fontSize: 28,
+      fontSize: 20,
       fontWeight: 'bold',
       color: '#404040',
       textAlign: 'center',
+      width: '80%'
     },
     grid: {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      marginTop: -50
+      marginTop: -50,
     },
     iconLinha: {
+      backgroundColor: 'Yellow',
       flexDirection: 'row',
       justifyContent: 'space-evenly',
       alignItems: 'center',
-      width: '100%',
+      gap: 40
     },
     iconContainer: {
       alignItems: 'center',

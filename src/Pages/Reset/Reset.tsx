@@ -1,46 +1,48 @@
 import React, { useState } from 'react';
-import {Text, SafeAreaView, Image, TextInput, TouchableOpacity } from 'react-native';
+import {Text, SafeAreaView, Image, TextInput, TouchableOpacity, Alert } from 'react-native';
 import axios from 'axios';
-
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
-
-type StackParamList = {
-  Login: undefined;
-  Cadastro: undefined,
-  Configuracoes: undefined
-}
+import { StackParamList } from '../../../App';
+import { useUser } from '../../context/UserContext.js';
+import ResetStyles from '../../styles/Reset/ResetStyles.ts';
 
 type NavigationProps = NativeStackNavigationProp<StackParamList, 'Reset'>
 
-import ResetStyles from '../../styles/Reset/ResetStyles.ts';
-
 export const Reset = () => {
   const navigation = useNavigation<NavigationProps>();
+  const { user } = useUser();
 
-  const [email, setEmmail] = useState('');
-  const [senhaAntiga, setSenhaAntiga] = useState('');
+  const [email, setEmail] = useState('');
   const [senhaNova, setSenhaNova] = useState('');
   const [senhaNovaRepitida, setSenhaNovaRepitida] = useState('');
 
   const handleEditarSenha = async () => {
-    if(!senhaAntiga || !senhaNova) {
+    if(!email || !senhaNova) {
       alert("Preencha todos os dados!");
+      return;
     }
 
-    if(senhaNova != senhaNovaRepitida) {
-      alert("A nova senha está diferente!");
+    if(senhaNova !== senhaNovaRepitida) {
+      alert("A nova senha não esta correta!");
+      return;
+    }
+
+    if(senhaNova.length < 8 || senhaNovaRepitida.length < 8) {
+      alert("Senha deve ter 8 caracteres!");
+      return;
     }
 
     try {
-      const response = await axios.post('http://localhost:3000/usuario/editarSenha', {senhaAntiga, senhaNova});
+      const response = await axios.put('http://192.168.93.235:3000/usuario/editarSenha', {email, senhaNova});
 
       if (response.status === 200) {
-        console.log(`Email: ${senhaAntiga} senha: ${senhaNova}`);
-        navigation.navigate('Configuracoes');
+        navigation.navigate('Perfil');
+        alert(`Senha alterada com sucesso!`);
+        return;
       }
     } catch(err) {
-      alert("Senhas inválidas!");
+      alert("Ocorreu um erro ao tentar alterar a senha!");
     }
   };
 
@@ -58,18 +60,8 @@ export const Reset = () => {
         <TextInput 
           style={ResetStyles.input} 
           placeholder="Digite seu e-mail..." 
-          secureTextEntry
-          onChangeText={setSenhaAntiga}
-          value={senhaAntiga}
-        />
-
-        <Text style={ResetStyles.textoInput}>Senha atual:</Text>
-        <TextInput 
-          style={ResetStyles.input} 
-          placeholder="Digite sua senha atual..." 
-          secureTextEntry
-          onChangeText={setSenhaAntiga}
-          value={senhaAntiga}
+          onChangeText={setEmail}
+          value={email}
         />
 
         <Text style={ResetStyles.textoInput}>Nova senha:</Text>
@@ -84,7 +76,7 @@ export const Reset = () => {
         <Text style={ResetStyles.textoInput}>Repita nova senha:</Text>
         <TextInput 
           style={ResetStyles.input} 
-          placeholder="Digite a nova senha novamente..." 
+          placeholder="Digite a nova senha..." 
           secureTextEntry 
           onChangeText={setSenhaNovaRepitida}
           value={senhaNovaRepitida}
@@ -94,7 +86,7 @@ export const Reset = () => {
           <Text style={ResetStyles.textoBotaoSalvar}>Salvar alteração</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Perfil')}>
           <Text style={ResetStyles.voltar}>Voltar</Text>
         </TouchableOpacity>
       </SafeAreaView>

@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { UserProvider } from './src/Context/UserContext';
+import { UserProvider } from './src/context/UserContext';
 
 import { Login } from './src/pages/Login/Login';
 import { Cadastro } from './src/pages/Cadastro/Cadastro';
@@ -11,7 +11,24 @@ import { Perfil } from './src/pages/Perfil/Perfil';
 import { Configuracoes } from './src/pages/Configuracoes/Configuracoes';
 import { Reset } from './src/pages/Reset/Reset';
 
-const Stack = createNativeStackNavigator();
+import { UsuarioAdmin } from './src/pagesAdmin/Usuario/UsuarioAdmin';
+import { ModuloAdmin } from './src/pagesAdmin/Modulo/ModuloAdmin';
+
+export type StackParamList = {
+  Login: undefined;
+  Cadastro: undefined;
+  Menu: undefined;
+  Modulos: undefined;
+  Certificados: undefined;
+  Perfil: undefined
+  Reset: undefined
+  Configuracoes: undefined;
+
+  UsuarioAdmin: undefined;
+  ModuloAdmin: undefined;
+};
+
+const Stack = createNativeStackNavigator<StackParamList>();
 
 export default function App() {
   return (
@@ -26,8 +43,12 @@ export default function App() {
           <Stack.Screen name='Perfil' component={Perfil} options={{headerShown: false}}/>
           <Stack.Screen name='Reset' component={Reset} options={{headerShown: false}}/>
           <Stack.Screen name='Configuracoes' component={Configuracoes} options={{headerShown: false}}/>
+
+          <Stack.Screen name='UsuarioAdmin' component={UsuarioAdmin} options={{headerShown: false}}/>
+          <Stack.Screen name='ModuloAdmin' component={ModuloAdmin} options={{headerShown: false}}/>
         </Stack.Navigator>
       </NavigationContainer>
     </UserProvider>
+
   );
 } 

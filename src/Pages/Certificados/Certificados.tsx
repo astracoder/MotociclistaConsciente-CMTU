@@ -1,19 +1,12 @@
 import React from 'react';
 import { Text, View, SafeAreaView, Image, TouchableOpacity } from 'react-native';
-
 import Icon from 'react-native-vector-icons/MaterialIcons.js';
-
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
-
-type StackParamList = {
-  Login: undefined;
-  Cadastro: undefined
-}
+import { StackParamList } from '../../../App';
+import CertificadosStyles from '../../styles/Certificados/CertificadosStyles.ts';
 
 type NavigationProps = NativeStackNavigationProp<StackParamList, 'Certificados'>
-
-import CertificadosStyles from '../../styles/Certificados/CertificadosStyles.ts';
 
 export const Certificados = () => {
   const navigation = useNavigation<NavigationProps>();
@@ -26,14 +19,14 @@ export const Certificados = () => {
           resizeMode="contain" 
         />
         <View style={CertificadosStyles.content}>
-        <Text style={CertificadosStyles.titulo}>Certificados</Text>
+          <Text style={CertificadosStyles.titulo}>Certificados</Text>
 
           <TouchableOpacity style={CertificadosStyles.seguranca}>
             <Text style={CertificadosStyles.textoBotao}>Visualizar certificado</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={CertificadosStyles.placas}>
-            <Text style={CertificadosStyles.textoBotao}>Baixar ceritifcado</Text>
+            <Text style={CertificadosStyles.textoBotao}>Baixar certificado</Text>
           </TouchableOpacity>
 
         </View> 

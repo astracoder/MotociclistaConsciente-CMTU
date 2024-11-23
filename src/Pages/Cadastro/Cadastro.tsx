@@ -1,18 +1,12 @@
 import React, { useState } from 'react';
 import { Text, SafeAreaView, Image, TextInput, TouchableOpacity, Alert } from 'react-native';
 import axios from 'axios';
-
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
-
-type StackParamList = {
-  Login: undefined;
-  Cadastro: undefined
-}
+import { StackParamList } from '../../../App';
+import CadastroStyles from '../../styles/Cadastro/CadastroStyles.ts';
 
 type NavigationProps = NativeStackNavigationProp<StackParamList, 'Cadastro'>
-
-import CadastroStyles from '../../styles/Cadastro/CadastroStyles.ts';
 
 export const Cadastro = () => {
   const navigation = useNavigation<NavigationProps>();
@@ -23,18 +17,20 @@ export const Cadastro = () => {
 
   const handleCadastro = async () => {
     if(!nome || !email || !senha) {
-      Alert.alert("Preencha todos os dados!");
+      alert("Preencha todos os dados!");
+      return;
     }
 
     try {
-      const response = await axios.post('http://192.168.1.126:3000/usuario/cadastro', {nome, email, senha});
+      const response = await axios.post('http://192.168.93.235:3000/usuario/cadastro', {nome, email, senha});
 
       if (response.status === 200) {
-        console.log(`Nome: ${nome} senha: ${senha}`);
         navigation.navigate('Login');
+        alert(`${nome} sua conta foi cadastrada com sucesso!`);
       }
     } catch(err) {
-      Alert.alert("Não foi possível cadastrar usuário! Consulte o administrador.");
+      alert("Não foi possível cadastrar usuário! Consulte o administrador.");
+      return;
     }
   };
 
@@ -47,7 +43,7 @@ export const Cadastro = () => {
           resizeMode="contain" 
         />
         <Text style={CadastroStyles.titulo}>Registro</Text>
-        <Text style={CadastroStyles.subTitulo}>Faça parte dessa família</Text>
+        <Text style={CadastroStyles.subTitulo}>Faça parte e venha aprender.</Text>
 
         <Text style={CadastroStyles.textoInput}>Nome:</Text>
         <TextInput 

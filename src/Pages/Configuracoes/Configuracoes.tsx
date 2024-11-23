@@ -1,23 +1,14 @@
 import React from 'react';
 import { Text, View, SafeAreaView, Image, TextInput, TouchableOpacity } from 'react-native';
 import { Switch } from 'react-native-switch';
-
 import { useState } from 'react';
-
 import Icon from 'react-native-vector-icons/MaterialIcons.js';
-
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
-
-type StackParamList = {
-    Login: undefined;
-    Cadastro: undefined;
-    Menu: undefined;
-}
+import { StackParamList } from '../../../App';
+import ConfiguracoesStyle from '../../styles/Configuracoes/ConfiguracoesStyle.ts';
 
 type NavigationProps = NativeStackNavigationProp<StackParamList, 'Configuracoes'>
-
-import ConfiguracoesStyle from '../../styles/Configuracoes/ConfiguracoesStyle.ts';
 
 export const Configuracoes = () => {
     const navigation = useNavigation<NavigationProps>();
@@ -126,12 +117,8 @@ export const Configuracoes = () => {
                     />
                 </View>
 
-                <TouchableOpacity onPress={() => navigation.navigate('Reset')} style={ConfiguracoesStyle.botaoMudarSenha}>
-                    <Text style={ConfiguracoesStyle.textoMudarSenha}>Mudar senha</Text>
-                </TouchableOpacity>
-
                 <TouchableOpacity onPress={() => navigation.navigate('Login')} style={ConfiguracoesStyle.botaoDesconectar}>
-                    <Text style={ConfiguracoesStyle.textoBotaoDesconectar}>Sair</Text>
+                    <Text style={ConfiguracoesStyle.textoBotaoDesconectar}>Sair da conta</Text>
                 </TouchableOpacity>
             </View>
 
