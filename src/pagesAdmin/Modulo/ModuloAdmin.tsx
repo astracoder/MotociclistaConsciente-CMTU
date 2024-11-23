@@ -1,27 +1,33 @@
 import React from 'react';
 import { Text, View, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
-import ModuloStyles from '../../stylesAdmin/ModuloAdmin/ModuloStyles';
+import Global from '../../stylesAdmin/Global/globalStyles';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { StackParamList } from '../../../App';
+import { useNavigation } from '@react-navigation/native';
+
+type NavigationProps = NativeStackNavigationProp<StackParamList, 'ModuloAdmin'>
 
 export const ModuloAdmin = () => {
+  const navigation = useNavigation<NavigationProps>();
   const nomeTeste = "Legislação";
 
   return (
-    <SafeAreaView style={ModuloStyles.container}>
-      <View style={ModuloStyles.content}>
+    <SafeAreaView style={Global.container}>
+      <View style={Global.content}>
 
-        <TouchableOpacity style={ModuloStyles.setas}>
+        <TouchableOpacity style={Global.setas}>
           <Text style={{color: '#ED1C24', fontSize: 48}}>
             {'⬅'}
           </Text>
         </TouchableOpacity>
 
-        <View style={ModuloStyles.containerAba}>
-          <Text style={ModuloStyles.nomeAba}>
+        <View style={Global.containerAba}>
+          <Text style={Global.nomeAba}>
             MODULO
           </Text>          
         </View>
 
-        <TouchableOpacity style={ModuloStyles.setas}>
+        <TouchableOpacity onPress={() => navigation.navigate('UsuarioModuloAdmin')} style={Global.setas}>
           <Text style={{color: '#ED1C24', fontSize: 48}}>
             {'⮕'}
           </Text>
@@ -29,16 +35,16 @@ export const ModuloAdmin = () => {
 
       </View>
       
-      <ScrollView style={ModuloStyles.containerView}>
+      <ScrollView style={Global.containerView}>
 
-        <TouchableOpacity style={ModuloStyles.containerBoxInfo}>
-          <View style={ModuloStyles.containerID}>
-            <Text style={ModuloStyles.containerIDTexto}>
+        <TouchableOpacity style={Global.containerBoxInfo}>
+          <View style={Global.containerID}>
+            <Text style={Global.containerIDTexto}>
               1
             </Text>
           </View>
-          <View style={ModuloStyles.containerNome}>
-            <Text style={ModuloStyles.containerNomeTexto}>
+          <View style={Global.containerNome}>
+            <Text style={Global.containerNomeTexto}>
               {nomeTeste.slice(0, 50)}...
             </Text>
           </View>
@@ -46,7 +52,7 @@ export const ModuloAdmin = () => {
 
       </ScrollView>
 
-      <TouchableOpacity style={ModuloStyles.adicionar}>
+      <TouchableOpacity style={Global.adicionar}>
         <Text style={{fontSize: 34, textAlign: 'center', color: 'white'}}>
           +
         </Text>

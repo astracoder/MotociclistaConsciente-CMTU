@@ -5,11 +5,11 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackParamList } from '../../../App';
 import { useNavigation } from '@react-navigation/native';
 
-type NavigationProps = NativeStackNavigationProp<StackParamList, 'AtividadeAdmin'>
+type NavigationProps = NativeStackNavigationProp<StackParamList, 'ModuloAdmin'>
 
-export const AtividadeAdmin = () => {
+export const UsuarioModuloAdmin = () => {
   const navigation = useNavigation<NavigationProps>();
-  const nomeTeste = "Pode atropelar?";
+  const nomeTeste = "LEGISLAÇÃO";
 
   return (
     <SafeAreaView style={Global.container}>
@@ -23,11 +23,11 @@ export const AtividadeAdmin = () => {
 
         <View style={Global.containerAba}>
           <Text style={Global.nomeAba}>
-            ATIVIDADE
+            USUÁRIO MODULOS
           </Text>          
         </View>
 
-        <TouchableOpacity onPress={() => navigation.navigate('AlternativaAdmin')} style={Global.setas}>
+        <TouchableOpacity onPress={() => navigation.navigate('AtividadeAdmin')} style={Global.setas}>
           <Text style={{color: '#ED1C24', fontSize: 48}}>
             {'⮕'}
           </Text>

@@ -13,6 +13,10 @@ import { Reset } from './src/pages/Reset/Reset';
 
 import { UsuarioAdmin } from './src/pagesAdmin/Usuario/UsuarioAdmin';
 import { ModuloAdmin } from './src/pagesAdmin/Modulo/ModuloAdmin';
+import { UsuarioModuloAdmin } from './src/pagesAdmin/UsuarioModulo/UsuarioModuloAdmin';
+import { AtividadeAdmin } from './src/pagesAdmin/Atividade/AtividadeAdmin';
+import { AlternativaAdmin } from './src/pagesAdmin/Alternativa/AlternativaAdmin';
+import { CertificadoAdmin } from './src/pagesAdmin/Certificado/CertificadoAdmin';
 
 export type StackParamList = {
   Login: undefined;
@@ -26,6 +30,10 @@ export type StackParamList = {
 
   UsuarioAdmin: undefined;
   ModuloAdmin: undefined;
+  UsuarioModuloAdmin: undefined;
+  AtividadeAdmin: undefined;
+  AlternativaAdmin: undefined;
+  CertificadoAdmin: undefined;
 };
 
 const Stack = createNativeStackNavigator<StackParamList>();
@@ -46,6 +54,10 @@ export default function App() {
 
           <Stack.Screen name='UsuarioAdmin' component={UsuarioAdmin} options={{headerShown: false}}/>
           <Stack.Screen name='ModuloAdmin' component={ModuloAdmin} options={{headerShown: false}}/>
+          <Stack.Screen name='UsuarioModuloAdmin' component={UsuarioModuloAdmin} options={{headerShown: false}}/>
+          <Stack.Screen name='AtividadeAdmin' component={AtividadeAdmin} options={{headerShown: false}}/>
+          <Stack.Screen name='AlternativaAdmin' component={AlternativaAdmin} options={{headerShown: false}}/>
+          <Stack.Screen name='CertificadoAdmin' component={CertificadoAdmin} options={{headerShown: false}}/>
         </Stack.Navigator>
       </NavigationContainer>
     </UserProvider>

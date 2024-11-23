@@ -1,27 +1,57 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
-import UsuarioStyles from '../../stylesAdmin/UsuarioAdmin/UsuarioStyles';
+import Global from '../../stylesAdmin/Global/globalStyles';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { StackParamList } from '../../../App';
+import { useNavigation } from '@react-navigation/native';
+
+type NavigationProps = NativeStackNavigationProp<StackParamList, 'UsuarioAdmin'>
 
 export const UsuarioAdmin = () => {
-  const nomeTeste = "Constantino Maximiliano";
+  const navigation = useNavigation<NavigationProps>();
+
+    const [dados, setDados] = useState<any[]>([]);
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://192.168.1.9:3000/usuario/selecionarUsuarios');
+        const json = await response.json();
+  
+        console.log('Dados recebidos:', json); 
+        if (Array.isArray(json)) {
+          setDados(json); 
+        } else if (json.data && Array.isArray(json.data)) {
+          setDados(json.data);
+        } else {
+          setDados([]);
+          console.error('Resposta inesperada da API:', json);
+        }
+      } catch (error) {
+        console.error('Erro ao buscar os dados:', error);
+      }
+    };
+
+    useEffect(() => {
+      fetchData();
+    }, []);
 
   return (
-    <SafeAreaView style={UsuarioStyles.container}>
-      <View style={UsuarioStyles.content}>
+    <SafeAreaView style={Global.container}>
+      <View style={Global.content}>
 
-        <TouchableOpacity style={UsuarioStyles.setas}>
+        <TouchableOpacity style={Global.setas}>
           <Text style={{color: '#ED1C24', fontSize: 48}}>
             {'⬅'}
           </Text>
         </TouchableOpacity>
 
-        <View style={UsuarioStyles.containerAba}>
-          <Text style={UsuarioStyles.nomeAba}>
+        <View style={Global.containerAba}>
+          <Text style={Global.nomeAba}>
             USUARIO
           </Text>          
         </View>
 
-        <TouchableOpacity style={UsuarioStyles.setas}>
+        <TouchableOpacity onPress={() => navigation.navigate('ModuloAdmin')} style={Global.setas}>
           <Text style={{color: '#ED1C24', fontSize: 48}}>
             {'⮕'}
           </Text>
@@ -29,24 +59,26 @@ export const UsuarioAdmin = () => {
 
       </View>
       
-      <ScrollView style={UsuarioStyles.containerView}>
+      <ScrollView style={Global.containerView}>
 
-        <TouchableOpacity style={UsuarioStyles.containerBoxInfo}>
-          <View style={UsuarioStyles.containerID}>
-            <Text style={UsuarioStyles.containerIDTexto}>
-              1
+      {dados.map((item, index) => (
+        <TouchableOpacity key={index} style={Global.containerBoxInfo}>
+          <View style={Global.containerID}>
+            <Text style={Global.containerIDTexto}>
+              {item.ID_USUARIO} 
             </Text>
           </View>
-          <View style={UsuarioStyles.containerNome}>
-            <Text style={UsuarioStyles.containerNomeTexto}>
-              {nomeTeste.slice(0, 50)}...
+          <View style={Global.containerNome}>
+            <Text style={Global.containerNomeTexto}>
+              {item.NOME}
             </Text>
           </View>
         </TouchableOpacity>
+      ))}
 
       </ScrollView>
 
-      <TouchableOpacity style={UsuarioStyles.adicionar}>
+      <TouchableOpacity style={Global.adicionar}>
         <Text style={{fontSize: 34, textAlign: 'center', color: 'white'}}>
           +
         </Text>

@@ -22,7 +22,7 @@ export const Cadastro = () => {
     }
 
     try {
-      const response = await axios.post('http://192.168.93.235:3000/usuario/cadastro', {nome, email, senha});
+      const response = await axios.post('http://192.168.1.9:3000/usuario/cadastro', {nome, email, senha});
 
       if (response.status === 200) {
         navigation.navigate('Login');
