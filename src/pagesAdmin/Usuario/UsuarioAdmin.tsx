@@ -16,20 +16,17 @@ export const UsuarioAdmin = () => {
       try {
         const response = await fetch('http://192.168.1.9:3000/usuario/selecionarUsuarios');
         const json = await response.json();
-  
-        console.log('Dados recebidos:', json); 
+
         if (Array.isArray(json)) {
-          setDados(json); 
-        } else if (json.data && Array.isArray(json.data)) {
-          setDados(json.data);
+          setDados(json);
         } else {
+          console.warn('A resposta da API não é um array:', json);
           setDados([]);
-          console.error('Resposta inesperada da API:', json);
         }
-      } catch (error) {
-        console.error('Erro ao buscar os dados:', error);
-      }
-    };
+    } catch (error) {
+      console.error('Erro ao buscar os dados:', error);
+    }
+  };
 
     useEffect(() => {
       fetchData();
@@ -39,7 +36,7 @@ export const UsuarioAdmin = () => {
     <SafeAreaView style={Global.container}>
       <View style={Global.content}>
 
-        <TouchableOpacity style={Global.setas}>
+        <TouchableOpacity onPress={() => navigation.navigate('CertificadoAdmin')} style={Global.setas}>
           <Text style={{color: '#ED1C24', fontSize: 48}}>
             {'⬅'}
           </Text>
@@ -62,15 +59,15 @@ export const UsuarioAdmin = () => {
       <ScrollView style={Global.containerView}>
 
       {dados.map((item, index) => (
-        <TouchableOpacity key={index} style={Global.containerBoxInfo}>
+        <TouchableOpacity onPress={() => navigation.navigate('UsuarioEditDeleteAdmin', {id: item.id_usuario, nome: item.nome, email: item.email, senha: item.senha})} key={index} style={Global.containerBoxInfo}>
           <View style={Global.containerID}>
             <Text style={Global.containerIDTexto}>
-              {item.ID_USUARIO} 
+              {item.id_usuario} 
             </Text>
           </View>
           <View style={Global.containerNome}>
             <Text style={Global.containerNomeTexto}>
-              {item.NOME}
+              {item.nome}
             </Text>
           </View>
         </TouchableOpacity>
@@ -78,7 +75,7 @@ export const UsuarioAdmin = () => {
 
       </ScrollView>
 
-      <TouchableOpacity style={Global.adicionar}>
+      <TouchableOpacity onPress={() => navigation.navigate('UsuarioAddAdmin')} style={Global.adicionar}>
         <Text style={{fontSize: 34, textAlign: 'center', color: 'white'}}>
           +
         </Text>

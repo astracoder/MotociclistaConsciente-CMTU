@@ -15,7 +15,7 @@ export const CertificadoAdmin = () => {
     <SafeAreaView style={Global.container}>
       <View style={Global.content}>
 
-        <TouchableOpacity style={Global.setas}>
+        <TouchableOpacity onPress={() => navigation.navigate('AlternativaAdmin')} style={Global.setas}>
           <Text style={{color: '#ED1C24', fontSize: 48}}>
             {'⬅'}
           </Text>
@@ -27,7 +27,7 @@ export const CertificadoAdmin = () => {
           </Text>          
         </View>
 
-        <TouchableOpacity onPress={() => navigation.navigate('DataScienceAdmin')} style={Global.setas}>
+        <TouchableOpacity onPress={() => navigation.navigate('UsuarioAdmin')} style={Global.setas}>
           <Text style={{color: '#ED1C24', fontSize: 48}}>
             {'⮕'}
           </Text>

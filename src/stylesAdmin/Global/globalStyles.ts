@@ -71,7 +71,39 @@ const styles = StyleSheet.create({
         position: 'absolute', 
         bottom: 20, right: 20, 
         borderRadius: 10
-    }
+    },
+    containerForm: {
+        flex: 1,
+        justifyContent: 'center',
+        padding: 16,
+      },
+      input: {
+        borderWidth: 1,
+        borderColor: '#DDD',
+        borderRadius: 8,
+        padding: 12,
+        marginBottom: 16,
+        backgroundColor: '#FFF',
+        fontSize: 16,
+      },
+      salvar: {
+        backgroundColor: '#ED1C24',
+        padding: 16,
+        borderRadius: 8,
+        alignItems: 'center',
+        marginBottom: 20
+      },
+      deletar: {
+        backgroundColor: '#303030',
+        padding: 16,
+        borderRadius: 8,
+        alignItems: 'center',
+      },
+      botaoTexto: {
+        color: '#FFF',
+        fontSize: 18,
+        fontWeight: 'bold',
+      },
 })
 
 export default styles;

@@ -12,11 +12,19 @@ import { Configuracoes } from './src/pages/Configuracoes/Configuracoes';
 import { Reset } from './src/pages/Reset/Reset';
 
 import { UsuarioAdmin } from './src/pagesAdmin/Usuario/UsuarioAdmin';
+import { UsuarioAddAdmin } from './src/pagesAdmin/Usuario/UsuarioAddAdmin';
+import { UsuarioEditDeleteAdmin } from './src/pagesAdmin/Usuario/UsuarioEditDeleteAdmin';
+
 import { ModuloAdmin } from './src/pagesAdmin/Modulo/ModuloAdmin';
+
 import { UsuarioModuloAdmin } from './src/pagesAdmin/UsuarioModulo/UsuarioModuloAdmin';
+
 import { AtividadeAdmin } from './src/pagesAdmin/Atividade/AtividadeAdmin';
+
 import { AlternativaAdmin } from './src/pagesAdmin/Alternativa/AlternativaAdmin';
+
 import { CertificadoAdmin } from './src/pagesAdmin/Certificado/CertificadoAdmin';
+
 
 export type StackParamList = {
   Login: undefined;
@@ -29,11 +37,19 @@ export type StackParamList = {
   Configuracoes: undefined;
 
   UsuarioAdmin: undefined;
+  UsuarioAddAdmin: undefined;
+  UsuarioEditDeleteAdmin: { id: number, nome: string, email: string, senha: string };
+
   ModuloAdmin: undefined;
+
   UsuarioModuloAdmin: undefined;
+
   AtividadeAdmin: undefined;
+
   AlternativaAdmin: undefined;
+
   CertificadoAdmin: undefined;
+
 };
 
 const Stack = createNativeStackNavigator<StackParamList>();
@@ -42,7 +58,7 @@ export default function App() {
   return (
     <UserProvider>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='Login'>
+        <Stack.Navigator initialRouteName='UsuarioAdmin'>
           <Stack.Screen name='Login' component={Login} options={{headerShown: false}}/>
           <Stack.Screen name='Cadastro' component={Cadastro} options={{headerShown: false}}/>
           <Stack.Screen name='Menu' component={Menu} options={{headerShown: false}}/>
@@ -53,11 +69,19 @@ export default function App() {
           <Stack.Screen name='Configuracoes' component={Configuracoes} options={{headerShown: false}}/>
 
           <Stack.Screen name='UsuarioAdmin' component={UsuarioAdmin} options={{headerShown: false}}/>
+          <Stack.Screen name='UsuarioAddAdmin' component={UsuarioAddAdmin} options={{headerShown: false}}/>
+          <Stack.Screen name='UsuarioEditDeleteAdmin' component={UsuarioEditDeleteAdmin} options={{headerShown: false}}/>
+
           <Stack.Screen name='ModuloAdmin' component={ModuloAdmin} options={{headerShown: false}}/>
+
           <Stack.Screen name='UsuarioModuloAdmin' component={UsuarioModuloAdmin} options={{headerShown: false}}/>
+
           <Stack.Screen name='AtividadeAdmin' component={AtividadeAdmin} options={{headerShown: false}}/>
+
           <Stack.Screen name='AlternativaAdmin' component={AlternativaAdmin} options={{headerShown: false}}/>
+
           <Stack.Screen name='CertificadoAdmin' component={CertificadoAdmin} options={{headerShown: false}}/>
+          
         </Stack.Navigator>
       </NavigationContainer>
     </UserProvider>
