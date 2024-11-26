@@ -6,30 +6,29 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackParamList } from '../../../App';
 
-type NavigationProps = NativeStackNavigationProp<StackParamList, 'UsuarioAddAdmin'>;
+type NavigationProps = NativeStackNavigationProp<StackParamList, 'ModuloAddAdmin'>;
 
-export const UsuarioAddAdmin = () => {
+export const ModuloAddAdmin = () => {
   const navigation = useNavigation<NavigationProps>();
 
   const [nome, setNome] = useState('');
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
+  const [porcentagem, setPorcentagem] = useState('');
 
   const handleCadastro = async () => {
-    if (!nome || !email || !senha) {
+    if (!nome || !porcentagem) {
       alert('Todos os campos são obrigatórios!');
       return;
     }
 
     try {
-      const response = await axios.post('http://192.168.1.126:3000/usuario/cadastro', {nome, email, senha});
+      const response = await axios.post('http://192.168.1.126:3000/modulo/cadastro', {nome, porcentagem});
 
       if (response.status === 200) {
-        navigation.navigate('UsuarioAdmin');
-        alert(`Usuário cadastrado com sucesso!`);
+        navigation.navigate('ModuloAdmin');
+        alert(`Módulo cadastrado com sucesso!`);
       }
     } catch (err) {
-      alert("Não foi possível cadastrar o usuário! Consulte o administrador.");
+      alert("Não foi possível cadastrar o módulo! Consulte o administrador.");
       return;
     }
   };
@@ -42,31 +41,23 @@ export const UsuarioAddAdmin = () => {
         </TouchableOpacity>
 
         <View style={Global.containerAba}>
-          <Text style={Global.nomeAba}>CADASTRAR USUÁRIO</Text>
+          <Text style={Global.nomeAba}>CADASTRAR MÓDULOS</Text>
         </View>
       </View>
 
       <View style={Global.containerForm}>
         <TextInput
           style={Global.input}
-          placeholder="Nome"
+          placeholder="Nome do módulo"
           value={nome}
           onChangeText={setNome}
         />
         <TextInput
           style={Global.input}
-          placeholder="Email"
-          value={email}
-          onChangeText={setEmail}
-          keyboardType="email-address"
-        />
-        <TextInput
-          style={Global.input}
-          placeholder="Senha"
-          value={senha}
-          onChangeText={setSenha}
-          secureTextEntry
-        />
+          placeholder="Porcentagem módulo"
+          value={porcentagem}
+          onChangeText={setPorcentagem}
+          />
 
         <TouchableOpacity onPress={handleCadastro} style={Global.salvar}>
           <Text style={Global.botaoTexto}>Cadastrar</Text>

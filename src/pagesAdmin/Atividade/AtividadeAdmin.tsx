@@ -1,5 +1,6 @@
-import React from 'react';
-import { Text, View, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Text, View, SafeAreaView, TouchableOpacity, ScrollView, FlatList } from 'react-native';
+import axios from 'axios';
 import Global from '../../stylesAdmin/Global/globalStyles';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackParamList } from '../../../App';
@@ -9,7 +10,28 @@ type NavigationProps = NativeStackNavigationProp<StackParamList, 'AtividadeAdmin
 
 export const AtividadeAdmin = () => {
   const navigation = useNavigation<NavigationProps>();
-  const nomeTeste = "Pode atropelar?";
+
+  const [dados, setDados] = useState<any[]>([]);
+
+    const handleListarAtividades = async () => {
+      try {
+        const response = await axios.get('http://192.168.1.126:3000/atividade/selecionarAtividades');
+        const json = response.data;
+
+        if (Array.isArray(json)) {
+          setDados(json);
+        } else {
+          console.warn('A resposta da API não é um array:', json);
+          setDados([]);
+        }
+    } catch (error) {
+      console.error('Erro ao buscar os dados:', error);
+    }
+  };
+
+    useEffect(() => {
+      handleListarAtividades();
+    }, []);
 
   return (
     <SafeAreaView style={Global.container}>
@@ -37,22 +59,32 @@ export const AtividadeAdmin = () => {
       
       <ScrollView style={Global.containerView}>
 
-        <TouchableOpacity style={Global.containerBoxInfo}>
+      {dados.map((item, index) => (
+        <TouchableOpacity onPress={() => navigation.navigate('AtividadeEditDeleteAdmin', {id: item.ID_ATIVIDADE, texto: item.TEXTO, fk_id: item.FK_MODULO_ID_MODULO})} key={index} style={Global.containerBoxInfo}>
           <View style={Global.containerID}>
             <Text style={Global.containerIDTexto}>
-              1
+              {item.ID_ATIVIDADE} 
             </Text>
           </View>
           <View style={Global.containerNome}>
             <Text style={Global.containerNomeTexto}>
-              {nomeTeste.slice(0, 50)}...
+              {item.TEXTO}
+            </Text>
+          </View>
+          <View style={Global.containerIDModulo}>
+            <Text style={Global.containerIDModuloTexto}>
+            {item.FK_MODULO_ID_MODULO === 1 ? 'PEDESTRE' : 
+            item.FK_MODULO_ID_MODULO === 2 ? 'ACIDENTES' : 
+            item.FK_MODULO_ID_MODULO === 3 ? 'PLACAS' : 
+            item.FK_MODULO_ID_MODULO === 4 ? 'LEGISLAÇÃO' : ''}
             </Text>
           </View>
         </TouchableOpacity>
+      ))}
 
       </ScrollView>
 
-      <TouchableOpacity style={Global.adicionar}>
+      <TouchableOpacity onPress={() => navigation.navigate('AtividadeAddAdmin')} style={Global.adicionar}>
         <Text style={{fontSize: 34, textAlign: 'center', color: 'white'}}>
           +
         </Text>

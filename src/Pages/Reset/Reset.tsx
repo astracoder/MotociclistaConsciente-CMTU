@@ -34,7 +34,7 @@ export const Reset = () => {
     }
 
     try {
-      const response = await axios.put('http://192.168.1.9:3000/usuario/editarSenha', {email, senhaNova});
+      const response = await axios.put('http://192.168.1.126:3000/usuario/editarSenha', {email, senhaNova});
 
       if (response.status === 200) {
         navigation.navigate('Perfil');

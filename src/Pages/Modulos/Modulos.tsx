@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, SafeAreaView, Image, TouchableOpacity } from 'react-native';
+import axios from 'axios';
 import Icon from 'react-native-vector-icons/MaterialIcons.js';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
@@ -11,6 +12,28 @@ type NavigationProps = NativeStackNavigationProp<StackParamList, 'Modulos'>
 export const Modulos = () => {
   const navigation = useNavigation<NavigationProps>();
 
+  const [dados, setDados] = useState<any[]>([]);
+
+    const handleListarModulos = async () => {
+      try {
+        const response = await axios.get('http://192.168.1.126:3000/modulo/selecionarModulos');
+        const json = response.data;
+
+        if (Array.isArray(json)) {
+          setDados(json); 
+        } else {
+          console.warn('A resposta da API não é um array:', json);
+          setDados([]);
+        }
+    } catch (error) {
+      console.error('Erro ao buscar os dados:', error);
+    }
+  };
+
+  useEffect(() => {
+    handleListarModulos();
+  }, []);
+
   return (
       <SafeAreaView style={ModulosStyles.container}>
         <Image 
@@ -21,21 +44,11 @@ export const Modulos = () => {
         <View style={ModulosStyles.content}>
         <Text style={ModulosStyles.titulo}>Módulos</Text>
 
-          <TouchableOpacity style={ModulosStyles.seguranca}>
-            <Text style={ModulosStyles.textoBotao}>SEGURANÇA</Text>
+        {dados.map((item, index) => (
+          <TouchableOpacity key={index} style={ModulosStyles.pergunta}>
+            <Text style={ModulosStyles.textoBotao}>{item.nome}</Text>
           </TouchableOpacity>
-
-          <TouchableOpacity style={ModulosStyles.placas}>
-            <Text style={ModulosStyles.textoBotao}>PLACAS</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={ModulosStyles.pedestres}>
-            <Text style={ModulosStyles.textoBotao}>PEDESTRES</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={ModulosStyles.acidentes}>
-            <Text style={ModulosStyles.textoBotao}>ACIDENTES</Text>
-          </TouchableOpacity>
+        ))}
         </View> 
 
         <View style={ModulosStyles.rodape}>

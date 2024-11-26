@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
+import axios from 'axios';
 import Global from '../../stylesAdmin/Global/globalStyles';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackParamList } from '../../../App';
@@ -7,15 +8,15 @@ import { useNavigation } from '@react-navigation/native';
 
 type NavigationProps = NativeStackNavigationProp<StackParamList, 'UsuarioAdmin'>
 
-export const UsuarioAdmin = () => {
+export const UsuarioAdmin = () => {   
   const navigation = useNavigation<NavigationProps>();
 
     const [dados, setDados] = useState<any[]>([]);
 
-    const fetchData = async () => {
+    const handleListarUsuarios = async () => {
       try {
-        const response = await fetch('http://192.168.1.9:3000/usuario/selecionarUsuarios');
-        const json = await response.json();
+        const response = await axios.get('http://192.168.1.126:3000/usuario/selecionarUsuarios');
+        const json = response.data;
 
         if (Array.isArray(json)) {
           setDados(json);
@@ -29,7 +30,7 @@ export const UsuarioAdmin = () => {
   };
 
     useEffect(() => {
-      fetchData();
+      handleListarUsuarios();
     }, []);
 
   return (

@@ -8,27 +8,26 @@ import { StackParamList } from '../../../App';
 
 type NavigationProps = NativeStackNavigationProp<StackParamList, 'UsuarioAddAdmin'>;
 
-export const UsuarioEditDeleteAdmin  = () => {
+export const AtividadeEditDeleteAdmin  = () => {
   const navigation = useNavigation<NavigationProps>();
   const route = useRoute();
   
-  const { id, nome: nomeInicial, email: emailInicial } = route.params as {
+  const { id, texto: textoInicial, fk_id: fk_modulo_id_modulo_inicial} = route.params as {
     id: number;
-    nome: string;
-    email: string;
+    texto: string;
+    fk_id: number;
   };
 
-  const [nome, setNome] = useState(nomeInicial);
-  const [email, setEmail] = useState(emailInicial);
+  const [texto, setTexto] = useState(textoInicial);
 
   const handleSalvar = async () => {
-    if (!nome || !email) {
-      Alert.alert('Erro', 'Todos os campos são obrigatórios!');
+    if (!texto) {
+      Alert.alert('O campo de texto está vazio!');
       return;
     }
 
     try {
-        const response = await axios.post('http://192.168.1.126:3000/usuario/editarNomeEmail', {id, nome, email});
+        const response = await axios.post('http://192.168.1.126:3000/atividade/editarAtividade', {id, texto, fk_id});
   
         if (response.status === 200) {
           navigation.navigate('UsuarioAdmin');
@@ -42,7 +41,7 @@ export const UsuarioEditDeleteAdmin  = () => {
 
   const handleDesativar = async () => {
     try {
-        const response = await axios.put('http://192.168.1.126:3000/usuario/desativarUsuario', {email});
+        const response = await axios.put('http://192.168.1.126:3000/usuario/desativarUsuario');
 
         if (response.status === 200) {
           navigation.navigate('UsuarioAdmin');
@@ -61,7 +60,7 @@ export const UsuarioEditDeleteAdmin  = () => {
         </TouchableOpacity>
 
         <View style={Global.containerAba}>
-          <Text style={Global.nomeAba}>INFORMAÇÕES DO USUÁRIO</Text>
+          <Text style={Global.nomeAba}>INFORMAÇÕES DA ATIVIDADE</Text>
         </View>
       </View>
 
@@ -69,22 +68,15 @@ export const UsuarioEditDeleteAdmin  = () => {
         <TextInput
           style={Global.input}
           placeholder="Nome"
-          value={nome}
-          onChangeText={setNome}
-        />
-        <TextInput
-          style={Global.input}
-          placeholder="Email"
-          value={email}
-          onChangeText={setEmail}
-          keyboardType="email-address"
+          value={texto}
+          onChangeText={setTexto}
         />
 
         <TouchableOpacity onPress={() => handleSalvar()} style={Global.salvar}>
           <Text style={Global.botaoTexto}>Salvar alterações</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => handleDesativar()} style={Global.deletar}>
+        <TouchableOpacity onPress={() => handleDesativar()} style={Global.deletar} disabled>
           <Text style={Global.botaoTexto}>Desativar</Text>
         </TouchableOpacity>
       </View>

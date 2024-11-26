@@ -9,7 +9,7 @@ type NavigationProps = NativeStackNavigationProp<StackParamList, 'ModuloAdmin'>
 
 export const UsuarioModuloAdmin = () => {
   const navigation = useNavigation<NavigationProps>();
-  const nomeTeste = "LEGISLAÇÃO";
+  const nomeTeste = "Vamos ver ainda...";
 
   return (
     <SafeAreaView style={Global.container}>

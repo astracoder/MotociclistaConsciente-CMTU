@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
+import axios from 'axios';
 import Global from '../../stylesAdmin/Global/globalStyles';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackParamList } from '../../../App';
@@ -9,8 +10,29 @@ type NavigationProps = NativeStackNavigationProp<StackParamList, 'ModuloAdmin'>
 
 export const ModuloAdmin = () => {
   const navigation = useNavigation<NavigationProps>();
-  const nomeTeste = "Legislação";
 
+  const [dados, setDados] = useState<any[]>([]);
+
+    const handleListarModulos = async () => {
+      try {
+        const response = await axios.get('http://192.168.1.126:3000/modulo/selecionarModulos');
+        const json = response.data;
+
+        if (Array.isArray(json)) {
+          setDados(json);
+        } else {
+          console.warn('A resposta da API não é um array:', json);
+          setDados([]);
+        }
+    } catch (error) {
+      console.error('Erro ao buscar os dados:', error);
+    }
+  };
+
+    useEffect(() => {
+      handleListarModulos();
+    }, []);
+  
   return (
     <SafeAreaView style={Global.container}>
       <View style={Global.content}>
@@ -37,22 +59,24 @@ export const ModuloAdmin = () => {
       
       <ScrollView style={Global.containerView}>
 
-        <TouchableOpacity style={Global.containerBoxInfo}>
+      {dados.map((item, index) => (
+        <TouchableOpacity onPress={() => navigation.navigate('ModuloEditDeleteAdmin', {id: item.id_modulo, nomeModulo: item.nome, porcentagem: item.porcentagem_necessaria})} key={index} style={Global.containerBoxInfo}>
           <View style={Global.containerID}>
             <Text style={Global.containerIDTexto}>
-              1
+              {item.id_modulo} 
             </Text>
           </View>
           <View style={Global.containerNome}>
             <Text style={Global.containerNomeTexto}>
-              {nomeTeste.slice(0, 50)}...
+              {item.nome}
             </Text>
           </View>
         </TouchableOpacity>
+      ))}
 
       </ScrollView>
 
-      <TouchableOpacity style={Global.adicionar}>
+      <TouchableOpacity onPress={() => navigation.navigate('ModuloAddAdmin')} style={Global.adicionar}>
         <Text style={{fontSize: 34, textAlign: 'center', color: 'white'}}>
           +
         </Text>

@@ -6,32 +6,32 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackParamList } from '../../../App';
 
-type NavigationProps = NativeStackNavigationProp<StackParamList, 'UsuarioAddAdmin'>;
+type NavigationProps = NativeStackNavigationProp<StackParamList, 'ModuloEditDeleteAdmin'>;
 
-export const UsuarioEditDeleteAdmin  = () => {
+export const ModuloEditDeleteAdmin  = () => {
   const navigation = useNavigation<NavigationProps>();
   const route = useRoute();
   
-  const { id, nome: nomeInicial, email: emailInicial } = route.params as {
+  const { id, nomeModulo: nomeModuloInicial, porcentagem: porcentagemInicial } = route.params as {
     id: number;
-    nome: string;
-    email: string;
+    nomeModulo: string;
+    porcentagem: string;
   };
 
-  const [nome, setNome] = useState(nomeInicial);
-  const [email, setEmail] = useState(emailInicial);
+  const [nome, setNome] = useState(nomeModuloInicial);
+  const [porcentagem, setPorcentagem] = useState(porcentagemInicial);
 
   const handleSalvar = async () => {
-    if (!nome || !email) {
+    if (!nome || !porcentagem) {
       Alert.alert('Erro', 'Todos os campos são obrigatórios!');
       return;
     }
 
     try {
-        const response = await axios.post('http://192.168.1.126:3000/usuario/editarNomeEmail', {id, nome, email});
+        const response = await axios.post('http://192.168.1.126:3000/modulo/editarNomeEmail', {id, nome, porcentagem});
   
         if (response.status === 200) {
-          navigation.navigate('UsuarioAdmin');
+          navigation.navigate('ModuloAdmin');
           alert(`Os dados foram alterados com sucesso!`);
         }
       } catch(err) {
@@ -42,14 +42,14 @@ export const UsuarioEditDeleteAdmin  = () => {
 
   const handleDesativar = async () => {
     try {
-        const response = await axios.put('http://192.168.1.126:3000/usuario/desativarUsuario', {email});
+        const response = await axios.put('http://192.168.1.126:3000/modulo/desativarModulo', {id});
 
         if (response.status === 200) {
           navigation.navigate('UsuarioAdmin');
-          alert(`Usuário desativado com sucesso!`);
+          alert(`Módulo desativado com sucesso!`);
         }
     } catch(err) {
-        alert("Não foi possível deletar usuário! Consulte o administrador.");
+        alert("Não foi possível desativar o módulo! Consulte o administrador.");
     }
   };
 
@@ -61,23 +61,22 @@ export const UsuarioEditDeleteAdmin  = () => {
         </TouchableOpacity>
 
         <View style={Global.containerAba}>
-          <Text style={Global.nomeAba}>INFORMAÇÕES DO USUÁRIO</Text>
+          <Text style={Global.nomeAba}>INFORMAÇÕES DO MÓDULO</Text>
         </View>
       </View>
 
-      <View style={Global.containerForm}>
+        <View style={Global.containerForm}>
         <TextInput
-          style={Global.input}
-          placeholder="Nome"
-          value={nome}
-          onChangeText={setNome}
-        />
+            style={Global.input}
+            placeholder="Nome do módulo"
+            value={nomeModuloInicial}
+            onChangeText={setNome}
+          />
         <TextInput
-          style={Global.input}
-          placeholder="Email"
-          value={email}
-          onChangeText={setEmail}
-          keyboardType="email-address"
+            style={Global.input}
+            placeholder="Porcentagem módulo"
+            value={porcentagemInicial}
+            onChangeText={setPorcentagem}
         />
 
         <TouchableOpacity onPress={() => handleSalvar()} style={Global.salvar}>

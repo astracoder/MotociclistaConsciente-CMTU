@@ -34,11 +34,12 @@ const styles = StyleSheet.create({
         flexDirection: 'column', 
     },
     containerBoxInfo: {
-        height: 50, 
+        height: 'auto', 
         flexDirection: 'row', 
         alignItems: 'center', 
         borderWidth: 1, 
         borderColor: '#909090',
+        paddingVertical: '1%',
         marginBottom: 5,
     },
     containerID: {
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
         borderColor: '#909090',
     },
     containerNome: {
-        flex: 6, 
+        flex: 5, 
         height: '100%', 
         justifyContent: 'center'
     },
@@ -61,9 +62,22 @@ const styles = StyleSheet.create({
     containerNomeTexto: {
         color: '#303030',
         paddingHorizontal: '5%',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
     },
-    adicionar: {
+    containerIDModulo: {
+      flex: 2, 
+      height: '100%', 
+      justifyContent: 'center', 
+      borderRightWidth: 1,
+      borderColor: '#909090',
+    },
+      containerIDModuloTexto: {
+      fontSize: 12, 
+      color: '#0088C7',
+      textAlign: 'center', 
+      fontWeight: 'bold',
+    },
+      adicionar: {
         flex: 1, 
         height: 50, 
         width: 50,
@@ -103,6 +117,30 @@ const styles = StyleSheet.create({
         color: '#FFF',
         fontSize: 18,
         fontWeight: 'bold',
+      },
+      button: {
+        backgroundColor: '#007bff',
+        padding: 10,
+        borderRadius: 5,
+        alignItems: 'center',
+        marginBottom: 10,
+      },
+      buttonText: {
+        color: '#fff',
+        fontSize: 16,
+      },
+      itemContainer: {
+        padding: 10,
+        backgroundColor: '#f8f9fa',
+        borderBottomWidth: 1,
+        borderBottomColor: '#ddd',
+      },
+      itemContent: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+      },
+      itemText: {
+        fontSize: 14,
       },
 })
 

@@ -16,10 +16,14 @@ import { UsuarioAddAdmin } from './src/pagesAdmin/Usuario/UsuarioAddAdmin';
 import { UsuarioEditDeleteAdmin } from './src/pagesAdmin/Usuario/UsuarioEditDeleteAdmin';
 
 import { ModuloAdmin } from './src/pagesAdmin/Modulo/ModuloAdmin';
+import { ModuloAddAdmin } from './src/pagesAdmin/Modulo/ModuloAddAdmin';
+import { ModuloEditDeleteAdmin } from './src/pagesAdmin/Modulo/ModuloEditDeleteAdmin';
 
 import { UsuarioModuloAdmin } from './src/pagesAdmin/UsuarioModulo/UsuarioModuloAdmin';
 
 import { AtividadeAdmin } from './src/pagesAdmin/Atividade/AtividadeAdmin';
+import { AtividadeAddAdmin } from './src/pagesAdmin/Atividade/AtividadeAddAdmin';
+import { AtividadeEditDeleteAdmin } from './src/pagesAdmin/Atividade/AtividadeEditDeleteAdmin';
 
 import { AlternativaAdmin } from './src/pagesAdmin/Alternativa/AlternativaAdmin';
 
@@ -41,10 +45,14 @@ export type StackParamList = {
   UsuarioEditDeleteAdmin: { id: number, nome: string, email: string, senha: string };
 
   ModuloAdmin: undefined;
+  ModuloAddAdmin: undefined;
+  ModuloEditDeleteAdmin: { id: number, nomeModulo: string, porcentagem: string };
 
   UsuarioModuloAdmin: undefined;
 
   AtividadeAdmin: undefined;
+  AtividadeAddAdmin: undefined;
+  AtividadeEditDeleteAdmin: {id: number, texto: string, fk_id: number};
 
   AlternativaAdmin: undefined;
 
@@ -58,7 +66,7 @@ export default function App() {
   return (
     <UserProvider>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='UsuarioAdmin'>
+        <Stack.Navigator initialRouteName='Login'>
           <Stack.Screen name='Login' component={Login} options={{headerShown: false}}/>
           <Stack.Screen name='Cadastro' component={Cadastro} options={{headerShown: false}}/>
           <Stack.Screen name='Menu' component={Menu} options={{headerShown: false}}/>
@@ -73,10 +81,14 @@ export default function App() {
           <Stack.Screen name='UsuarioEditDeleteAdmin' component={UsuarioEditDeleteAdmin} options={{headerShown: false}}/>
 
           <Stack.Screen name='ModuloAdmin' component={ModuloAdmin} options={{headerShown: false}}/>
+          <Stack.Screen name='ModuloAddAdmin' component={ModuloAddAdmin} options={{headerShown: false}}/>
+          <Stack.Screen name='ModuloEditDeleteAdmin' component={ModuloEditDeleteAdmin} options={{headerShown: false}}/>
 
           <Stack.Screen name='UsuarioModuloAdmin' component={UsuarioModuloAdmin} options={{headerShown: false}}/>
 
           <Stack.Screen name='AtividadeAdmin' component={AtividadeAdmin} options={{headerShown: false}}/>
+          <Stack.Screen name='AtividadeAddAdmin' component={AtividadeAddAdmin} options={{headerShown: false}}/>
+          <Stack.Screen name='AtividadeEditDeleteAdmin' component={AtividadeEditDeleteAdmin} options={{headerShown: false}}/>
 
           <Stack.Screen name='AlternativaAdmin' component={AlternativaAdmin} options={{headerShown: false}}/>
 
