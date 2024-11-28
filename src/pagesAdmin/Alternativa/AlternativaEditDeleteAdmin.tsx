@@ -8,7 +8,7 @@ import { StackParamList } from '../../../App';
 
 type NavigationProps = NativeStackNavigationProp<StackParamList, 'UsuarioAddAdmin'>;
 
-export const AtividadeEditDeleteAdmin  = () => {
+export const AlternativaEditDeleteAdmin  = () => {
   const navigation = useNavigation<NavigationProps>();
   const route = useRoute();
   
@@ -26,10 +26,10 @@ export const AtividadeEditDeleteAdmin  = () => {
     }
 
     try {
-        const response = await axios.post('http://192.168.1.126:3000/atividade/editarAtividade', {id, texto});
+        const response = await axios.post('http://192.168.1.126:3000/alternativa/editarAlternativa', {id, texto});
   
         if (response.status === 200) {
-          navigation.navigate('AtividadeAdmin');
+          navigation.navigate('AlternativaAdmin');
           alert(`Os dados foram alterados com sucesso!`);
         }
       } catch(err) {
@@ -40,11 +40,11 @@ export const AtividadeEditDeleteAdmin  = () => {
 
   const handleDesativar = async () => {
     try {
-        const response = await axios.put('http://192.168.1.126:3000/atividade/desativarAtividade', {id});
+        const response = await axios.put('http://192.168.1.126:3000/alternativa/desativarAlternativa', {id});
 
         if (response.status === 200) {
-          navigation.navigate('AtividadeAdmin');
-          alert(`Atividade desativada com sucesso!`);
+          navigation.navigate('AlternativaAdmin');
+          alert(`Alternativa desativada com sucesso!`);
         }
     } catch(err) {
         alert("Não foi possível desativar a atividade! Consulte o administrador.");
@@ -59,14 +59,15 @@ export const AtividadeEditDeleteAdmin  = () => {
         </TouchableOpacity>
 
         <View style={Global.containerAba}>
-          <Text style={Global.nomeAba}>INFORMAÇÕES DA ATIVIDADE</Text>
+          <Text style={Global.nomeAba}>INFORMAÇÕES DA ALTERNATIVA</Text>
         </View>
       </View>
 
       <View style={Global.containerForm}>
-      <Text style={Global.label}>Edite a atividade:</Text>
+      <Text style={Global.label}>Edite a alternativa:</Text>
         <TextInput
           style={Global.input}
+          placeholder="Nome"
           value={texto}
           onChangeText={setTexto}
         />

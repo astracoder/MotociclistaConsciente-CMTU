@@ -1,61 +1,94 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
+import axios from 'axios';
 import Global from '../../stylesAdmin/Global/globalStyles';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackParamList } from '../../../App';
 import { useNavigation } from '@react-navigation/native';
 
-type NavigationProps = NativeStackNavigationProp<StackParamList, 'AlternativaAdmin'>
+type NavigationProps = NativeStackNavigationProp<StackParamList, 'AlternativaAdmin'>;
 
 export const AlternativaAdmin = () => {
   const navigation = useNavigation<NavigationProps>();
-  const nomeTeste = "Sim";
+  
+  const [dados, setDados] = useState<any[]>([]);
+
+  const handleListarAlternativas = async () => {
+    try {
+      const response = await axios.get('http://192.168.1.126:3000/alternativa/selecionarAlternativas');
+      const json = response.data;
+
+      if (Array.isArray(json)) {
+        setDados(json);
+      } else {
+        console.warn('A resposta da API não é um array:', json);
+        setDados([]);
+      }
+    } catch (error) {
+      console.error('Erro ao buscar os dados:', error);
+    }
+  };
+
+  useEffect(() => {
+    handleListarAlternativas();
+  }, []);
+
+  // Função que mapeia o módulo de acordo com o id
+  const obterNomeModulo = (idModulo: number) => {
+    switch(idModulo) {
+      case 1:
+        return 'PEDESTRE';
+      case 2:
+        return 'ACIDENTES';
+      case 3:
+        return 'PLACAS';
+      case 4:
+        return 'LEGISLAÇÃO';
+      case 5:
+        return 'MECÂNICA';
+      default:
+        return 'Módulo Desconhecido';
+    }
+  };
 
   return (
     <SafeAreaView style={Global.container}>
       <View style={Global.content}>
 
         <TouchableOpacity onPress={() => navigation.navigate('AtividadeAdmin')} style={Global.setas}>
-          <Text style={{color: '#ED1C24', fontSize: 48}}>
-            {'⬅'}
-          </Text>
+          <Text style={{color: '#ED1C24', fontSize: 48}}>{'⬅'}</Text>
         </TouchableOpacity>
 
         <View style={Global.containerAba}>
-          <Text style={Global.nomeAba}>
-            ALTERNATIVA
-          </Text>          
+          <Text style={Global.nomeAba}>ALTERNATIVA</Text>
         </View>
 
         <TouchableOpacity onPress={() => navigation.navigate('CertificadoAdmin')} style={Global.setas}>
-          <Text style={{color: '#ED1C24', fontSize: 48}}>
-            {'⮕'}
-          </Text>
+          <Text style={{color: '#ED1C24', fontSize: 48}}>{'⮕'}</Text>
         </TouchableOpacity>
 
       </View>
       
       <ScrollView style={Global.containerView}>
-
-        <TouchableOpacity style={Global.containerBoxInfo}>
-          <View style={Global.containerID}>
-            <Text style={Global.containerIDTexto}>
-              1
-            </Text>
-          </View>
-          <View style={Global.containerNome}>
-            <Text style={Global.containerNomeTexto}>
-              {nomeTeste.slice(0, 50)}...
-            </Text>
-          </View>
-        </TouchableOpacity>
-
+        {dados.map((item, index) => (
+          <TouchableOpacity onPress={() => navigation.navigate('AlternativaEditDeleteAdmin', {id: item.ID_ALTERNATIVA, texto: item.TEXTO})} key={index} style={Global.containerBoxInfo}>
+            <View style={Global.containerID}>
+              <Text style={Global.containerIDTexto}>{item.ID_ALTERNATIVA}</Text>
+            </View>
+            <View style={Global.containerNome}>
+              <Text style={Global.containerNomeTexto}>{item.TEXTO}</Text>
+            </View>
+            <View style={Global.containerIDModulo}>
+              <Text style={Global.containerIDModuloTexto}>
+                {obterNomeModulo(item.FK_MODULO_ID_MODULO)}
+              </Text>
+            </View>
+          </TouchableOpacity>
+        ))}
       </ScrollView>
 
-      <TouchableOpacity style={Global.adicionar}>
-        <Text style={{fontSize: 34, textAlign: 'center', color: 'white'}}>
-          +
-        </Text>
+      <TouchableOpacity onPress={() => navigation.navigate('AlternativaAddAdmin')} style={Global.adicionar}>
+        <Text style={{fontSize: 34, textAlign: 'center', color: 'white'}}>+</Text>
       </TouchableOpacity>
 
     </SafeAreaView>

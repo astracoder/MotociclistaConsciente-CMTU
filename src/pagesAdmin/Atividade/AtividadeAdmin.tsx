@@ -76,7 +76,8 @@ export const AtividadeAdmin = () => {
             {item.FK_MODULO_ID_MODULO === 1 ? 'PEDESTRE' : 
             item.FK_MODULO_ID_MODULO === 2 ? 'ACIDENTES' : 
             item.FK_MODULO_ID_MODULO === 3 ? 'PLACAS' : 
-            item.FK_MODULO_ID_MODULO === 4 ? 'LEGISLAÇÃO' : ''}
+            item.FK_MODULO_ID_MODULO === 4 ? 'LEGISLAÇÃO' :
+            item.FK_MODULO_ID_MODULO === 5 ? ' MECÂNICA': ''}
             </Text>
           </View>
         </TouchableOpacity>

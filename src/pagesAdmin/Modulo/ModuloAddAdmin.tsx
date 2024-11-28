@@ -46,15 +46,18 @@ export const ModuloAddAdmin = () => {
       </View>
 
       <View style={Global.containerForm}>
+      <Text style={Global.label}>Módulo:</Text>
         <TextInput
           style={Global.input}
-          placeholder="Nome do módulo"
+          placeholder="Digite o nome do módulo..."
           value={nome}
           onChangeText={setNome}
         />
+
+        <Text style={Global.label}>Porcentagem:</Text>
         <TextInput
           style={Global.input}
-          placeholder="Porcentagem módulo"
+          placeholder="Porcentagem para passar o módulo..."
           value={porcentagem}
           onChangeText={setPorcentagem}
           />

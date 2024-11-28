@@ -2,6 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { UserProvider } from './src/context/UserContext';
 
+//Paginas do aplicativo
 import { Login } from './src/pages/Login/Login';
 import { Cadastro } from './src/pages/Cadastro/Cadastro';
 import { Menu} from './src/pages/Menu/Menu';
@@ -11,6 +12,7 @@ import { Perfil } from './src/pages/Perfil/Perfil';
 import { Configuracoes } from './src/pages/Configuracoes/Configuracoes';
 import { Reset } from './src/pages/Reset/Reset';
 
+// Paginas admin
 import { UsuarioAdmin } from './src/pagesAdmin/Usuario/UsuarioAdmin';
 import { UsuarioAddAdmin } from './src/pagesAdmin/Usuario/UsuarioAddAdmin';
 import { UsuarioEditDeleteAdmin } from './src/pagesAdmin/Usuario/UsuarioEditDeleteAdmin';
@@ -26,6 +28,8 @@ import { AtividadeAddAdmin } from './src/pagesAdmin/Atividade/AtividadeAddAdmin'
 import { AtividadeEditDeleteAdmin } from './src/pagesAdmin/Atividade/AtividadeEditDeleteAdmin';
 
 import { AlternativaAdmin } from './src/pagesAdmin/Alternativa/AlternativaAdmin';
+import { AlternativaAddAdmin } from './src/pagesAdmin/Alternativa/AlternativaAddAdmin';
+import { AlternativaEditDeleteAdmin } from './src/pagesAdmin/Alternativa/AlternativaEditDeleteAdmin';
 
 import { CertificadoAdmin } from './src/pagesAdmin/Certificado/CertificadoAdmin';
 
@@ -55,18 +59,19 @@ export type StackParamList = {
   AtividadeEditDeleteAdmin: {id: number, texto: string, fk_id: number};
 
   AlternativaAdmin: undefined;
+  AlternativaAddAdmin: undefined;
+  AlternativaEditDeleteAdmin: {id: number, texto: string}
 
   CertificadoAdmin: undefined;
-
 };
 
 const Stack = createNativeStackNavigator<StackParamList>();
 
 export default function App() {
   return (
-    <UserProvider>
+    <UserProvider>  
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='Login'>
+        <Stack.Navigator initialRouteName='AlternativaAdmin'>
           <Stack.Screen name='Login' component={Login} options={{headerShown: false}}/>
           <Stack.Screen name='Cadastro' component={Cadastro} options={{headerShown: false}}/>
           <Stack.Screen name='Menu' component={Menu} options={{headerShown: false}}/>
@@ -91,6 +96,8 @@ export default function App() {
           <Stack.Screen name='AtividadeEditDeleteAdmin' component={AtividadeEditDeleteAdmin} options={{headerShown: false}}/>
 
           <Stack.Screen name='AlternativaAdmin' component={AlternativaAdmin} options={{headerShown: false}}/>
+          <Stack.Screen name='AlternativaAddAdmin' component={AlternativaAddAdmin} options={{headerShown: false}}/>
+          <Stack.Screen name='AlternativaEditDeleteAdmin' component={AlternativaEditDeleteAdmin} options={{headerShown: false}}/>
 
           <Stack.Screen name='CertificadoAdmin' component={CertificadoAdmin} options={{headerShown: false}}/>
           

@@ -8,12 +8,14 @@ import { StackParamList } from '../../../App';
 
 type NavigationProps = NativeStackNavigationProp<StackParamList, 'AtividadeAddAdmin'>;
 
-export const AtividadeAddAdmin = () => {
+export const AlternativaAddAdmin = () => {
   const navigation = useNavigation<NavigationProps>();
 
   const [texto, setTexto] = useState('');
   const [modulos, setModulos] = useState([]);
   const [moduloSelecionado, setModuloSelecionado] = useState('');
+  const [atividades, setAtividades] = useState([]);
+  const [atividadeSelecionada, setAtividadeSelecionada] = useState('');
 
   useEffect(() => {
     const fetchModulos = async () => {
@@ -29,6 +31,25 @@ export const AtividadeAddAdmin = () => {
     fetchModulos();
   }, []);
 
+  useEffect(() => {
+    if (!moduloSelecionado) {
+      setAtividades([]);
+      return;
+    }
+
+    const fetchAtividadesPorModulo = async () => {
+      try {
+        const response = await axios.get(`http://192.168.1.126:3000/atividade/selecionarAtividadesPorModulo?idModulo=${moduloSelecionado}`);
+        if (response.status === 200) {
+          setAtividades(response.data);
+        }
+      } catch (err) {
+        Alert.alert('Não foi possível carregar as alternativas.');
+      }
+    };
+    fetchAtividadesPorModulo();
+  }, [moduloSelecionado]);
+
   const handleCadastro = async () => {
     if (!texto || !moduloSelecionado) {
       alert('Todos os campos são obrigatórios!');
@@ -36,17 +57,17 @@ export const AtividadeAddAdmin = () => {
     }
 
     try {
-      const response = await axios.post('http://192.168.1.126:3000/atividade/cadastro', {
+      const response = await axios.post('http://192.168.1.126:3000/alternativa/cadastro', {
         texto,
-        idModulo: moduloSelecionado,
+        idAtividade: atividadeSelecionada
       }); 
 
       if (response.status === 200) {
-        navigation.navigate('AtividadeAdmin');
-        alert('Atividade cadastrada com sucesso!');
+        navigation.navigate('AlternativaAdmin');
+        alert('Alternativa cadastrada com sucesso!');
       }
     } catch (err) {
-      alert('Não foi possível cadastrar a atividade! Consulte o administrador.');
+      alert('Não foi possível cadastrar a alternativa! Consulte o administrador.');
     }
   };
 
@@ -58,7 +79,7 @@ export const AtividadeAddAdmin = () => {
         </TouchableOpacity>
 
         <View style={Global.containerAba}>
-          <Text style={Global.nomeAba}>CADASTRAR ATIVIDADE</Text>
+          <Text style={Global.nomeAba}>CADASTRAR ALTERNATIVA</Text>
         </View>
       </View>
 
@@ -69,9 +90,21 @@ export const AtividadeAddAdmin = () => {
           onValueChange={(itemValue: any) => setModuloSelecionado(itemValue)}
           style={Global.input}
         >
-          <Picker.Item label="Módulos..." value=""/>
+          <Picker.Item label="Selecione um módulo" value=""/>
           {modulos.map((modulo: any) => (
             <Picker.Item key={modulo.id_modulo} label={modulo.nome} value={modulo.id_modulo} />
+          ))}
+        </Picker>
+
+        <Text style={Global.label}>Selecione uma atividade:</Text>
+        <Picker
+          selectedValue={atividadeSelecionada}
+          onValueChange={(itemValue: any) => setAtividadeSelecionada(itemValue)}
+          style={Global.input}
+        >
+          <Picker.Item label="Selecione uma atividade" value=""/>
+          {atividades.map((atividade: any) => (
+            <Picker.Item key={atividade.ID_ATIVIDADE} label={atividade.TEXTO} value={atividade.ID_ATIVIDADE} />
           ))}
         </Picker>
 

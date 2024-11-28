@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     },
     nomeAba: {
         color: '#303030',
-        fontSize: 36, 
+        fontSize: 28, 
         fontWeight: 'bold'
     },
     containerView: {
@@ -91,6 +91,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 16,
       },
+      label: {
+        color: '#303030',
+        fontSize: 16,
+        marginBottom: 10
+      },
       input: {
         borderWidth: 1,
         borderColor: '#DDD',
@@ -98,7 +103,8 @@ const styles = StyleSheet.create({
         padding: 12,
         marginBottom: 16,
         backgroundColor: '#FFF',
-        fontSize: 16,
+        fontSize: 14,
+        color: '#606060'
       },
       salvar: {
         backgroundColor: '#ED1C24',

@@ -42,7 +42,7 @@ export const UsuarioEditDeleteAdmin  = () => {
 
   const handleDesativar = async () => {
     try {
-        const response = await axios.put('http://192.168.1.126:3000/usuario/desativarUsuario', {email});
+        const response = await axios.put('http://192.168.216.235:3000/usuario/desativarUsuario', {email});
 
         if (response.status === 200) {
           navigation.navigate('UsuarioAdmin');
@@ -66,12 +66,15 @@ export const UsuarioEditDeleteAdmin  = () => {
       </View>
 
       <View style={Global.containerForm}>
+      <Text style={Global.label}>Edite o nome:</Text>
         <TextInput
           style={Global.input}
           placeholder="Nome"
           value={nome}
           onChangeText={setNome}
         />
+
+        <Text style={Global.label}>Edite o e-mail:</Text>
         <TextInput
           style={Global.input}
           placeholder="Email"

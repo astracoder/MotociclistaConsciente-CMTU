@@ -18,7 +18,7 @@ export const Login = () => {
 
   const handleLogin = async () => {
     if(!email && !senha) {
-      alert("Preencha todos os dados!");
+      alert("Preencha todos os dados!");  
       return;
     }
 
@@ -31,9 +31,15 @@ export const Login = () => {
       const response = await axios.post('http://192.168.1.126:3000/usuario/login', {email, senha});
 
       if (response.status === 200) {
-        const { nome, email } = response.data;
+        const { nome, email, admin } = response.data;
         setUserData(nome, email);
-        navigation.navigate('Menu');
+
+        if(admin == 1){
+          navigation.navigate('UsuarioAdmin');          
+        } else {
+         navigation.navigate('Menu');
+        }
+        
       }
     } catch(err) {
       alert("E-mail ou senha inválidos!");

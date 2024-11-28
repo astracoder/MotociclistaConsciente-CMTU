@@ -45,7 +45,7 @@ export const ModuloAdmin = () => {
 
         <View style={Global.containerAba}>
           <Text style={Global.nomeAba}>
-            MODULO
+            MÓDULO
           </Text>          
         </View>
 

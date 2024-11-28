@@ -47,22 +47,25 @@ export const UsuarioAddAdmin = () => {
       </View>
 
       <View style={Global.containerForm}>
+        <Text style={Global.label}>Nome:</Text>
         <TextInput
           style={Global.input}
-          placeholder="Nome"
+          placeholder="Digite o nome..."
           value={nome}
           onChangeText={setNome}
         />
+        <Text style={Global.label}>E-mail:</Text>
         <TextInput
           style={Global.input}
-          placeholder="Email"
+          placeholder="Digite o e-mail..."
           value={email}
           onChangeText={setEmail}
           keyboardType="email-address"
         />
+        <Text style={Global.label}>Senha:</Text>
         <TextInput
           style={Global.input}
-          placeholder="Senha"
+          placeholder="Digite a senha..."
           value={senha}
           onChangeText={setSenha}
           secureTextEntry

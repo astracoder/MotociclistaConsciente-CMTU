@@ -28,7 +28,7 @@ export const ModuloEditDeleteAdmin  = () => {
     }
 
     try {
-        const response = await axios.post('http://192.168.1.126:3000/modulo/editarNomeEmail', {id, nome, porcentagem});
+        const response = await axios.post('http://192.168.1.126:3000/modulo/editarModulo', {id, nome, porcentagem});
   
         if (response.status === 200) {
           navigation.navigate('ModuloAdmin');
@@ -66,16 +66,19 @@ export const ModuloEditDeleteAdmin  = () => {
       </View>
 
         <View style={Global.containerForm}>
+        <Text style={Global.label}>Edite o módulo:</Text>
         <TextInput
             style={Global.input}
             placeholder="Nome do módulo"
-            value={nomeModuloInicial}
+            value={nome}
             onChangeText={setNome}
           />
+
+        <Text style={Global.label}>Edite a porcentagem do módulo:</Text>
         <TextInput
             style={Global.input}
             placeholder="Porcentagem módulo"
-            value={porcentagemInicial}
+            value={porcentagem}
             onChangeText={setPorcentagem}
         />
 
