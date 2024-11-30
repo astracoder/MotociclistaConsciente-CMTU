@@ -22,7 +22,7 @@ export const UsuarioAddAdmin = () => {
     }
 
     try {
-      const response = await axios.post('http://192.168.1.126:3000/usuario/cadastro', {nome, email, senha});
+      const response = await axios.post('http://localhost:3000/usuario/cadastro', {nome, email, senha});
 
       if (response.status === 200) {
         navigation.navigate('UsuarioAdmin');

@@ -21,7 +21,7 @@ export const ModuloAddAdmin = () => {
     }
 
     try {
-      const response = await axios.post('http://192.168.1.126:3000/modulo/cadastro', {nome, porcentagem});
+      const response = await axios.post('http://localhost:3000/modulo/cadastro', {nome, porcentagem});
 
       if (response.status === 200) {
         navigation.navigate('ModuloAdmin');

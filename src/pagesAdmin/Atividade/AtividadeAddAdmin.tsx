@@ -18,7 +18,7 @@ export const AtividadeAddAdmin = () => {
   useEffect(() => {
     const fetchModulos = async () => {
       try {
-        const response = await axios.get('http://192.168.1.126:3000/modulo/selecionarModulos');
+        const response = await axios.get('http://localhost:3000/modulo/selecionarModulos');
         if (response.status === 200) {
           setModulos(response.data);
         }
@@ -36,7 +36,7 @@ export const AtividadeAddAdmin = () => {
     }
 
     try {
-      const response = await axios.post('http://192.168.1.126:3000/atividade/cadastro', {
+      const response = await axios.post('http://localhost:3000/atividade/cadastro', {
         texto,
         idModulo: moduloSelecionado,
       }); 

@@ -28,7 +28,7 @@ export const UsuarioEditDeleteAdmin  = () => {
     }
 
     try {
-        const response = await axios.post('http://192.168.1.126:3000/usuario/editarNomeEmail', {id, nome, email});
+        const response = await axios.post('http://localhost:3000/usuario/editarNomeEmail', {id, nome, email});
   
         if (response.status === 200) {
           navigation.navigate('UsuarioAdmin');
@@ -42,7 +42,7 @@ export const UsuarioEditDeleteAdmin  = () => {
 
   const handleDesativar = async () => {
     try {
-        const response = await axios.put('http://192.168.216.235:3000/usuario/desativarUsuario', {email});
+        const response = await axios.put('http://localhost:3000/usuario/desativarUsuario', {email});
 
         if (response.status === 200) {
           navigation.navigate('UsuarioAdmin');

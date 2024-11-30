@@ -16,11 +16,12 @@ export const AlternativaAddAdmin = () => {
   const [moduloSelecionado, setModuloSelecionado] = useState('');
   const [atividades, setAtividades] = useState([]);
   const [atividadeSelecionada, setAtividadeSelecionada] = useState('');
+  const [isCorreta, setIsCorreta] = useState<number>(0);
 
   useEffect(() => {
     const fetchModulos = async () => {
       try {
-        const response = await axios.get('http://192.168.1.126:3000/modulo/selecionarModulos');
+        const response = await axios.get('http://localhost:3000/modulo/selecionarModulos');
         if (response.status === 200) {
           setModulos(response.data);
         }
@@ -39,7 +40,7 @@ export const AlternativaAddAdmin = () => {
 
     const fetchAtividadesPorModulo = async () => {
       try {
-        const response = await axios.get(`http://192.168.1.126:3000/atividade/selecionarAtividadesPorModulo?idModulo=${moduloSelecionado}`);
+        const response = await axios.get(`http://localhost:3000/atividade/selecionarAtividadesPorModulo?idModulo=${moduloSelecionado}`);
         if (response.status === 200) {
           setAtividades(response.data);
         }
@@ -57,8 +58,9 @@ export const AlternativaAddAdmin = () => {
     }
 
     try {
-      const response = await axios.post('http://192.168.1.126:3000/alternativa/cadastro', {
+      const response = await axios.post('http://localhost:3000/alternativa/cadastro', {
         texto,
+        respostaCerta: isCorreta,
         idAtividade: atividadeSelecionada
       }); 
 
@@ -104,9 +106,10 @@ export const AlternativaAddAdmin = () => {
         >
           <Picker.Item label="Selecione uma atividade" value=""/>
           {atividades.map((atividade: any) => (
-            <Picker.Item key={atividade.ID_ATIVIDADE} label={atividade.TEXTO} value={atividade.ID_ATIVIDADE} />
+            <Picker.Item key={atividade.ID_ATIVIDADE} label={`${atividade.ID_ATIVIDADE} - ${atividade.TEXTO}`} value={atividade.ID_ATIVIDADE} />
           ))}
         </Picker>
+        
 
         <Text style={Global.label}>Digite o texto da atividade {`(pergunta)`}:</Text>
         <TextInput
@@ -115,6 +118,16 @@ export const AlternativaAddAdmin = () => {
           value={texto}
           onChangeText={setTexto}
         />
+
+        <Text style={Global.label}>Selecione se a alternativa é correta ou falsa:</Text>
+        <Picker
+          selectedValue={isCorreta}
+          onValueChange={(itemValue: number) => setIsCorreta(itemValue)}
+          style={Global.input}
+        >
+          <Picker.Item label="Falsa" value={0} />
+          <Picker.Item label="Correta" value={1} />
+        </Picker>
 
         <TouchableOpacity onPress={handleCadastro} style={Global.salvar}>
           <Text style={Global.botaoTexto}>Cadastrar</Text>

@@ -23,7 +23,7 @@ export const Menu = () => {
           resizeMode="contain" 
         />
 
-        <Text style={MenuStyles.titulo}>Bem vindo, {user.nome}!</Text>
+        <Text style={MenuStyles.titulo}>Bem vindo, {user.nome ? user.nome : 'Anônimo'}!</Text>
 
         <View style={MenuStyles.grid}>
             <View style={MenuStyles.iconLinha}>

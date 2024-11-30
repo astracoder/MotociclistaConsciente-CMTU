@@ -16,7 +16,7 @@ export const Modulos = () => {
 
     const handleListarModulos = async () => {
       try {
-        const response = await axios.get('http://192.168.1.126:3000/modulo/selecionarModulos');
+        const response = await axios.get('http://localhost:3000/modulo/selecionarModulos');
         const json = response.data;
 
         if (Array.isArray(json)) {
@@ -45,7 +45,7 @@ export const Modulos = () => {
         <Text style={ModulosStyles.titulo}>Módulos</Text>
 
         {dados.map((item, index) => (
-          <TouchableOpacity key={index} style={ModulosStyles.pergunta}>
+          <TouchableOpacity key={index} style={ModulosStyles.pergunta} onPress={() => navigation.navigate('Perguntas', { idModulo: item.id_modulo })}>
             <Text style={ModulosStyles.textoBotao}>{item.nome}</Text>
           </TouchableOpacity>
         ))}

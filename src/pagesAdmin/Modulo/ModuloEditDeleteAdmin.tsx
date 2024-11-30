@@ -28,7 +28,7 @@ export const ModuloEditDeleteAdmin  = () => {
     }
 
     try {
-        const response = await axios.post('http://192.168.1.126:3000/modulo/editarModulo', {id, nome, porcentagem});
+        const response = await axios.post('http://localhost:3000/modulo/editarModulo', {id, nome, porcentagem});
   
         if (response.status === 200) {
           navigation.navigate('ModuloAdmin');
@@ -42,7 +42,7 @@ export const ModuloEditDeleteAdmin  = () => {
 
   const handleDesativar = async () => {
     try {
-        const response = await axios.put('http://192.168.1.126:3000/modulo/desativarModulo', {id});
+        const response = await axios.put('http://localhost:3000/modulo/desativarModulo', {id});
 
         if (response.status === 200) {
           navigation.navigate('UsuarioAdmin');

@@ -15,7 +15,7 @@ export const AlternativaAdmin = () => {
 
   const handleListarAlternativas = async () => {
     try {
-      const response = await axios.get('http://192.168.1.126:3000/alternativa/selecionarAlternativas');
+      const response = await axios.get('http://localhost:3000/alternativa/selecionarAlternativas');
       const json = response.data;
 
       if (Array.isArray(json)) {
@@ -33,9 +33,8 @@ export const AlternativaAdmin = () => {
     handleListarAlternativas();
   }, []);
 
-  // Função que mapeia o módulo de acordo com o id
   const obterNomeModulo = (idModulo: number) => {
-    switch(idModulo) {
+    switch (idModulo) {
       case 1:
         return 'PEDESTRE';
       case 2:
@@ -56,7 +55,7 @@ export const AlternativaAdmin = () => {
       <View style={Global.content}>
 
         <TouchableOpacity onPress={() => navigation.navigate('AtividadeAdmin')} style={Global.setas}>
-          <Text style={{color: '#ED1C24', fontSize: 48}}>{'⬅'}</Text>
+          <Text style={{ color: '#ED1C24', fontSize: 48 }}>{'⬅'}</Text>
         </TouchableOpacity>
 
         <View style={Global.containerAba}>
@@ -64,31 +63,43 @@ export const AlternativaAdmin = () => {
         </View>
 
         <TouchableOpacity onPress={() => navigation.navigate('CertificadoAdmin')} style={Global.setas}>
-          <Text style={{color: '#ED1C24', fontSize: 48}}>{'⮕'}</Text>
+          <Text style={{ color: '#ED1C24', fontSize: 48 }}>{'⮕'}</Text>
         </TouchableOpacity>
 
       </View>
       
       <ScrollView style={Global.containerView}>
-        {dados.map((item, index) => (
-          <TouchableOpacity onPress={() => navigation.navigate('AlternativaEditDeleteAdmin', {id: item.ID_ALTERNATIVA, texto: item.TEXTO})} key={index} style={Global.containerBoxInfo}>
-            <View style={Global.containerID}>
-              <Text style={Global.containerIDTexto}>{item.ID_ALTERNATIVA}</Text>
-            </View>
-            <View style={Global.containerNome}>
-              <Text style={Global.containerNomeTexto}>{item.TEXTO}</Text>
-            </View>
-            <View style={Global.containerIDModulo}>
-              <Text style={Global.containerIDModuloTexto}>
-                {obterNomeModulo(item.FK_MODULO_ID_MODULO)}
-              </Text>
-            </View>
-          </TouchableOpacity>
-        ))}
+        {dados.map((item, index) => {
+          const backgroundColor = Math.floor(index / 4) % 2 === 0 ? '#f0f0f0' : '#dcdcdc';
+          return (
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate('AlternativaEditDeleteAdmin', {
+                  id: item.ID_ALTERNATIVA,
+                  texto: item.TEXTO,
+                })
+              }
+              key={index}
+              style={[Global.containerBoxInfo, { backgroundColor }]}
+            >
+              <View style={Global.containerID}>
+                <Text style={Global.containerIDTexto}>{item.ID_ALTERNATIVA}</Text>
+              </View>
+              <View style={Global.containerNome}>
+                <Text style={Global.containerNomeTexto}>{item.TEXTO}</Text>
+              </View>
+              <View style={Global.containerIDModulo}>
+                <Text style={Global.containerIDModuloTexto}>
+                  {obterNomeModulo(item.FK_MODULO_ID_MODULO)}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          );
+        })}
       </ScrollView>
 
       <TouchableOpacity onPress={() => navigation.navigate('AlternativaAddAdmin')} style={Global.adicionar}>
-        <Text style={{fontSize: 34, textAlign: 'center', color: 'white'}}>+</Text>
+        <Text style={{ fontSize: 34, textAlign: 'center', color: 'white' }}>+</Text>
       </TouchableOpacity>
 
     </SafeAreaView>

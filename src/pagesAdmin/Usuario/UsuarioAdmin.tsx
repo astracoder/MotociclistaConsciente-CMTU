@@ -15,7 +15,7 @@ export const UsuarioAdmin = () => {
 
     const handleListarUsuarios = async () => {
       try {
-        const response = await axios.get('http://192.168.1.126:3000/usuario/selecionarUsuarios');
+        const response = await axios.get('http://localhost:3000/usuario/selecionarUsuarios');
         const json = response.data;
 
         if (Array.isArray(json)) {

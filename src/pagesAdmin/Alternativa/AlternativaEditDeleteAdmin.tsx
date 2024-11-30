@@ -26,7 +26,7 @@ export const AlternativaEditDeleteAdmin  = () => {
     }
 
     try {
-        const response = await axios.post('http://192.168.1.126:3000/alternativa/editarAlternativa', {id, texto});
+        const response = await axios.post('http://localhost:3000/alternativa/editarAlternativa', {id, texto});
   
         if (response.status === 200) {
           navigation.navigate('AlternativaAdmin');
@@ -40,7 +40,7 @@ export const AlternativaEditDeleteAdmin  = () => {
 
   const handleDesativar = async () => {
     try {
-        const response = await axios.put('http://192.168.1.126:3000/alternativa/desativarAlternativa', {id});
+        const response = await axios.put('http://localhost:3000/alternativa/desativarAlternativa', {id});
 
         if (response.status === 200) {
           navigation.navigate('AlternativaAdmin');
