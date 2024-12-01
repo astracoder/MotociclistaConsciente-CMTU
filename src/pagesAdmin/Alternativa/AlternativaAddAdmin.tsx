@@ -106,7 +106,7 @@ export const AlternativaAddAdmin = () => {
         >
           <Picker.Item label="Selecione uma atividade" value=""/>
           {atividades.map((atividade: any) => (
-            <Picker.Item key={atividade.ID_ATIVIDADE} label={`${atividade.ID_ATIVIDADE} - ${atividade.TEXTO}`} value={atividade.ID_ATIVIDADE} />
+            <Picker.Item key={atividade.ID_ATIVIDADE} label={`${atividade.TEXTO}`} value={atividade.ID_ATIVIDADE} />
           ))}
         </Picker>
         

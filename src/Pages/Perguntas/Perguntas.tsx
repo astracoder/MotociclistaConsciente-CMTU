@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, SafeAreaView, TouchableOpacity, Alert } from 'react-native';
 import axios from 'axios';
-import { RouteProp, useRoute } from '@react-navigation/native';
+import { useNavigation, RouteProp, useRoute } from '@react-navigation/native';
 import { StackParamList } from '../../../App';
 import PerguntaStyles from '../../styles/Perguntas/PerguntasStyles.ts';
 
@@ -10,12 +10,14 @@ type PerguntaRouteProp = RouteProp<StackParamList, 'Perguntas'>;
 export const Perguntas = () => {
   const route = useRoute<PerguntaRouteProp>();
   const { idModulo } = route.params;
+  const navigation = useNavigation();
 
   const [atividades, setAtividades] = useState<any[]>([]);
   const [alternativas, setAlternativas] = useState<any[]>([]);
   const [atividadeAtual, setAtividadeAtual] = useState<number>(0);
-  const [alternativaSelecionada, setAlternativaSelecionada] = useState<number | null>(null); // Nova variável de estado
+  const [alternativaSelecionada, setAlternativaSelecionada] = useState<number | null>(null);
   const [acertos, setAcertos] = useState<number>(0);
+  const [respostaCerta, setRespostaCerta] = useState<number>(0);
 
   useEffect(() => {
     const fetchAtividades = async () => {
@@ -53,6 +55,10 @@ export const Perguntas = () => {
     setAlternativaSelecionada(null);
   };
 
+  const handleFinalizar = () => {
+    navigation.navigate('Pontuacao', { pontuacao: acertos });
+  };
+
   return (
     <SafeAreaView style={PerguntaStyles.container}>
       {atividades.length > 0 ? (
@@ -66,17 +72,11 @@ export const Perguntas = () => {
                 key={index}
                 style={[
                   PerguntaStyles.alternativa,
-                  alternativaSelecionada === alt.ID_ALTERNATIVA && PerguntaStyles.alternativaSelecionada, 
+                  alternativaSelecionada === alt.ID_ALTERNATIVA && PerguntaStyles.alternativaSelecionada,
                 ]}
                 onPress={() => {
-                  setAlternativaSelecionada(alt.ID_ALTERNATIVA); 
-                  if(alt.RESPOSTA_CERTA == 1) {
-                    alert('Resposta correta!');
-                    setAcertos((ac) => ac + 1);
-                  } else {
-                    alert('Resposta errada!');
-                  };
-                  console.log("Contador: " + acertos);
+                  setAlternativaSelecionada(alt.ID_ALTERNATIVA);
+                  setRespostaCerta(alt.RESPOSTA_CERTA);
                 }}
               >
                 <Text style={PerguntaStyles.textoAlternativa}>{alt.TEXTO}</Text>
@@ -84,17 +84,31 @@ export const Perguntas = () => {
             ))}
           </View>
 
-          {/* Botão para próxima pergunta */}
-          {atividadeAtual < atividades.length - 1 && (
+          {atividadeAtual < atividades.length - 1 ? (
             <TouchableOpacity
-              onPress={handleProximaPergunta}
+              onPress={() => {
+                handleProximaPergunta();
+                if (respostaCerta == 1) {
+                  alert('Resposta correta!');
+                  setAcertos((ac) => ac + 1);
+                } else {
+                  alert('Resposta errada!');
+                }
+              }}
               style={[
                 PerguntaStyles.botaoProximo,
-                !alternativaSelecionada && PerguntaStyles.botaoProximoDesabilitado, // Estilo desabilitado
+                !alternativaSelecionada && PerguntaStyles.botaoProximoDesabilitado,
               ]}
-              disabled={!alternativaSelecionada} // Desabilita se nenhuma alternativa for selecionada
+              disabled={!alternativaSelecionada}
             >
               <Text style={PerguntaStyles.textoBotao}>Próxima</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              onPress={handleFinalizar}
+              style={PerguntaStyles.botaoProximo}
+            >
+              <Text style={PerguntaStyles.textoBotao}>Finalizar</Text>
             </TouchableOpacity>
           )}
         </>

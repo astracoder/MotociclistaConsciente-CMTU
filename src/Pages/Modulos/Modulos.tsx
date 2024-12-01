@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons.js';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { StackParamList } from '../../../App';
+import { useUser } from '../../context/UserContext.js';
 import ModulosStyles from '../../styles/Modulos/ModulosStyles.ts';
 
 type NavigationProps = NativeStackNavigationProp<StackParamList, 'Modulos'>
@@ -12,11 +13,12 @@ type NavigationProps = NativeStackNavigationProp<StackParamList, 'Modulos'>
 export const Modulos = () => {
   const navigation = useNavigation<NavigationProps>();
 
+  const { user } = useUser();
   const [dados, setDados] = useState<any[]>([]);
 
     const handleListarModulos = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/modulo/selecionarModulos');
+        const response = await axios.get('http://localhost:3000/modulo/selecionarTodosModulosAtivados');
         const json = response.data;
 
         if (Array.isArray(json)) {
@@ -34,6 +36,25 @@ export const Modulos = () => {
     handleListarModulos();
   }, []);
 
+  const handleIniciarModulo = async (idModulo: number) => {
+    try {
+      if (!user || !user.id_usuario) {
+        console.error("Usuário não encontrado!");
+        return;
+      }
+
+      await axios.post('http://localhost:3000/usuarioModulo/atualizarIniciado', {
+        idModulo,
+        idUsuario: user.id_usuario
+      });
+
+      navigation.navigate('Perguntas', { idModulo });
+    } catch (error) {
+      console.error('Erro ao iniciar o módulo:', error);
+      alert('Erro ao iniciar o módulo. Tente novamente.');
+    }
+  };
+
   return (
       <SafeAreaView style={ModulosStyles.container}>
         <Image 
@@ -45,7 +66,7 @@ export const Modulos = () => {
         <Text style={ModulosStyles.titulo}>Módulos</Text>
 
         {dados.map((item, index) => (
-          <TouchableOpacity key={index} style={ModulosStyles.pergunta} onPress={() => navigation.navigate('Perguntas', { idModulo: item.id_modulo })}>
+          <TouchableOpacity key={index} style={ModulosStyles.pergunta} onPress={() => handleIniciarModulo(item.id_modulo)}>
             <Text style={ModulosStyles.textoBotao}>{item.nome}</Text>
           </TouchableOpacity>
         ))}

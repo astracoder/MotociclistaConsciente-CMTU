@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {Text, SafeAreaView, Image, TextInput, TouchableOpacity, Alert } from 'react-native';
 import axios from 'axios';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -7,42 +7,58 @@ import { StackParamList } from '../../../App';
 import { useUser } from '../../context/UserContext.js';
 import ResetStyles from '../../styles/Reset/ResetStyles.ts';
 
+//Tipagem da pagina TYPESCRIPT
 type NavigationProps = NativeStackNavigationProp<StackParamList, 'Reset'>
 
+//Variaveis e funções do reset
 export const Reset = () => {
+
   const navigation = useNavigation<NavigationProps>();
+
+  //Instanciando uma vertente do useUser com os dados do login
   const { user } = useUser();
 
-  const [email, setEmail] = useState('');
+  //Instancia useStates para id e senhas novas
+  const id_usuario = user.id_usuario;
   const [senhaNova, setSenhaNova] = useState('');
   const [senhaNovaRepitida, setSenhaNovaRepitida] = useState('');
 
+  //Funções para verificação do dados do input
   const handleEditarSenha = async () => {
-    if(!email || !senhaNova) {
+    //Se estiver vazio
+    if(!senhaNova || !senhaNovaRepitida) {
       alert("Preencha todos os dados!");
       return;
     }
 
+    //Se as senhas estiverem diferentes
     if(senhaNova !== senhaNovaRepitida) {
       alert("A nova senha não esta correta!");
       return;
     }
 
+    //Se tem ao menos 8 digitos
     if(senhaNova.length < 8 || senhaNovaRepitida.length < 8) {
       alert("Senha deve ter 8 caracteres!");
       return;
     }
 
+    //Um Try Catch para tentar executar conexão com o banco para obter os dados do usuario
     try {
-      const response = await axios.put('http://localhost:3000/usuario/editarSenha', {email, senhaNova});
 
+      //Uma variavel para receber o resultado da requisição PUT onde é informado o ID do usuario e senha nova
+      const response = await axios.put('http://localhost:3000/usuario/editarSenha', {id_usuario, senhaNova});
+
+      //Se response 200, senha alterada com sucesso
       if (response.status === 200) {
         navigation.navigate('Perfil');
         alert(`Senha alterada com sucesso!`);
         return;
       }
-    } catch(err) {
+
+    } catch(err) { //Se der erro, da um alerta
       alert("Ocorreu um erro ao tentar alterar a senha!");
+      return;
     }
   };
 
@@ -55,14 +71,6 @@ export const Reset = () => {
           resizeMode="contain" 
         />
         <Text style={ResetStyles.titulo}>Alteração de senha</Text>
-
-        <Text style={ResetStyles.textoInput}>E-mail</Text>
-        <TextInput 
-          style={ResetStyles.input} 
-          placeholder="Digite seu e-mail..." 
-          onChangeText={setEmail}
-          value={email}
-        />
 
         <Text style={ResetStyles.textoInput}>Nova senha:</Text>
         <TextInput 

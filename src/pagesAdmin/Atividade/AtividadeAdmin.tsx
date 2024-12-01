@@ -15,7 +15,7 @@ export const AtividadeAdmin = () => {
 
   const handleListarAtividades = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/atividade/selecionarAtividades');
+      const response = await axios.get('http://localhost:3000/atividade/selecionarAtividadesAtivo');
       const json = response.data;
 
       if (Array.isArray(json)) {

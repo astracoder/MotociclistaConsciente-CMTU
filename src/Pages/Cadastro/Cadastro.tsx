@@ -6,29 +6,39 @@ import { useNavigation } from '@react-navigation/native';
 import { StackParamList } from '../../../App';
 import CadastroStyles from '../../styles/Cadastro/CadastroStyles.ts';
 
+//Tipagem da pagina TYPESCRIPT
 type NavigationProps = NativeStackNavigationProp<StackParamList, 'Cadastro'>
 
+//Variaveis e funções do cadastro
 export const Cadastro = () => {
   const navigation = useNavigation<NavigationProps>();
 
+  //"Variaveis" que armazenam nome, email e senha
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
+  //Função para cadastro
   const handleCadastro = async () => {
     if(!nome || !email || !senha) {
       alert("Preencha todos os dados!");
       return;
     }
 
+    //Um Try Catch para tentar executar conexão com o banco para enviar os dados do usuario
     try {
+      
+      //Uma variavel que recebe dados do envio de informações do banco de dados via Axios (Conexão com banco)
       const response = await axios.post('http://localhost:3000/usuario/cadastro', {nome, email, senha});
 
+      //Se sucesso com a conexão
       if (response.status === 200) {
+        
+
         navigation.navigate('Login');
         alert(`${nome} sua conta foi cadastrada com sucesso!`);
       }
-    } catch(err) {
+    } catch(err) { //Se der erro, da um alert de 'erro' e termina a função catch
       alert("Não foi possível cadastrar usuário! Consulte o administrador.");
       return;
     }

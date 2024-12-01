@@ -4,15 +4,15 @@ const PerguntaStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f5f5f5',
-    padding: 20,
     justifyContent: 'center',
+    paddingHorizontal: 20,
   },
   titulo: {
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 20,
-    color: '#333',
+    color: '#303030',
   },
   alternativasContainer: {
     marginTop: 10,
@@ -22,6 +22,7 @@ const PerguntaStyles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     marginBottom: 10,
+    marginHorizontal: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
@@ -37,10 +38,11 @@ const PerguntaStyles = StyleSheet.create({
   },
   botaoProximo: {
     marginTop: 20,
-    backgroundColor: '#007BFF',
+    backgroundColor: '#EC232A',
     padding: 15,
     borderRadius: 10,
     alignItems: 'center',
+    marginHorizontal: 20,
   },
   textoBotao: {
     color: '#fff',
@@ -48,8 +50,8 @@ const PerguntaStyles = StyleSheet.create({
     fontWeight: 'bold',
   },
   alternativaSelecionada: {
-    backgroundColor: '#4caf50', 
-    borderColor: '#388e3c',
+    borderColor: '#EC232A',
+    borderWidth: 3,
   },
   
   botaoProximoDesabilitado: {

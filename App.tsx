@@ -8,6 +8,7 @@ import { Cadastro } from './src/pages/Cadastro/Cadastro';
 import { Menu} from './src/pages/Menu/Menu';
 import { Modulos } from './src/pages/Modulos/Modulos';
 import { Perguntas } from './src/pages/Perguntas/Perguntas';
+import { Pontuacao } from './src/pages/Pontuacao/Pontuacao';
 import { Certificados } from './src/pages/Certificados/Certificados';
 import { Perfil } from './src/pages/Perfil/Perfil';
 import { Configuracoes } from './src/pages/Configuracoes/Configuracoes';
@@ -41,6 +42,7 @@ export type StackParamList = {
   Menu: undefined;
   Modulos: undefined;
   Perguntas: { idModulo: number };
+  Pontuacao: { pontuacao: number };
   Certificados: undefined;
   Perfil: undefined
   Reset: undefined
@@ -74,12 +76,13 @@ export default function App() {
   return (
     <UserProvider>  
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='UsuarioAdmin'>
+        <Stack.Navigator initialRouteName='Pontuacao'>
           <Stack.Screen name='Login' component={Login} options={{headerShown: false}}/>
           <Stack.Screen name='Cadastro' component={Cadastro} options={{headerShown: false}}/>
           <Stack.Screen name='Menu' component={Menu} options={{headerShown: false}}/>
           <Stack.Screen name='Modulos' component={Modulos} options={{headerShown: false}}/>
           <Stack.Screen name='Perguntas' component={Perguntas} options={{headerShown: false}}/>
+          <Stack.Screen name='Pontuacao' component={Pontuacao} options={{headerShown: false}}/>
           <Stack.Screen name='Certificados' component={Certificados} options={{headerShown: false}}/>
           <Stack.Screen name='Perfil' component={Perfil} options={{headerShown: false}}/>
           <Stack.Screen name='Reset' component={Reset} options={{headerShown: false}}/>

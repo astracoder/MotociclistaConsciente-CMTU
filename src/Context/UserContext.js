@@ -1,14 +1,20 @@
 import React, { createContext, useContext, useState } from 'react';
 
+//Instaciou o contextAPI
 const UserContext = createContext();
 
+//Cria um constante global que esta disponivel para todas as telas
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState({ nome: '', email: '' });
 
-  const setUserData = (nome, email) => {
-    setUser({ nome, email });
+  //Cria uma useState vazia com id, nome e email
+  const [user, setUser] = useState({ id_usuario: '', nome: '', email: '' });
+
+  //Função que recebe id, nome e email do login(front) e defini os dados para o useStateUser
+  const setUserData = (id_usuario, nome, email) => {
+    setUser({ id_usuario, nome, email });
   };
 
+  //Retorno de uma TAG React que contem os dados do usuario para que todas as telas usem as informações do usuario logado
   return (
     <UserContext.Provider value={{ user, setUserData }}>
       {children}
@@ -16,6 +22,7 @@ export const UserProvider = ({ children }) => {
   );
 };
 
+//E no fim, o arquivo UserContext retorna a função useUser
 export const useUser = () => {
   return useContext(UserContext);
 };
