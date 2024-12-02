@@ -91,6 +91,7 @@ Utilizamos CSS para personalizar os componentes e criar uma experiência visual 
 | **fontWeight**    | `'bold'`                            |
 | **color**         | `'#fefefe'`                         |
 
+```bash
 MotociclistaConsciente-CMTU/
 ├── src/
     		├── Context/
@@ -178,4 +179,4 @@ MotociclistaConsciente-CMTU/
 ├── package-lock.json
 ├── package.json
 ├── tsconfig.json
-	
+	```bash
