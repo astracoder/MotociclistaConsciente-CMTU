@@ -24,26 +24,26 @@ O **Motorista Consciente** é um projeto desenvolvido por nós, alunos da **Univ
 
 ### **Passo a Passo**
 1. Clone o repositório na sua máquina:
-```bash
+``bash
 https://github.com/astracoder/MotociclistaConsciente-CMTU
 
 3. Acesse o diretório do projeto:
-```bash
+``bash
 cd motorista-consciente
 
 4. Instale as dependências:
-```bash
+``bash
 npm install
 
 5. Execute o projeto:
-```bash
+``bash
 npm start
 
 ## **Conexão com API**
 As requisições à API são feitas utilizando Axios.
 
 ### **Configuração:**
-```bash
+``bash
 import axios from 'axios';
 
 export const api = axios.create({
@@ -51,7 +51,7 @@ export const api = axios.create({
 });
 
 ### **Exemplo de Requisição:**
-```bash
+``bash
 import { api } from './services/api';
 
 export const fetchRules = async () => {
@@ -108,18 +108,18 @@ Este projeto é o back end de um aplicativo chamado motociclista consciente, que
 ### Passos para Instalação
 
 1. Clone este repositório:
-   ```bash
+   ``bash
 https://github.com/astracoder/MotociclistaConsciente-CMTU
 
 2. Entre no diretório do projeto:
-   ```bash
+   ``bash
    cd nome-do-repositorio
 
 3.Instale as dependências:
-   ```bash
+   ``bash
   npm install
 
 4.Inicie o servidor:
-   ```bash
+   ``bash
    node server.js
 
