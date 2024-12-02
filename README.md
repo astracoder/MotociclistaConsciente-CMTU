@@ -91,61 +91,8 @@ Utilizamos CSS para personalizar os componentes e criar uma experiência visual 
 | **fontWeight**    | `'bold'`                            |
 | **color**         | `'#fefefe'`                         |
 
-# **Back end** 
-
-Este projeto é o back end de um aplicativo chamado motociclista consciente, que visa ensinar e conscientizar atráves de um jogo de perguntas e respostas que é desenvolvido em Node.js e Express. Ele fornece uma API RESTful para gerenciar entidades como **usuários**, **módulos**, **certificados** e **atividades**.
-
----
-
-## Tecnologias Utilizadas
-
-- Node.js
-- Express
-- Swagger (para documentação de API)
-- JavaScript
-
----
-
-## Instalação
-
-### Pré-requisitos
-- Node.js (v20.x)
-- NPM (Node Package Manager)
-
-### Passos para Instalação
-
-1. Clone este repositório:
-   
-```bash
-https://github.com/astracoder/MotociclistaConsciente-CMTU
-```
-2. Entre no diretório do projeto:
-   
-```bash
-   cd nome-do-repositorio
-```
-3. Instale as dependências:
-
-```bash
-  npm install
-```
-4. Inicie o servidor:
-
-```bash
-   node server.js
-```
-
 MotociclistaConsciente-CMTU/
-├── .gitignore
-├── App.tsx
-├── README.md
-├── app.json
-├── babel.config.js
-├── codesql.sql
-├── package-lock.json
-├── package.json
-├── tsconfig.json
-	├── src/
+├── src/
     		├── Context/
 			├──UserContext.js
     		├── Pages/
@@ -188,8 +135,47 @@ MotociclistaConsciente-CMTU/
 				├──AtividadeAdmin.tsx
 				├──AtividadeEditDeleteAdmin.tsx
 			├──Certificado
+				├──CertificadoAdmin.tsx
 			├──Modulo
-			├──Usuario
+				├──ModuloAddAdmin.tsx
+				├──ModuloAdmin.tsx
+				├──ModuloEditDeleteAdmin.tsx
+			├──Usuário
+				├──UsuarioAddAdmin.tsx
+				├──UsuarioAdmin.tsx
+				├──UsuarioEditDeleteAdmin.tsx
 			├──UsuarioModulo
+				├──UsuarioModuloAdmin.tsx
     		├── styles/
+			├──Cadastro
+				├──CadastroStyles.ts
+			├──Certificados
+				├──CertificadosStyles.ts
+			├──Configurações
+				├──ConfiguracoesStyles.ts
+			├──Login
+				├──LoginStyles.ts
+			├──Menu
+				├──MenuStyles.ts
+			├──Modulos
+				├──ModulosStyles.s
+			├──Perfil
+				├──PerfilStyles.ts
+			├──Perguntas
+				├──PerguntaStyles.ts
+			├──Pontuacao
+				├──PontuacaoStyles.ts
+			├──Reset
+				├──ResetStyles.ts
     		├── stylesAdmin/Global
+			├─globalStyles.ts
+├── .gitignore
+├── App.tsx
+├── README.md
+├── app.json
+├── babel.config.js
+├── codesql.sql
+├── package-lock.json
+├── package.json
+├── tsconfig.json
+	
