@@ -12,8 +12,9 @@ export const UsuarioEditDeleteAdmin  = () => {
   const navigation = useNavigation<NavigationProps>();
   const route = useRoute();
   
-  const { id, nome: nomeInicial, email: emailInicial } = route.params as {
+  const { id, status, nome: nomeInicial, email: emailInicial } = route.params as {
     id: number;
+    status: number,
     nome: string;
     email: string;
   };
@@ -39,6 +40,19 @@ export const UsuarioEditDeleteAdmin  = () => {
         return;
       }
   };
+
+  const handleAtivar = async () => {
+    try {
+      const response = await axios.put('http://localhost:3000/usuario/ativarUsuario', {email});
+
+      if (response.status === 200) {
+        navigation.navigate('UsuarioAdmin');
+        alert(`Usuário ativado com sucesso!`);
+      }
+    } catch(err) {
+      alert("Não foi possível ativiar o usuário! Consulte o administrador.");
+    }
+  }
 
   const handleDesativar = async () => {
     try {
@@ -87,9 +101,17 @@ export const UsuarioEditDeleteAdmin  = () => {
           <Text style={Global.botaoTexto}>Salvar alterações</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => handleDesativar()} style={Global.deletar}>
-          <Text style={Global.botaoTexto}>Desativar</Text>
-        </TouchableOpacity>
+
+        {status === 1 ? (
+          <TouchableOpacity onPress={handleDesativar} style={Global.deletar}>
+            <Text style={Global.botaoTexto}>Desativar</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity onPress={handleAtivar} style={Global.ativar}>
+            <Text style={Global.botaoTexto}>Ativar</Text>
+          </TouchableOpacity>
+        )}
+        
       </View>
     </SafeAreaView>
   );

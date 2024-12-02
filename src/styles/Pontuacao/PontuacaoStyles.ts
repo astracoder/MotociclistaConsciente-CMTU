@@ -5,7 +5,7 @@ const PontuacaoStyles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f5f5f5',
     justifyContent: 'center',
-    alignContent: 'center',
+    alignItems: 'center',
     padding: 40
   },
   tituloParabens: {
@@ -14,18 +14,31 @@ const PontuacaoStyles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 20,
   },
-  titulo: {
-    color: '#606060',
-    fontSize: 20,
+  tituloNota: {
+    color: '#303030',
+    fontSize: 32,
     textAlign: 'center',
     marginBottom: 20,
   },
   pontuacao: {
     color: '#EC232A',
-    fontSize: 32,
+    fontSize: 50,
     fontWeight: 'bold',
     textAlign: 'center'
-  }
+  },
+  botaoProximo: {
+    marginTop: 20,
+    backgroundColor: '#EC232A',
+    padding: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+    marginHorizontal: 20,
+  },
+  textoBotao: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
 });
 
 export default PontuacaoStyles;

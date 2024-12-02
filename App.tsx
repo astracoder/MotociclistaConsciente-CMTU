@@ -50,11 +50,11 @@ export type StackParamList = {
 
   UsuarioAdmin: undefined;
   UsuarioAddAdmin: undefined;
-  UsuarioEditDeleteAdmin: { id: number, nome: string, email: string, senha: string };
+  UsuarioEditDeleteAdmin: { id: number, status: number, nome: string, email: string, senha: string };
 
   ModuloAdmin: undefined;
   ModuloAddAdmin: undefined;
-  ModuloEditDeleteAdmin: { id: number, nomeModulo: string, porcentagem: string };
+  ModuloEditDeleteAdmin: { id: number, status: number, nomeModulo: string, porcentagem: string };
 
   UsuarioModuloAdmin: undefined;
 
@@ -76,7 +76,7 @@ export default function App() {
   return (
     <UserProvider>  
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='Pontuacao'>
+        <Stack.Navigator initialRouteName='UsuarioAdmin'>
           <Stack.Screen name='Login' component={Login} options={{headerShown: false}}/>
           <Stack.Screen name='Cadastro' component={Cadastro} options={{headerShown: false}}/>
           <Stack.Screen name='Menu' component={Menu} options={{headerShown: false}}/>

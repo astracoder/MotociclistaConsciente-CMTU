@@ -111,7 +111,14 @@ const styles = StyleSheet.create({
         padding: 16,
         borderRadius: 8,
         alignItems: 'center',
-        marginBottom: 20
+        marginBottom: 40
+      },
+      ativar: {
+        backgroundColor: '#85C225',
+        padding: 16,
+        borderRadius: 8,
+        alignItems: 'center',
+        marginBottom: 10
       },
       deletar: {
         backgroundColor: '#303030',
@@ -148,6 +155,12 @@ const styles = StyleSheet.create({
       itemText: {
         fontSize: 14,
       },
+      boxInativo: {
+        fontSize: 16, 
+        color: '#fefefe',
+        backgroundColor: '#ffd4d4',
+        textDecorationLine: 'line-through',
+      }
 })
 
 export default styles;

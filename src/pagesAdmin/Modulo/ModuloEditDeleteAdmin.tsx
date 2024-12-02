@@ -12,8 +12,9 @@ export const ModuloEditDeleteAdmin  = () => {
   const navigation = useNavigation<NavigationProps>();
   const route = useRoute();
   
-  const { id, nomeModulo: nomeModuloInicial, porcentagem: porcentagemInicial } = route.params as {
+  const { id, status, nomeModulo: nomeModuloInicial, porcentagem: porcentagemInicial } = route.params as {
     id: number;
+    status: number;
     nomeModulo: string;
     porcentagem: string;
   };
@@ -40,12 +41,25 @@ export const ModuloEditDeleteAdmin  = () => {
       }
   };
 
+  const handleAtivar = async () => {
+    try {
+      const response = await axios.put('http://localhost:3000/modulo/ativarModulo', {id});
+
+      if (response.status === 200) {
+        navigation.navigate('ModuloAdmin');
+        alert(`Módulo ativado com sucesso!`);
+      }
+    } catch(err) {
+      alert("Não foi possível ativar o módulo! Consulte o administrador.");
+    }
+  }
+
   const handleDesativar = async () => {
     try {
         const response = await axios.put('http://localhost:3000/modulo/desativarModulo', {id});
 
         if (response.status === 200) {
-          navigation.navigate('UsuarioAdmin');
+          navigation.navigate('ModuloAdmin');
           alert(`Módulo desativado com sucesso!`);
         }
     } catch(err) {
@@ -86,9 +100,15 @@ export const ModuloEditDeleteAdmin  = () => {
           <Text style={Global.botaoTexto}>Salvar alterações</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => handleDesativar()} style={Global.deletar}>
-          <Text style={Global.botaoTexto}>Desativar</Text>
-        </TouchableOpacity>
+        {status === 1 ? (
+          <TouchableOpacity onPress={handleDesativar} style={Global.deletar}>
+            <Text style={Global.botaoTexto}>Desativar</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity onPress={handleAtivar} style={Global.ativar}>
+            <Text style={Global.botaoTexto}>Ativar</Text>
+          </TouchableOpacity>
+        )}
       </View>
     </SafeAreaView>
   );

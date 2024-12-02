@@ -28,7 +28,9 @@ const styles = StyleSheet.create({
   pergunta: {
     width: '100%',
     height: 50,
-    backgroundColor: '#A6CE39',
+    backgroundColor: '#FFF',
+    borderWidth: 3,
+    borderColor: '#A6CE39',
     borderRadius: 32,
     justifyContent: 'center',
     alignItems: 'center',
@@ -41,7 +43,7 @@ const styles = StyleSheet.create({
   textoBotao: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#fefefe',
+    color: '#A6CE39',
   },
   rodape: {
     flexDirection: 'row',
@@ -57,6 +59,21 @@ const styles = StyleSheet.create({
   iconRodape: {
     alignItems: 'center',
   },
+  mensagemVazia: {
+    fontSize: 16,
+    textAlign: 'center',
+    marginTop: 20,
+    color: '#555',
+  },
+  
+  mensagemFinal: {
+    fontSize: 18,
+    textAlign: 'center',
+    marginTop: 20,
+    color: '#28a745',
+    fontWeight: 'bold',
+  },
+  
 });
 
 export default styles;

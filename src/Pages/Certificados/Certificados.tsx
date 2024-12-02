@@ -22,11 +22,7 @@ export const Certificados = () => {
           <Text style={CertificadosStyles.titulo}>Certificados</Text>
 
           <TouchableOpacity style={CertificadosStyles.seguranca}>
-            <Text style={CertificadosStyles.textoBotao}>Visualizar certificado</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={CertificadosStyles.placas}>
-            <Text style={CertificadosStyles.textoBotao}>Baixar certificado</Text>
+            <Text style={CertificadosStyles.textoBotao}>Baixar seu certificado!</Text>
           </TouchableOpacity>
 
         </View> 
