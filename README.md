@@ -134,3 +134,62 @@ https://github.com/astracoder/MotociclistaConsciente-CMTU
 ```bash
    node server.js
 ```
+
+MotociclistaConsciente-CMTU/
+├── .gitignore
+├── App.tsx
+├── README.md
+├── app.json
+├── babel.config.js
+├── codesql.sql
+├── package-lock.json
+├── package.json
+├── tsconfig.json
+	├── src/
+    		├── Context/
+			├──UserContext.js
+    		├── Pages/
+			├──Cadastro
+				├──Cadastro.tsx
+			├──Certificados
+				├──Certificados.tsx
+			├──Configurações
+				├──Configuracoes.tsx
+			├──Login
+				├──Login.tsx
+			├──Menu
+				├──Menu.tsx
+			├──Modulos
+				├──Modulos.tsx
+			├──Perfil
+				├──Perfil.tsx
+			├──Perguntas
+				├──Perguntas.tsx
+			├──Pontuação
+				├──Pontuacao.tsx
+			├──Reset
+				├──Reset.tsx
+    		├── assets/
+			├──cmtu_logo.png
+			├──create_account.png
+			├──create_account_2.png
+			├──favicon.png
+			├──login_account.png
+			├──login_account_2.png
+			├──moto_consciente.png
+			├──moto_consciente_red.png
+    		├── pagesAdmin/
+			├──Alternativa
+				├──AlternativaAddAdmin.tsx
+				├──AlternativaAdmin.tsx
+				├──AlternativaEditDeleteAdmin.tsx
+			├──Atividade
+				├──AtividadeAddAdmin.tsx
+				├──AtividadeAdmin.tsx
+				├──AtividadeEditDeleteAdmin.tsx
+			├──Certificado
+			├──Modulo
+			├──Usuario
+			├──UsuarioModulo
+    		├── styles/
+    		├── stylesAdmin/Global
