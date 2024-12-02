@@ -124,12 +124,12 @@ https://github.com/astracoder/MotociclistaConsciente-CMTU
 ```bash
    cd nome-do-repositorio
 ```
-3.Instale as dependências:
+3. Instale as dependências:
 
 ```bash
   npm install
 ```
-4.Inicie o servidor:
+4. Inicie o servidor:
 
 ```bash
    node server.js
