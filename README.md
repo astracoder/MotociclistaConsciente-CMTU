@@ -94,31 +94,31 @@ Utilizamos CSS para personalizar os componentes e criar uma experiência visual 
 ## **Estrutura de pastas**
 ```bash
 MotociclistaConsciente-CMTU/
-├── src/
-    		├── Context/
+├──📂 src/
+    		├──📂 Context/
 			├──UserContext.js
-    		├── Pages/
-			├──Cadastro
+    		├──📂 Pages/
+			├──📂 Cadastro
 				├──Cadastro.tsx
-			├──Certificados
+			├──📂 Certificados
 				├──Certificados.tsx
-			├──Configurações
+			├──📂 Configurações
 				├──Configuracoes.tsx
-			├──Login
+			├──📂 Login
 				├──Login.tsx
-			├──Menu
+			├──📂 Menu
 				├──Menu.tsx
-			├──Modulos
+			├──📂 Modulos
 				├──Modulos.tsx
-			├──Perfil
+			├──📂 Perfil
 				├──Perfil.tsx
-			├──Perguntas
+			├──📂 Perguntas
 				├──Perguntas.tsx
-			├──Pontuação
+			├──📂 Pontuação
 				├──Pontuacao.tsx
-			├──Reset
+			├──📂 Reset
 				├──Reset.tsx
-    		├── assets/
+    		├──📂 assets/
 			├──cmtu_logo.png
 			├──create_account.png
 			├──create_account_2.png
@@ -127,49 +127,49 @@ MotociclistaConsciente-CMTU/
 			├──login_account_2.png
 			├──moto_consciente.png
 			├──moto_consciente_red.png
-    		├── pagesAdmin/
-			├──Alternativa
+    		├──📂 pagesAdmin/
+			├──📂 Alternativa
 				├──AlternativaAddAdmin.tsx
 				├──AlternativaAdmin.tsx
 				├──AlternativaEditDeleteAdmin.tsx
-			├──Atividade
+			├──📂 Atividade
 				├──AtividadeAddAdmin.tsx
 				├──AtividadeAdmin.tsx
 				├──AtividadeEditDeleteAdmin.tsx
-			├──Certificado
+			├──📂 Certificado
 				├──CertificadoAdmin.tsx
-			├──Modulo
+			├──📂 Modulo
 				├──ModuloAddAdmin.tsx
 				├──ModuloAdmin.tsx
 				├──ModuloEditDeleteAdmin.tsx
-			├──Usuário
+			├──📂 Usuário
 				├──UsuarioAddAdmin.tsx
 				├──UsuarioAdmin.tsx
 				├──UsuarioEditDeleteAdmin.tsx
-			├──UsuarioModulo
+			├──📂 UsuarioModulo
 				├──UsuarioModuloAdmin.tsx
-    		├── styles/
-			├──Cadastro
+    		├──📂 styles/
+			├──📂 Cadastro
 				├──CadastroStyles.ts
-			├──Certificados
+			├──📂 Certificados
 				├──CertificadosStyles.ts
-			├──Configurações
+			├──📂 Configurações
 				├──ConfiguracoesStyles.ts
-			├──Login
+			├──📂 Login
 				├──LoginStyles.ts
-			├──Menu
+			├──📂 Menu
 				├──MenuStyles.ts
-			├──Modulos
+			├──📂 Modulos
 				├──ModulosStyles.s
-			├──Perfil
+			├──📂 Perfil
 				├──PerfilStyles.ts
-			├──Perguntas
+			├──📂 Perguntas
 				├──PerguntaStyles.ts
-			├──Pontuacao
+			├──📂 Pontuacao
 				├──PontuacaoStyles.ts
-			├──Reset
+			├──📂 Reset
 				├──ResetStyles.ts
-    		├── stylesAdmin/Global
+    		├──📂 stylesAdmin/Global
 			├─globalStyles.ts
 ├── .gitignore
 ├── App.tsx
