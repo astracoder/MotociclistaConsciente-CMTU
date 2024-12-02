@@ -25,9 +25,9 @@ O **Motorista Consciente** é um projeto desenvolvido por nós, alunos da **Univ
 ### **Passo a Passo**
 
 1. Clone o repositório na sua máquina:
-**\`\`\`bash**
+```bash
 https://github.com/astracoder/MotociclistaConsciente-CMTU
-**\`\`\`**
+```
 
 2. Acesse o diretório do projeto:
 **\`\`\`bash**
