@@ -35,17 +35,17 @@ npm install
 4. Execute o projeto:
 npm start
 
-Conexão com API
+## **Conexão com API**
 As requisições à API são feitas utilizando Axios.
 
-Configuração:
+### **Configuração:**
 import axios from 'axios';
 
 export const api = axios.create({
   baseURL: '', 
 });
 
-Exemplo de Requisição:
+### **Exemplo de Requisição:**
 import { api } from './services/api';
 
 export const fetchRules = async () => {
@@ -53,10 +53,10 @@ export const fetchRules = async () => {
   return response.data;
 };
 
-Estilos
+## **Estilos**
 Utilizamos CSS para personalizar os componentes e criar uma experiência visual agradável.
 
-Exemplo de Estilo:
+### **Exemplo de Estilo:**
 const styles = {
   botaoCadastro: {
     width: '100%',
