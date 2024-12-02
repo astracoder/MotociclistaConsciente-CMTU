@@ -19,26 +19,31 @@ O **Motorista Consciente** é um projeto desenvolvido por nós, alunos da **Univ
 ## **Configuração do Ambiente**
 
 ### **Pré-requisitos**
-- **Node.js**
+- **Node.js (v20.x)**
 - **npm** instalado
 
 ### **Passo a Passo**
 1. Clone o repositório na sua máquina:
+```bash
 https://github.com/astracoder/MotociclistaConsciente-CMTU
 
-2. Acesse o diretório do projeto:
+3. Acesse o diretório do projeto:
+```bash
 cd motorista-consciente
 
-3. Instale as dependências:
+4. Instale as dependências:
+```bash
 npm install
 
-4. Execute o projeto:
+5. Execute o projeto:
+```bash
 npm start
 
 ## **Conexão com API**
 As requisições à API são feitas utilizando Axios.
 
 ### **Configuração:**
+```bash
 import axios from 'axios';
 
 export const api = axios.create({
@@ -46,6 +51,7 @@ export const api = axios.create({
 });
 
 ### **Exemplo de Requisição:**
+```bash
 import { api } from './services/api';
 
 export const fetchRules = async () => {
@@ -77,3 +83,43 @@ Utilizamos CSS para personalizar os componentes e criar uma experiência visual 
 | **fontSize**      | `18`                                |
 | **fontWeight**    | `'bold'`                            |
 | **color**         | `'#fefefe'`                         |
+
+# **Back end** 
+
+Este projeto é o back end de um aplicativo chamado motociclista consciente, que visa ensinar e conscientizar atráves de um jogo de perguntas e respostas que é desenvolvido em Node.js e Express. Ele fornece uma API RESTful para gerenciar entidades como **usuários**, **módulos**, **certificados** e **atividades**.
+
+---
+
+## Tecnologias Utilizadas
+
+- Node.js
+- Express
+- Swagger (para documentação de API)
+- JavaScript
+
+---
+
+## Instalação
+
+### Pré-requisitos
+- Node.js (v20.x)
+- NPM (Node Package Manager)
+
+### Passos para Instalação
+
+1. Clone este repositório:
+   ```bash
+https://github.com/astracoder/MotociclistaConsciente-CMTU
+
+2. Entre no diretório do projeto:
+   ```bash
+   cd nome-do-repositorio
+
+3.Instale as dependências:
+   ```bash
+  npm install
+
+4.Inicie o servidor:
+   ```bash
+   node server.js
+
