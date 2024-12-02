@@ -91,6 +91,7 @@ Utilizamos CSS para personalizar os componentes e criar uma experiência visual 
 | **fontWeight**    | `'bold'`                            |
 | **color**         | `'#fefefe'`                         |
 
+## **Estrutura de pastas**
 ```bash
 MotociclistaConsciente-CMTU/
 ├── src/
