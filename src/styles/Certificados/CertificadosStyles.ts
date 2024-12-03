@@ -70,6 +70,10 @@ const styles = StyleSheet.create({
   iconRodape: {
     alignItems: 'center',
   },
+  mensagem: {
+    color: '#303030',
+    textAlign: 'center'
+  }
 });
 
 export default styles;

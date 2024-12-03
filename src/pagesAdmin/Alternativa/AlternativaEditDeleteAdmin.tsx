@@ -12,8 +12,9 @@ export const AlternativaEditDeleteAdmin  = () => {
   const navigation = useNavigation<NavigationProps>();
   const route = useRoute();
   
-  const { id, texto: textoInicial} = route.params as {
+  const { id, status, texto: textoInicial} = route.params as {
     id: number;
+    status: number,
     texto: string;
   };
 
@@ -38,6 +39,19 @@ export const AlternativaEditDeleteAdmin  = () => {
       }
   };
 
+  const handleAtivar = async () => {
+    try {
+        const response = await axios.put('http://localhost:3000/alternativa/ativarAlternativa', {id});
+
+        if (response.status === 200) {
+          navigation.navigate('AlternativaAdmin');
+          alert(`Alternativa ativada com sucesso!`);
+        }
+    } catch(err) {
+        alert("Não foi possível ativar a alternativa! Consulte o administrador.");
+    }
+  };
+
   const handleDesativar = async () => {
     try {
         const response = await axios.put('http://localhost:3000/alternativa/desativarAlternativa', {id});
@@ -47,7 +61,7 @@ export const AlternativaEditDeleteAdmin  = () => {
           alert(`Alternativa desativada com sucesso!`);
         }
     } catch(err) {
-        alert("Não foi possível desativar a atividade! Consulte o administrador.");
+        alert("Não foi possível desativar a alternativa! Consulte o administrador.");
     }
   };
 
@@ -76,9 +90,15 @@ export const AlternativaEditDeleteAdmin  = () => {
           <Text style={Global.botaoTexto}>Salvar alterações</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => handleDesativar()} style={Global.deletar}>
-          <Text style={Global.botaoTexto}>Desativar</Text>
-        </TouchableOpacity>
+        {status === 1 ? (
+          <TouchableOpacity onPress={handleDesativar} style={Global.deletar}>
+            <Text style={Global.botaoTexto}>Desativar</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity onPress={handleAtivar} style={Global.ativar}>
+            <Text style={Global.botaoTexto}>Ativar</Text>
+          </TouchableOpacity>
+        )}
       </View>
     </SafeAreaView>
   );

@@ -76,11 +76,12 @@ export const AlternativaAdmin = () => {
               onPress={() =>
                 navigation.navigate('AlternativaEditDeleteAdmin', {
                   id: item.ID_ALTERNATIVA,
+                  status: item.STATUS,
                   texto: item.TEXTO,
                 })
               }
               key={index}
-              style={[Global.containerBoxInfo, { backgroundColor }]}
+              style={[Global.containerBoxInfo, { backgroundColor }, item.STATUS === 0 && Global.boxInativo]}
             >
               <View style={Global.containerID}>
                 <Text style={Global.containerIDTexto}>{item.ID_ALTERNATIVA}</Text>

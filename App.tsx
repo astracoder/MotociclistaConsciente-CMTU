@@ -24,6 +24,8 @@ import { ModuloAddAdmin } from './src/pagesAdmin/Modulo/ModuloAddAdmin';
 import { ModuloEditDeleteAdmin } from './src/pagesAdmin/Modulo/ModuloEditDeleteAdmin';
 
 import { UsuarioModuloAdmin } from './src/pagesAdmin/UsuarioModulo/UsuarioModuloAdmin';
+import { UsuarioModuloAddAdmin } from './src/pagesAdmin/UsuarioModulo/UsuarioModuloAddAdmin';
+import { UsuarioModuloEditDeleteAdmin } from './src/pagesAdmin/UsuarioModulo/UsuarioModuloEditDeleteAdmin';
 
 import { AtividadeAdmin } from './src/pagesAdmin/Atividade/AtividadeAdmin';
 import { AtividadeAddAdmin } from './src/pagesAdmin/Atividade/AtividadeAddAdmin';
@@ -34,6 +36,8 @@ import { AlternativaAddAdmin } from './src/pagesAdmin/Alternativa/AlternativaAdd
 import { AlternativaEditDeleteAdmin } from './src/pagesAdmin/Alternativa/AlternativaEditDeleteAdmin';
 
 import { CertificadoAdmin } from './src/pagesAdmin/Certificado/CertificadoAdmin';
+
+import { DataScienceAdmin } from './src/pagesAdmin/DataScience/DataScienceAdmin';
 
 //Tipagem das paginas
 export type StackParamList = {
@@ -57,16 +61,20 @@ export type StackParamList = {
   ModuloEditDeleteAdmin: { id: number, status: number, nomeModulo: string, porcentagem: string };
 
   UsuarioModuloAdmin: undefined;
+  UsuarioModuloAddAdmin: undefined;
+  UsuarioModuloEditDeleteAdmin: {id: number, aprovado: number, iniciado: number, nota_final: number};
 
   AtividadeAdmin: undefined;
   AtividadeAddAdmin: undefined;
-  AtividadeEditDeleteAdmin: {id: number, texto: string, fk_id: number};
+  AtividadeEditDeleteAdmin: {id: number, status: number, texto: string, fk_id: number};
 
   AlternativaAdmin: undefined;
   AlternativaAddAdmin: undefined;
-  AlternativaEditDeleteAdmin: {id: number, texto: string}
+  AlternativaEditDeleteAdmin: {id: number, status: number, texto: string}
 
   CertificadoAdmin: undefined;
+
+  DataScienceAdmin: undefined;
 };
 
 const Stack = createNativeStackNavigator<StackParamList>();
@@ -76,7 +84,7 @@ export default function App() {
   return (
     <UserProvider>  
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='UsuarioAdmin'>
+        <Stack.Navigator initialRouteName='DataScienceAdmin'>
           <Stack.Screen name='Login' component={Login} options={{headerShown: false}}/>
           <Stack.Screen name='Cadastro' component={Cadastro} options={{headerShown: false}}/>
           <Stack.Screen name='Menu' component={Menu} options={{headerShown: false}}/>
@@ -97,6 +105,8 @@ export default function App() {
           <Stack.Screen name='ModuloEditDeleteAdmin' component={ModuloEditDeleteAdmin} options={{headerShown: false}}/>
 
           <Stack.Screen name='UsuarioModuloAdmin' component={UsuarioModuloAdmin} options={{headerShown: false}}/>
+          <Stack.Screen name='UsuarioModuloAddAdmin' component={UsuarioModuloAddAdmin} options={{headerShown: false}}/>
+          <Stack.Screen name='UsuarioModuloEditDeleteAdmin' component={UsuarioModuloEditDeleteAdmin} options={{headerShown: false}}/>
 
           <Stack.Screen name='AtividadeAdmin' component={AtividadeAdmin} options={{headerShown: false}}/>
           <Stack.Screen name='AtividadeAddAdmin' component={AtividadeAddAdmin} options={{headerShown: false}}/>
@@ -107,7 +117,8 @@ export default function App() {
           <Stack.Screen name='AlternativaEditDeleteAdmin' component={AlternativaEditDeleteAdmin} options={{headerShown: false}}/>
 
           <Stack.Screen name='CertificadoAdmin' component={CertificadoAdmin} options={{headerShown: false}}/>
-        
+
+          <Stack.Screen name='DataScienceAdmin' component={DataScienceAdmin} options={{headerShown: false}}/>
         </Stack.Navigator>
       </NavigationContainer>
     </UserProvider>

@@ -15,7 +15,7 @@ export const AtividadeAdmin = () => {
 
   const handleListarAtividades = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/atividade/selecionarAtividadesAtivo');
+      const response = await axios.get('http://localhost:3000/atividade/selecionarAtividadesAdmin');
       const json = response.data;
 
       if (Array.isArray(json)) {
@@ -53,18 +53,20 @@ export const AtividadeAdmin = () => {
       
       <ScrollView style={Global.containerView}>
         {dados.map((item, index) => {
-          const backgroundColor = Math.floor(index / 10) % 2 === 0 ? '#f0f0f0' : '#dcdcdc'; // Alterna a cor a cada 10 itens
+          const backgroundColor = Math.floor(index / 10) % 2 === 0 ? '#f0f0f0' : '#dcdcdc';
+
           return (
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate('AtividadeEditDeleteAdmin', {
                   id: item.ID_ATIVIDADE,
+                  status: item.STATUS,
                   texto: item.TEXTO,
                   fk_id: item.FK_MODULO_ID_MODULO,
                 })
               }
               key={index}
-              style={[Global.containerBoxInfo, { backgroundColor }]} // Aplica a cor dinamicamente
+              style={[Global.containerBoxInfo, { backgroundColor }, item.STATUS === 0 && Global.boxInativo]} // Aplica a cor dinamicamente
             >
               <View style={Global.containerID}>
                 <Text style={Global.containerIDTexto}>{item.ID_ATIVIDADE}</Text>

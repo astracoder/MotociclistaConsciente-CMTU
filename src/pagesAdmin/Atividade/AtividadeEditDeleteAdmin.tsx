@@ -12,8 +12,9 @@ export const AtividadeEditDeleteAdmin  = () => {
   const navigation = useNavigation<NavigationProps>();
   const route = useRoute();
   
-  const { id, texto: textoInicial} = route.params as {
+  const { id, status, texto: textoInicial} = route.params as {
     id: number;
+    status: number;
     texto: string;
   };
 
@@ -37,6 +38,19 @@ export const AtividadeEditDeleteAdmin  = () => {
         return;
       }
   };
+
+  const handleAtivar = async () => {
+    try {
+      const response = await axios.put('http://localhost:3000/atividade/ativarAtividade', {id});
+
+      if (response.status === 200) {
+        navigation.navigate('AtividadeAdmin');
+        alert(`Atividade atividade com sucesso!`);
+      }
+  } catch(err) {
+      alert("Não foi possível desativar a atividade! Consulte o administrador.");
+  }
+  }
 
   const handleDesativar = async () => {
     try {
@@ -75,9 +89,15 @@ export const AtividadeEditDeleteAdmin  = () => {
           <Text style={Global.botaoTexto}>Salvar alterações</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => handleDesativar()} style={Global.deletar}>
-          <Text style={Global.botaoTexto}>Desativar</Text>
-        </TouchableOpacity>
+        {status === 1 ? (
+          <TouchableOpacity onPress={handleDesativar} style={Global.deletar}>
+            <Text style={Global.botaoTexto}>Desativar</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity onPress={handleAtivar} style={Global.ativar}>
+            <Text style={Global.botaoTexto}>Ativar</Text>
+          </TouchableOpacity>
+        )}
       </View>
     </SafeAreaView>
   );
