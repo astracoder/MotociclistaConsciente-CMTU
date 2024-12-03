@@ -12,8 +12,9 @@ export const UsuarioModuloEditDeleteAdmin = () => {
   const navigation = useNavigation<NavigationProps>();
   const route = useRoute();
 
-  const { id, aprovado: aprovadoInicial, iniciado: iniciadoInicial, nota_final: notaFinalInicial } = route.params as {
+  const { id, status, aprovado: aprovadoInicial, iniciado: iniciadoInicial, nota_final: notaFinalInicial } = route.params as {
     id: number;
+    status: number;
     aprovado: boolean;
     iniciado: boolean;
     nota_final: number;
@@ -49,6 +50,31 @@ export const UsuarioModuloEditDeleteAdmin = () => {
     }
   };
   
+  const handleAtivar = async () => {
+    try {
+      const response = await axios.put('http://localhost:3000/usuarioModulo/ativarUsuarioModulo', {id});
+
+      if (response.status === 200) {
+        navigation.navigate('UsuarioModuloAdmin');
+        alert(`Usuário modulo ativado com sucesso!`);
+      }
+    } catch(err) {
+      alert("Não foi possível ativar o certificado! Consulte o administrador.");
+    }
+  }
+
+  const handleDesativar = async () => {
+    try {
+        const response = await axios.put('http://localhost:3000/usuarioModulo/desativarUsuarioModulo', {id});
+
+        if (response.status === 200) {
+          navigation.navigate('UsuarioModuloAdmin');
+          alert(`Usuario módulo desativado com sucesso!`);
+        }
+    } catch(err) {
+        alert("Não foi possível deletar certificado! Consulte o administrador.");
+    }
+  };
 
   return (
     <SafeAreaView style={Global.container}>
@@ -87,6 +113,16 @@ export const UsuarioModuloEditDeleteAdmin = () => {
         <TouchableOpacity onPress={handleSalvar} style={Global.salvar}>
           <Text style={Global.botaoTexto}>Salvar alterações</Text>
         </TouchableOpacity>
+
+        {status === 1 ? (
+          <TouchableOpacity onPress={handleDesativar} style={Global.deletar}>
+            <Text style={Global.botaoTexto}>Desativar</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity onPress={handleAtivar} style={Global.ativar}>
+            <Text style={Global.botaoTexto}>Ativar</Text>
+          </TouchableOpacity>
+        )}
       </View>
     </SafeAreaView>
   );

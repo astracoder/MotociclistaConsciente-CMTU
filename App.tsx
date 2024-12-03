@@ -36,6 +36,8 @@ import { AlternativaAddAdmin } from './src/pagesAdmin/Alternativa/AlternativaAdd
 import { AlternativaEditDeleteAdmin } from './src/pagesAdmin/Alternativa/AlternativaEditDeleteAdmin';
 
 import { CertificadoAdmin } from './src/pagesAdmin/Certificado/CertificadoAdmin';
+import { CertificadoAddAdmin } from './src/pagesAdmin/Certificado/CertificadoAddAdmin';
+import { CertificadoEditDeleteAdmin } from './src/pagesAdmin/Certificado/CertificadoEditDeleteAdmin';
 
 import { DataScienceAdmin } from './src/pagesAdmin/DataScience/DataScienceAdmin';
 
@@ -62,7 +64,7 @@ export type StackParamList = {
 
   UsuarioModuloAdmin: undefined;
   UsuarioModuloAddAdmin: undefined;
-  UsuarioModuloEditDeleteAdmin: {id: number, aprovado: number, iniciado: number, nota_final: number};
+  UsuarioModuloEditDeleteAdmin: {id: number, status: number, aprovado: number, iniciado: number, nota_final: number};
 
   AtividadeAdmin: undefined;
   AtividadeAddAdmin: undefined;
@@ -73,6 +75,8 @@ export type StackParamList = {
   AlternativaEditDeleteAdmin: {id: number, status: number, texto: string}
 
   CertificadoAdmin: undefined;
+  CertificadoAddAdmin: {idUsuario: any};
+  CertificadoEditDeleteAdmin: {id: number, status: number, texto: string, horas: number, dataConclusao: Date};
 
   DataScienceAdmin: undefined;
 };
@@ -84,7 +88,7 @@ export default function App() {
   return (
     <UserProvider>  
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='DataScienceAdmin'>
+        <Stack.Navigator initialRouteName='UsuarioAdmin'>
           <Stack.Screen name='Login' component={Login} options={{headerShown: false}}/>
           <Stack.Screen name='Cadastro' component={Cadastro} options={{headerShown: false}}/>
           <Stack.Screen name='Menu' component={Menu} options={{headerShown: false}}/>
@@ -117,6 +121,8 @@ export default function App() {
           <Stack.Screen name='AlternativaEditDeleteAdmin' component={AlternativaEditDeleteAdmin} options={{headerShown: false}}/>
 
           <Stack.Screen name='CertificadoAdmin' component={CertificadoAdmin} options={{headerShown: false}}/>
+          <Stack.Screen name='CertificadoAddAdmin' component={CertificadoAddAdmin} options={{headerShown: false}}/>
+          <Stack.Screen name='CertificadoEditDeleteAdmin' component={CertificadoEditDeleteAdmin} options={{headerShown: false}}/>
 
           <Stack.Screen name='DataScienceAdmin' component={DataScienceAdmin} options={{headerShown: false}}/>
         </Stack.Navigator>

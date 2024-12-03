@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
+import axios from 'axios';
 import Global from '../../stylesAdmin/Global/globalStyles';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackParamList } from '../../../App';
@@ -9,7 +10,28 @@ type NavigationProps = NativeStackNavigationProp<StackParamList, 'AlternativaAdm
 
 export const CertificadoAdmin = () => {
   const navigation = useNavigation<NavigationProps>();
-  const nomeTeste = "Você passou, parabéns!";
+
+  const [dados, setDados] = useState<any[]>([]);
+
+  const handleListarUsuarios = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/certificado/selecionarCertificadosComUsuario');
+      const json = response.data;
+
+      if (Array.isArray(json)) {
+        setDados(json);
+      } else {
+        console.warn('A resposta da API não é um array:', json);
+        setDados([]);
+      }
+  } catch (error) {
+    console.error('Erro ao buscar os dados:', error);
+  }
+};
+
+  useEffect(() => {
+    handleListarUsuarios();
+  }, []);
 
   return (
     <SafeAreaView style={Global.container}>
@@ -27,7 +49,7 @@ export const CertificadoAdmin = () => {
           </Text>          
         </View>
 
-        <TouchableOpacity onPress={() => navigation.navigate('UsuarioAdmin')} style={Global.setas}>
+        <TouchableOpacity onPress={() => navigation.navigate('DataScienceAdmin')} style={Global.setas}>
           <Text style={{color: '#ED1C24', fontSize: 48}}>
             {'⮕'}
           </Text>
@@ -37,22 +59,24 @@ export const CertificadoAdmin = () => {
       
       <ScrollView style={Global.containerView}>
 
-        <TouchableOpacity style={Global.containerBoxInfo}>
+      {dados.map((item, index) => (
+        <TouchableOpacity onPress={() => navigation.navigate('CertificadoEditDeleteAdmin', {id: item.ID_CERTIFICADO, status: item.STATUS, texto: item.TEXTO, horas: item.HORAS, dataConclusao: item.DATA_CONCLUSAO })} key={index} style={[Global.containerBoxInfo, item.STATUS === 0 && Global.boxInativo]}>
           <View style={Global.containerID}>
             <Text style={Global.containerIDTexto}>
-              1
+              {item.ID_CERTIFICADO} 
             </Text>
           </View>
           <View style={Global.containerNome}>
             <Text style={Global.containerNomeTexto}>
-              {nomeTeste.slice(0, 50)}...
+              {item.NOME_USUARIO}
             </Text>
           </View>
         </TouchableOpacity>
+      ))}
 
       </ScrollView>
 
-      <TouchableOpacity style={Global.adicionar}>
+      <TouchableOpacity onPress={() => navigation.navigate('CertificadoAddAdmin', { idUsuario: dados[0]?.ID_USUARIO })} style={Global.adicionar}>
         <Text style={{fontSize: 34, textAlign: 'center', color: 'white'}}>
           +
         </Text>

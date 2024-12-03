@@ -60,7 +60,7 @@ export const UsuarioModuloAdmin = () => {
       <ScrollView style={Global.containerView}>
 
       {dados.map((item, index) => (
-        <TouchableOpacity onPress={() => navigation.navigate('UsuarioModuloEditDeleteAdmin', {id: item.id_usuario_modulo, aprovado: item.aprovado, iniciado: item.iniciado, nota_final: item.nota_final})} key={index} style={[Global.containerBoxInfo, item.status === 0 && Global.boxInativo]}>
+        <TouchableOpacity onPress={() => navigation.navigate('UsuarioModuloEditDeleteAdmin', {id: item.id_usuario_modulo, status: item.status, aprovado: item.aprovado, iniciado: item.iniciado, nota_final: item.nota_final})} key={index} style={[Global.containerBoxInfo, item.status === 0 && Global.boxInativo]}>
           <View style={Global.containerID}>
             <Text style={Global.containerIDTexto}>
               {item.id_usuario_modulo}

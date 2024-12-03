@@ -37,7 +37,7 @@ export const UsuarioAdmin = () => {
     <SafeAreaView style={Global.container}>
       <View style={Global.content}>
 
-        <TouchableOpacity onPress={() => navigation.navigate('CertificadoAdmin')} style={Global.setas}>
+        <TouchableOpacity onPress={() => navigation.navigate('DataScienceAdmin')} style={Global.setas}>
           <Text style={{color: '#ED1C24', fontSize: 48}}>
             {'⬅'}
           </Text>
