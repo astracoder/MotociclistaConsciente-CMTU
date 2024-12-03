@@ -97,6 +97,12 @@ MotociclistaConsciente-CMTU/
 ├──📂 src/
     		├──📂 Context/
 			├──UserContext.js
+		├──📂Data Science
+			├──acertos.py
+			├──conseguiu certificado.py
+			├──erros.py
+			├──media notas.py
+			├──modulos_iniciados.py
     		├──📂 Pages/
 			├──📂 Cadastro
 				├──Cadastro.tsx
