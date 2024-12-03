@@ -68,7 +68,7 @@ try:
     # Adicionando título
     plt.title('Gráfico de Usuários com e sem Certificado', fontsize=16)
 
-    # Exibindo o gráfico
+    # Salvando a imagem nesse diretório
     plt.savefig("src/assets/DataScience/grafico_conseguiu_certificado.png");
 
 except requests.exceptions.RequestException as e:

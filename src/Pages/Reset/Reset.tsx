@@ -7,6 +7,9 @@ import { StackParamList } from '../../../App';
 import { useUser } from '../../context/UserContext.js';
 import ResetStyles from '../../styles/Reset/ResetStyles.ts';
 
+// Aqui está uma variavel global, para eu mudar entre o IP da maquina e localhost
+import { ipconfig } from '../../../ipConfig.js';
+
 //Tipagem da pagina TYPESCRIPT
 type NavigationProps = NativeStackNavigationProp<StackParamList, 'Reset'>
 
@@ -15,7 +18,7 @@ export const Reset = () => {
 
   const navigation = useNavigation<NavigationProps>();
 
-  //Instanciando uma vertente do useUser com os dados do login
+  // user são os dados que foram setados pelo useUser na tela de Login, e pode ser usado aqui e em qualquer pagina.
   const { user } = useUser();
 
   //Instancia useStates para id e senhas novas
@@ -24,22 +27,22 @@ export const Reset = () => {
   const [senhaNovaRepitida, setSenhaNovaRepitida] = useState('');
 
   //Funções para verificação do dados do input
-  const handleEditarSenha = async () => {
+  const handleEditarSenha = async () => { 
     //Se estiver vazio
     if(!senhaNova || !senhaNovaRepitida) {
-      alert("Preencha todos os dados!");
+      Alert.alert("Preencha todos os dados!");
       return;
     }
 
     //Se as senhas estiverem diferentes
     if(senhaNova !== senhaNovaRepitida) {
-      alert("A nova senha não esta correta!");
+      Alert.alert("A nova senha não esta correta!");
       return;
     }
 
     //Se tem ao menos 8 digitos
     if(senhaNova.length < 8 || senhaNovaRepitida.length < 8) {
-      alert("Senha deve ter 8 caracteres!");
+      Alert.alert("Senha deve ter 8 caracteres!");
       return;
     }
 
@@ -47,17 +50,17 @@ export const Reset = () => {
     try {
 
       //Uma variavel para receber o resultado da requisição PUT onde é informado o ID do usuario e senha nova
-      const response = await axios.put('http://localhost:3000/usuario/editarSenha', {id_usuario, senhaNova});
+      const response = await axios.put(`http://${ipconfig}:3000/usuario/editarSenha`, {id_usuario, senhaNova});
 
       //Se response 200, senha alterada com sucesso
       if (response.status === 200) {
         navigation.navigate('Perfil');
-        alert(`Senha alterada com sucesso!`);
+        Alert.alert(`Senha alterada com sucesso!`);
         return;
       }
 
     } catch(err) { //Se der erro, da um alerta
-      alert("Ocorreu um erro ao tentar alterar a senha!");
+      Alert.alert("Ocorreu um erro ao tentar alterar a senha!");
       return;
     }
   };

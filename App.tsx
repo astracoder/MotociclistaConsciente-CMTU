@@ -1,3 +1,4 @@
+//Imports para funcionar a navegação entre páginas
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { UserProvider } from './src/context/UserContext';
@@ -14,7 +15,7 @@ import { Perfil } from './src/pages/Perfil/Perfil';
 import { Configuracoes } from './src/pages/Configuracoes/Configuracoes';
 import { Reset } from './src/pages/Reset/Reset';
 
-// Paginas admin
+// Paginas Admin
 import { UsuarioAdmin } from './src/pagesAdmin/Usuario/UsuarioAdmin';
 import { UsuarioAddAdmin } from './src/pagesAdmin/Usuario/UsuarioAddAdmin';
 import { UsuarioEditDeleteAdmin } from './src/pagesAdmin/Usuario/UsuarioEditDeleteAdmin';
@@ -83,12 +84,12 @@ export type StackParamList = {
 
 const Stack = createNativeStackNavigator<StackParamList>();
 
-//Todas as rotas
+//Todas as rotas do App
 export default function App() {
   return (
     <UserProvider>  
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='UsuarioAdmin'>
+          <Stack.Navigator initialRouteName='UsuarioAdmin'>
           <Stack.Screen name='Login' component={Login} options={{headerShown: false}}/>
           <Stack.Screen name='Cadastro' component={Cadastro} options={{headerShown: false}}/>
           <Stack.Screen name='Menu' component={Menu} options={{headerShown: false}}/>

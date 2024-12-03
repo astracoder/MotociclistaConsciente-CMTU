@@ -61,6 +61,7 @@ try:
     # Ajustando o gráfico
     plt.tight_layout()
 
+    # Salvando a imagem nesse diretório
     plt.savefig("src/assets/DataScience/grafico_media_notas.png");
 
 except requests.exceptions.RequestException as e:

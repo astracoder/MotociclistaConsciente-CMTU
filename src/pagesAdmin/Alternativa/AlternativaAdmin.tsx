@@ -5,17 +5,17 @@ import Global from '../../stylesAdmin/Global/globalStyles';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackParamList } from '../../../App';
 import { useNavigation } from '@react-navigation/native';
+import { ipconfig } from '../../../ipConfig.js';
 
 type NavigationProps = NativeStackNavigationProp<StackParamList, 'AlternativaAdmin'>;
 
 export const AlternativaAdmin = () => {
   const navigation = useNavigation<NavigationProps>();
-  
   const [dados, setDados] = useState<any[]>([]);
 
   const handleListarAlternativas = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/alternativa/selecionarAlternativas');
+      const response = await axios.get(`http://${ipconfig}:3000/alternativa/selecionarAlternativas`);
       const json = response.data;
 
       if (Array.isArray(json)) {
@@ -53,24 +53,25 @@ export const AlternativaAdmin = () => {
   return (
     <SafeAreaView style={Global.container}>
       <View style={Global.content}>
-
+        {/* Botão de navegação para voltar à tela 'AtividadeAdmin' */}
         <TouchableOpacity onPress={() => navigation.navigate('AtividadeAdmin')} style={Global.setas}>
-          <Text style={{ color: '#ED1C24', fontSize: 48 }}>{'⬅'}</Text>
+          <Text style={{ color: '#ED1C24', fontSize: 48 }}>⬅</Text>
         </TouchableOpacity>
 
         <View style={Global.containerAba}>
           <Text style={Global.nomeAba}>ALTERNATIVA</Text>
         </View>
 
+        {/* Botão de navegação para ir para a tela 'CertificadoAdmin' */}
         <TouchableOpacity onPress={() => navigation.navigate('CertificadoAdmin')} style={Global.setas}>
-          <Text style={{ color: '#ED1C24', fontSize: 48 }}>{'⮕'}</Text>
+          <Text style={{ color: '#ED1C24', fontSize: 48 }}>⮕</Text>
         </TouchableOpacity>
-
       </View>
-      
+
       <ScrollView style={Global.containerView}>
         {dados.map((item, index) => {
           const backgroundColor = Math.floor(index / 4) % 2 === 0 ? '#f0f0f0' : '#dcdcdc';
+
           return (
             <TouchableOpacity
               onPress={() =>
@@ -87,7 +88,7 @@ export const AlternativaAdmin = () => {
                 <Text style={Global.containerIDTexto}>{item.ID_ALTERNATIVA}</Text>
               </View>
               <View style={Global.containerNome}>
-                <Text style={Global.containerNomeTexto}>{item.TEXTO}</Text>
+                <Text style={Global.containerNomeTexto}>{item.TEXTO.slice(0, 30)}...</Text>
               </View>
               <View style={Global.containerIDModulo}>
                 <Text style={Global.containerIDModuloTexto}>
@@ -102,7 +103,6 @@ export const AlternativaAdmin = () => {
       <TouchableOpacity onPress={() => navigation.navigate('AlternativaAddAdmin')} style={Global.adicionar}>
         <Text style={{ fontSize: 34, textAlign: 'center', color: 'white' }}>+</Text>
       </TouchableOpacity>
-
     </SafeAreaView>
   );
 };

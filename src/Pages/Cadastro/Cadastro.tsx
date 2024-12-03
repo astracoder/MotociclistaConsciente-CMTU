@@ -6,7 +6,10 @@ import { useNavigation } from '@react-navigation/native';
 import { StackParamList } from '../../../App';
 import CadastroStyles from '../../styles/Cadastro/CadastroStyles.ts';
 
-//Tipagem da pagina TYPESCRIPT
+// Aqui está uma variavel global, para eu mudar entre o IP da maquina e localhost
+import { ipconfig } from '../../../ipConfig.js';
+
+//Tipagem da pagina TYPESCRIPT que é baseada no App.tsx
 type NavigationProps = NativeStackNavigationProp<StackParamList, 'Cadastro'>
 
 //Variaveis e funções do cadastro
@@ -21,7 +24,7 @@ export const Cadastro = () => {
   //Função para cadastro
   const handleCadastro = async () => {
     if(!nome || !email || !senha) {
-      alert("Preencha todos os dados!");
+      Alert.alert("Preencha todos os dados!");
       return;
     }
 
@@ -29,17 +32,15 @@ export const Cadastro = () => {
     try {
       
       //Uma variavel que recebe dados do envio de informações do banco de dados via Axios (Conexão com banco)
-      const response = await axios.post('http://localhost:3000/usuario/cadastro', {nome, email, senha});
+      const response = await axios.post(`http://${ipconfig}:3000/usuario/cadastro`, {nome, email, senha});
 
-      //Se sucesso com a conexão
+      //Se obter sucesso com a conexão
       if (response.status === 200) {
-        
-
         navigation.navigate('Login');
-        alert(`${nome} sua conta foi cadastrada com sucesso!`);
+        Alert.alert(`${nome} sua conta foi cadastrada com sucesso!`);
       }
     } catch(err) { //Se der erro, da um alert de 'erro' e termina a função catch
-      alert("Não foi possível cadastrar usuário! Consulte o administrador.");
+      Alert.alert("Não foi possível cadastrar usuário! Consulte o administrador.");
       return;
     }
   };
@@ -92,7 +93,6 @@ export const Cadastro = () => {
           source={require('../../assets/create_account_2.png')} 
           resizeMode="contain" 
         />
-
 
         <TouchableOpacity style={CadastroStyles.secaoCriarConta} onPress={() => navigation.navigate('Login')}>
           <Text style={CadastroStyles.linkCriarConta}>Já tenho conta, fazer login!</Text>

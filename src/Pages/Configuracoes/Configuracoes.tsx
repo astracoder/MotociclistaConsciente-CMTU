@@ -8,10 +8,14 @@ import { useNavigation } from '@react-navigation/native';
 import { StackParamList } from '../../../App';
 import ConfiguracoesStyle from '../../styles/Configuracoes/ConfiguracoesStyle.ts';
 
+//Tipagem da pagina TYPESCRIPT
 type NavigationProps = NativeStackNavigationProp<StackParamList, 'Configuracoes'>
 
+//Variaveis e funções do login
 export const Configuracoes = () => {
     const navigation = useNavigation<NavigationProps>();
+
+    //Variaveis relacionadas ao funcionamento dos botões, liga e desliga.
     const [isNotificationsEnabled, setNotificationsEnabled] = useState(false);
     const [isDarkModeEnabled, setDarkModeEnabled] = useState(false);
     const [isUpdate, setUpdate] = useState(false);

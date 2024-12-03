@@ -22,7 +22,7 @@ export const UserProvider = ({ children }) => {
   );
 };
 
-//E no fim, o arquivo UserContext retorna a função useUser
+// Qualquer componente pode chamar useUser() para acessar os dados do usuário ou a função setUserData.
 export const useUser = () => {
   return useContext(UserContext);
 };

@@ -7,10 +7,15 @@ import { StackParamList } from '../../../App';
 import { useUser } from '../../context/UserContext.js';
 import PerfilStyles from '../../styles/Perfil/PerfilStyles.ts';
 
+
+//Tipagem da pagina TYPESCRIPT
 type NavigationProps = NativeStackNavigationProp<StackParamList, 'Perfil'>
 
+//Variaveis e funções do Menu
 export const Perfil = () => {
   const navigation = useNavigation<NavigationProps>();
+
+  // user são os dados que foram setados pelo useUser na tela de Login, e pode ser usado aqui e em qualquer pagina.
   const { user } = useUser();
 
   return (

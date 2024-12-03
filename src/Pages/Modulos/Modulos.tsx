@@ -8,14 +8,26 @@ import { StackParamList } from '../../../App';
 import { useUser } from '../../context/UserContext.js';
 import ModulosStyles from '../../styles/Modulos/ModulosStyles.ts';
 
+// Aqui está uma variavel global, para eu mudar entre o IP da maquina e localhost
+import { ipconfig } from '../../../ipConfig.js';
+
+//Tipagem da pagina TYPESCRIPT
 type NavigationProps = NativeStackNavigationProp<StackParamList, 'Modulos'>;
 
+//Variaveis e funções do Menu
 export const Modulos = () => {
   const navigation = useNavigation<NavigationProps>();
+
+  // user são os dados que foram setados pelo useUser na tela de Login, e pode ser usado aqui e em qualquer pagina.
   const { user } = useUser();
+
+  // Estado para armazenar os módulos retornados da API
   const [dados, setDados] = useState<any[]>([]);
+
+  // Estado para verificar se o usuário concluiu todos os módulos
   const [todosAprovados, setTodosAprovados] = useState<boolean>(false);
 
+  // Função para carregar os dados dos módulos e verificar a aprovação do usuário
   const carregarDados = async () => {
     try {
       if (!user || !user.id_usuario) {
@@ -23,34 +35,38 @@ export const Modulos = () => {
         return;
       }
 
-      // Verificar aprovação
-      const verificacaoResponse = await axios.get('http://localhost:3000/usuarioModulo/verificarAprovacao', {
+      // Faz uma requisição para verificar se o usuário foi aprovado em todos os módulos
+      const verificacaoResponse = await axios.get(`http://${ipconfig}:3000/usuarioModulo/verificarAprovacao`, {
         params: { idUsuario: user.id_usuario },
       });
 
       const { status } = verificacaoResponse.data;
 
+      // Caso todos os módulos sejam aprovados, atualiza o estado e retorna
       if (status === 1) {
         setTodosAprovados(true);
         return;
       }
 
-      // Listar módulos
-      const listarResponse = await axios.get('http://localhost:3000/usuarioModulo/listarModulosPorUsuario', {
+      // Faz uma requisição para listar os módulos disponíveis para o usuário
+      const listarResponse = await axios.get(`http://${ipconfig}:3000/usuarioModulo/listarModulosPorUsuario`, {
         params: { idUsuario: user.id_usuario },
       });
 
+      // Atualiza o estado com os dados retornados
       setDados(listarResponse.data || []);
     } catch (error) {
       console.error('Erro ao carregar os dados:', error);
-      Alert.alert('Erro', 'Não foi possível carregar os dados. Tente novamente.');
+      Alert.alert('Não foi possível carregar os dados. Tente novamente.');
     }
   };
 
+  // useEffect para carregar os dados quando o componente for montado
   useEffect(() => {
     carregarDados();
   }, []);
 
+  // Função para iniciar um módulo específico
   const handleIniciarModulo = async (idModulo: number) => {
     try {
       if (!user || !user.id_usuario) {
@@ -58,7 +74,8 @@ export const Modulos = () => {
         return;
       }
 
-      await axios.post('http://localhost:3000/usuarioModulo/atualizarIniciado', {
+      // Faz uma requisição para marcar o módulo como iniciado
+      await axios.post(`http://${ipconfig}:3000/usuarioModulo/atualizarIniciado`, {
         idModulo,
         idUsuario: user.id_usuario,
       });
@@ -66,7 +83,7 @@ export const Modulos = () => {
       navigation.navigate('Perguntas', { idModulo });
     } catch (error) {
       console.error('Erro ao iniciar o módulo:', error);
-      Alert.alert('Erro', 'Não foi possível iniciar o módulo. Tente novamente.');
+      Alert.alert('Não foi possível iniciar o módulo. Tente novamente.');
     }
   };
 
@@ -84,7 +101,7 @@ export const Modulos = () => {
           <Text style={ModulosStyles.mensagemFinal}>Você já concluiu todos os módulos disponíveis!</Text>
         ) : dados.length === 0 ? (
           <Text style={ModulosStyles.mensagemVazia}>
-            Não há módulos disponíveis no momento. Continue acompanhando!
+            Parabéns, não há mais módulos disponíveis para você. Gere seu certificado!
           </Text>
         ) : (
           dados.map((item, index) => (

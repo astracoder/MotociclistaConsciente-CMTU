@@ -1,5 +1,5 @@
 import React, { useState } from 'react'; // Importa a biblioteca principal do React e o hook useState
-import { Text, View, SafeAreaView, Image, TouchableOpacity, TextInput } from 'react-native'; // Importa componentes do React Native
+import { Text, View, SafeAreaView, Image, TouchableOpacity } from 'react-native'; // Importa componentes do React Native
 import Icon from 'react-native-vector-icons/MaterialIcons.js'; // Importa ícones da biblioteca react-native-vector-icons
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'; // Importa a tipagem para navegação stack
 import { useNavigation } from '@react-navigation/native'; // Importa o hook useNavigation para navegação
@@ -7,9 +7,10 @@ import { StackParamList } from '../../../App'; // Importa a lista de parâmetros
 import CertificadosStyles from '../../styles/Certificados/CertificadosStyles.ts'; // Importa os estilos específicos para a página de Certificados
 import axios from 'axios'; // Importa a biblioteca axios para fazer requisições HTTP
 import { useUser } from '../../context/UserContext'; // Importa o contexto do usuário
+import { ipconfig } from '../../../ipConfig';
 
 // Tipagem da página usando TypeScript
-type NavigationProps = NativeStackNavigationProp<StackParamList, 'Certificados'>
+type NavigationProps = NativeStackNavigationProp<StackParamList, 'Certificados'>;
 
 // Declaração do componente funcional Certificados
 export const Certificados = () => {
@@ -26,24 +27,22 @@ export const Certificados = () => {
   // Função para verificar módulos e gerar certificado
   const handleGerarCertificado = async () => {
     try {
-      // Fazendo a requisição para verificar os módulos do usuário
-      const response = await axios.get('http://localhost:3000/usuarioModulo/listarModulosPorUsuario', {
-        params: { idUsuario: user.id_usuario }
-      });
-
-      // Verificando se o usuário completou todos os módulos
-      if (response.data.length === 0) {
-        // Todos os módulos foram completados, faz o insert no certificado
-        const certificadoResponse = await axios.post('http://localhost:3000/certificado/cadastro', {
-          texto: 'Certificado de conclusão',
-          horas: '4',
-          idUsuario: user.id_usuario
+        const response = await axios.get(`http://${ipconfig}:3000/usuarioModulo/listarModulosPorUsuario`, {
+            params: { idUsuario: user.id_usuario }
         });
 
-        setMensagem(certificadoResponse.data.mensagem);
-      } else {
-        setMensagem('Você ainda não completou todos os módulos necessários.');
-      }
+        if (response.data.length === 0) {
+            // Tenta cadastrar o certificado
+            const certificadoResponse = await axios.post(`http://${ipconfig}:3000/certificado/cadastro`, {
+                texto: 'Certificado de conclusão',
+                horas: '4',
+                idUsuario: user.id_usuario
+            });
+
+            setMensagem(certificadoResponse.data.mensagem);
+        } else {
+            setMensagem('Você ainda não completou todos os módulos necessários.');
+        }
     } catch (error) {
       setMensagem('Erro ao gerar certificado.');
     }
@@ -56,7 +55,7 @@ export const Certificados = () => {
         style={CertificadosStyles.motociclistaConsciente} 
         source={require('../../assets/moto_consciente_red.png')} 
         resizeMode="contain" 
-      /> {/* Imagem do motociclista consciente */}
+      />
       
       <View style={CertificadosStyles.content}> {/* Conteúdo principal */}
         <Text style={CertificadosStyles.titulo}>Certificados</Text> {/* Título da página */}
@@ -65,7 +64,7 @@ export const Certificados = () => {
           <Text style={CertificadosStyles.textoBotao}>Gerar Certificado</Text>
         </TouchableOpacity> {/* Botão para gerar o certificado */}
 
-        {mensagem && <Text style={CertificadosStyles.mensagem}>{mensagem}</Text>} 
+        <Text style={CertificadosStyles.mensagem}>{mensagem}</Text>{/* Mensagem de status */}
       </View>
 
       <View style={CertificadosStyles.rodape}> {/* Rodapé da página */}
@@ -75,4 +74,4 @@ export const Certificados = () => {
       </View>
     </SafeAreaView>
   );
-}
+};

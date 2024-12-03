@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column', 
     },
     containerBoxInfo: {
-        height: 'auto', 
+        height: 40, 
         flexDirection: 'row', 
         alignItems: 'center', 
         borderWidth: 1, 

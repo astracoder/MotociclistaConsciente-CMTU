@@ -6,16 +6,17 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackParamList } from '../../../App';
 import { useNavigation } from '@react-navigation/native';
 
+import { ipconfig } from '../../../ipConfig.js';
+
 type NavigationProps = NativeStackNavigationProp<StackParamList, 'AtividadeAdmin'>;
 
 export const AtividadeAdmin = () => {
   const navigation = useNavigation<NavigationProps>();
-
   const [dados, setDados] = useState<any[]>([]);
 
   const handleListarAtividades = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/atividade/selecionarAtividadesAdmin');
+      const response = await axios.get(`http://${ipconfig}:3000/atividade/selecionarAtividadesAdmin`);
       const json = response.data;
 
       if (Array.isArray(json)) {
@@ -36,9 +37,9 @@ export const AtividadeAdmin = () => {
   return (
     <SafeAreaView style={Global.container}>
       <View style={Global.content}>
-
         <TouchableOpacity onPress={() => navigation.navigate('UsuarioModuloAdmin')} style={Global.setas}>
-          <Text style={{ color: '#ED1C24', fontSize: 48 }}>{'⬅'}</Text>
+          {/* Envolvendo o texto com <Text> */}
+          <Text style={{ color: '#ED1C24', fontSize: 48 }}>⬅</Text>
         </TouchableOpacity>
 
         <View style={Global.containerAba}>
@@ -46,11 +47,11 @@ export const AtividadeAdmin = () => {
         </View>
 
         <TouchableOpacity onPress={() => navigation.navigate('AlternativaAdmin')} style={Global.setas}>
-          <Text style={{ color: '#ED1C24', fontSize: 48 }}>{'⮕'}</Text>
+          {/* Envolvendo o texto com <Text> */}
+          <Text style={{ color: '#ED1C24', fontSize: 48 }}>⮕</Text>
         </TouchableOpacity>
-
       </View>
-      
+
       <ScrollView style={Global.containerView}>
         {dados.map((item, index) => {
           const backgroundColor = Math.floor(index / 10) % 2 === 0 ? '#f0f0f0' : '#dcdcdc';
@@ -66,13 +67,13 @@ export const AtividadeAdmin = () => {
                 })
               }
               key={index}
-              style={[Global.containerBoxInfo, { backgroundColor }, item.STATUS === 0 && Global.boxInativo]} // Aplica a cor dinamicamente
+              style={[Global.containerBoxInfo, { backgroundColor }, item.STATUS === 0 && Global.boxInativo]}
             >
               <View style={Global.containerID}>
                 <Text style={Global.containerIDTexto}>{item.ID_ATIVIDADE}</Text>
               </View>
               <View style={Global.containerNome}>
-                <Text style={Global.containerNomeTexto}>{item.TEXTO}</Text>
+                <Text style={Global.containerNomeTexto}>{item.TEXTO.slice(0, 30)}...</Text>
               </View>
               <View style={Global.containerIDModulo}>
                 <Text style={Global.containerIDModuloTexto}>
@@ -95,9 +96,9 @@ export const AtividadeAdmin = () => {
       </ScrollView>
 
       <TouchableOpacity onPress={() => navigation.navigate('AtividadeAddAdmin')} style={Global.adicionar}>
+        {/* Envolvendo o texto com <Text> */}
         <Text style={{ fontSize: 34, textAlign: 'center', color: 'white' }}>+</Text>
       </TouchableOpacity>
-
     </SafeAreaView>
   );
 };

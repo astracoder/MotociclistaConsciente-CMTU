@@ -30,7 +30,7 @@ try:
     plt.xticks(ticks=textos, ha='center', fontsize=12)
     plt.tight_layout()
 
-    # Salvando a imagem
+    # Salvando a imagem nesse diretório
     plt.savefig("src/assets/DataScience/grafico_acertos.png");
 
 except requests.exceptions.RequestException as e:

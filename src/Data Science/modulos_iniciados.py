@@ -77,7 +77,7 @@ try:
     # Ajustando o gráfico
     plt.tight_layout()
 
-    # Exibindo o gráfico
+    # Salvando a imagem nesse diretório
     plt.savefig("src/assets/DataScience/grafico_modulos_iniciados.png");
 
 except requests.exceptions.RequestException as e:
