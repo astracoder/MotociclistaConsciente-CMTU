@@ -31,7 +31,7 @@ https://github.com/astracoder/MotociclistaConsciente-CMTU
 
 2. Acesse o diretório do projeto:
 ```bash
-cd motorista-consciente
+cd MotociclistaConsciente-CMTU
 ```
 
 3. Instale as dependências:
