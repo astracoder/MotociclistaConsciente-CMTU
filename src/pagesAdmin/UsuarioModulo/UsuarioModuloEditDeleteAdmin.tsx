@@ -82,7 +82,7 @@ export const UsuarioModuloEditDeleteAdmin = () => {
     <SafeAreaView style={Global.container}>
       <View style={Global.content}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={Global.setas}>
-          <Text style={{ color: '#ED1C24', fontSize: 48 }}>⬅</Text>
+          <Text style={{ color: '#ED1C24', fontSize: 48 }}>↞</Text>
         </TouchableOpacity>
 
         <View style={Global.containerAba}>

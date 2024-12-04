@@ -50,7 +50,7 @@ export const ModuloAdmin = () => {
       <View style={Global.content}>
         {/* Botão para voltar para a tela 'UsuarioAdmin' */}
         <TouchableOpacity onPress={() => navigation.navigate('UsuarioAdmin')} style={Global.setas}>
-          <Text style={{color: '#ED1C24', fontSize: 48}}>{'⬅'}</Text>
+          <Text style={{color: '#ED1C24', fontSize: 48}}>{'↞'}</Text>
         </TouchableOpacity>
 
         {/* Título da tela 'MÓDULO' */}
@@ -60,7 +60,7 @@ export const ModuloAdmin = () => {
 
         {/* Botão para navegar para a tela 'UsuarioModuloAdmin' */}
         <TouchableOpacity onPress={() => navigation.navigate('UsuarioModuloAdmin')} style={Global.setas}>
-          <Text style={{color: '#ED1C24', fontSize: 48}}>{'⮕'}</Text>
+          <Text style={{color: '#ED1C24', fontSize: 48}}>{'↠'}</Text>
         </TouchableOpacity>
 
       </View>

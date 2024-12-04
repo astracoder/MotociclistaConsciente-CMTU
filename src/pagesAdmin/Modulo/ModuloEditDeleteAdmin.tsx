@@ -93,7 +93,7 @@ export const ModuloEditDeleteAdmin = () => {
       <View style={Global.content}>
         {/* Botão de voltar que navega para a tela anterior */}
         <TouchableOpacity onPress={() => navigation.goBack()} style={Global.setas}>
-          <Text style={{ color: '#ED1C24', fontSize: 48 }}>{'⬅'}</Text>
+          <Text style={{ color: '#ED1C24', fontSize: 48 }}>{'↞'}</Text>
         </TouchableOpacity>
 
         {/* Cabeçalho da tela */}

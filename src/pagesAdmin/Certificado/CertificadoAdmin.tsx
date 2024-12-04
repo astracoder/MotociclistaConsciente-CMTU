@@ -39,7 +39,7 @@ export const CertificadoAdmin = () => {
 
         {/* Botão para navegar para a tela anterior */}
         <TouchableOpacity onPress={() => navigation.navigate('AlternativaAdmin')} style={Global.setas}>
-          <Text style={{ color: '#ED1C24', fontSize: 48 }}>⬅</Text>
+          <Text style={{ color: '#ED1C24', fontSize: 48 }}>↞</Text>
         </TouchableOpacity>
 
         <View style={Global.containerAba}>
@@ -48,7 +48,7 @@ export const CertificadoAdmin = () => {
 
         {/* Botão para navegar para a próxima tela */}
         <TouchableOpacity onPress={() => navigation.navigate('DataScienceAdmin')} style={Global.setas}>
-          <Text style={{ color: '#ED1C24', fontSize: 48 }}>⮕</Text>
+          <Text style={{ color: '#ED1C24', fontSize: 48 }}>↠</Text>
         </TouchableOpacity>
 
       </View>

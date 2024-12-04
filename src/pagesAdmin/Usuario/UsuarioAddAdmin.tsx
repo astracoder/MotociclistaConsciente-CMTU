@@ -51,7 +51,7 @@ export const UsuarioAddAdmin = () => {
       <View style={Global.content}>
         {/* Botão de voltar que permite o usuário voltar para a tela anterior */}
         <TouchableOpacity onPress={() => navigation.goBack()} style={Global.setas}>
-          <Text style={{ color: '#ED1C24', fontSize: 48 }}>{'⬅'}</Text>
+          <Text style={{ color: '#ED1C24', fontSize: 48 }}>{'↞'}</Text>
         </TouchableOpacity>
 
         {/* Cabeçalho da tela, com o título da funcionalidade */}

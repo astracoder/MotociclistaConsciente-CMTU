@@ -32,7 +32,7 @@ export const DataScienceAdmin = () => {
 
   return (
     // SafeAreaView é utilizado para garantir que o conteúdo não sobreponha a área de interação da tela (ex: barra de status)
-    <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
+    <SafeAreaView style={Global.container}>
       {/* Barra de navegação superior */}
       <View style={Global.content}>
         {/* Botão de navegação para voltar para a tela de administração de certificados */}
@@ -40,7 +40,7 @@ export const DataScienceAdmin = () => {
           onPress={() => navigation.navigate('CertificadoAdmin')}
           style={Global.setas}
         >
-          <Text style={{ color: '#ED1C24', fontSize: 48 }}>{'⬅'}</Text>
+          <Text style={{ color: '#ED1C24', fontSize: 48 }}>{'↞'}</Text>
         </TouchableOpacity>
 
         {/* Título da seção de Data Science */}
@@ -53,7 +53,7 @@ export const DataScienceAdmin = () => {
           onPress={() => navigation.navigate('UsuarioAdmin')}
           style={Global.setas}
         >
-          <Text style={{ color: '#ED1C24', fontSize: 48 }}>{'⮕'}</Text>
+          <Text style={{ color: '#ED1C24', fontSize: 48 }}>{'↠'}</Text>
         </TouchableOpacity>
       </View>
 

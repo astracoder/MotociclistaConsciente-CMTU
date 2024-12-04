@@ -89,7 +89,7 @@ export default function App() {
   return (
     <UserProvider>  
       <NavigationContainer>
-          <Stack.Navigator initialRouteName='UsuarioAdmin'>
+          <Stack.Navigator initialRouteName='Login'>
           <Stack.Screen name='Login' component={Login} options={{headerShown: false}}/>
           <Stack.Screen name='Cadastro' component={Cadastro} options={{headerShown: false}}/>
           <Stack.Screen name='Menu' component={Menu} options={{headerShown: false}}/>

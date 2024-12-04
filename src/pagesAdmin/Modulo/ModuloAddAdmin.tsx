@@ -50,7 +50,7 @@ export const ModuloAddAdmin = () => {
       <View style={Global.content}>
         {/* Botão de navegação para voltar para a tela anterior */}
         <TouchableOpacity onPress={() => navigation.goBack()} style={Global.setas}>
-          <Text style={{ color: '#ED1C24', fontSize: 48 }}>{'⬅'}</Text>
+          <Text style={{ color: '#ED1C24', fontSize: 48 }}>{'↞'}</Text>
         </TouchableOpacity>
 
         {/* Título da seção de cadastro de módulo */}

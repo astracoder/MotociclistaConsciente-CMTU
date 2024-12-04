@@ -91,18 +91,15 @@ export const UsuarioEditDeleteAdmin = () => {
     // SafeAreaView para garantir que o conteúdo será exibido dentro da área segura, evitando sobreposição de elementos em dispositivos com notch.
     <SafeAreaView style={Global.container}>
       <View style={Global.content}>
-        {/* Botão de voltar que navega para a tela anterior */}
         <TouchableOpacity onPress={() => navigation.goBack()} style={Global.setas}>
-          <Text style={{ color: '#ED1C24', fontSize: 48 }}>{'⬅'}</Text>
+          <Text style={{ color: '#ED1C24', fontSize: 48 }}>{'↞'}</Text>
         </TouchableOpacity>
 
-        {/* Cabeçalho da tela */}
         <View style={Global.containerAba}>
           <Text style={Global.nomeAba}>INFORMAÇÕES DO USUÁRIO</Text>
         </View>
       </View>
 
-      {/* Formulário para editar o nome e o e-mail do usuário */}
       <View style={Global.containerForm}>
         <Text style={Global.label}>Edite o nome:</Text>
         <TextInput
@@ -121,12 +118,11 @@ export const UsuarioEditDeleteAdmin = () => {
           keyboardType="email-address" // Exibe o teclado adequado para digitar e-mails
         />
 
-        {/* Botão para salvar as alterações no nome e e-mail */}
+
         <TouchableOpacity onPress={() => handleSalvar()} style={Global.salvar}>
           <Text style={Global.botaoTexto}>Salvar alterações</Text>
         </TouchableOpacity>
 
-        {/* Condicional que renderiza o botão "Desativar" ou "Ativar" baseado no status do usuário */}
         {status === 1 ? (
           <TouchableOpacity onPress={handleDesativar} style={Global.deletar}>
             <Text style={Global.botaoTexto}>Desativar</Text>

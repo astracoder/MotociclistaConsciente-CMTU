@@ -47,29 +47,25 @@ export const UsuarioAdmin = () => {
     // SafeAreaView para garantir que o conteúdo será exibido dentro da área segura, evitando sobreposição de elementos em dispositivos com notch.
     <SafeAreaView style={Global.container}>
       <View style={Global.content}>
-        {/* Botão de voltar que navega para a tela 'DataScienceAdmin' */}
+
         <TouchableOpacity onPress={() => navigation.navigate('DataScienceAdmin')} style={Global.setas}>
           <Text style={{color: '#ED1C24', fontSize: 48}}>
-            {'⬅'}
+            {'↞'}
           </Text>
         </TouchableOpacity>
 
-        {/* Cabeçalho da tela, com o nome da seção (Usuário) */}
         <View style={Global.containerAba}>
           <Text style={Global.nomeAba}>USUARIO</Text>
         </View>
 
-        {/* Botão de navegação para a tela 'ModuloAdmin' */}
         <TouchableOpacity onPress={() => navigation.navigate('ModuloAdmin')} style={Global.setas}>
           <Text style={{color: '#ED1C24', fontSize: 48}}>
-            {'⮕'}
+            {'↠'}
           </Text>
         </TouchableOpacity>
       </View>
 
-      {/* ScrollView que permite rolar a lista de usuários */}
       <ScrollView style={Global.containerView}>
-        {/* Mapeia os dados dos usuários e cria um botão para cada usuário, que leva à tela de edição ou exclusão */}
         {dados.map((item, index) => (
           <TouchableOpacity
             onPress={() =>
@@ -85,14 +81,13 @@ export const UsuarioAdmin = () => {
             key={index} // Chave única para cada item na lista
             style={[Global.containerBoxInfo, item.status === 0 && Global.boxInativo]} // Estiliza o item baseado no status (ativo ou inativo)
           >
-            {/* Exibe o ID do usuário */}
+
             <View style={Global.containerID}>
               <Text style={Global.containerIDTexto}>
                 {item.id_usuario}
               </Text>
             </View>
 
-            {/* Exibe o nome do usuário */}
             <View style={Global.containerNome}>
               <Text style={Global.containerNomeTexto}>
                 {item.nome}
@@ -101,8 +96,6 @@ export const UsuarioAdmin = () => {
           </TouchableOpacity>
         ))}
       </ScrollView>
-
-      {/* Botão flutuante para adicionar um novo usuário */}
       <TouchableOpacity onPress={() => navigation.navigate('UsuarioAddAdmin')} style={Global.adicionar}>
         <Text style={{fontSize: 34, textAlign: 'center', color: 'white'}}>
           +

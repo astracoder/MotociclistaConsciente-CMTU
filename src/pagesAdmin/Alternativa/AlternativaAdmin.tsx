@@ -55,7 +55,7 @@ export const AlternativaAdmin = () => {
       <View style={Global.content}>
         {/* Botão de navegação para voltar à tela 'AtividadeAdmin' */}
         <TouchableOpacity onPress={() => navigation.navigate('AtividadeAdmin')} style={Global.setas}>
-          <Text style={{ color: '#ED1C24', fontSize: 48 }}>⬅</Text>
+          <Text style={{ color: '#ED1C24', fontSize: 48 }}>↞</Text>
         </TouchableOpacity>
 
         <View style={Global.containerAba}>
@@ -64,7 +64,7 @@ export const AlternativaAdmin = () => {
 
         {/* Botão de navegação para ir para a tela 'CertificadoAdmin' */}
         <TouchableOpacity onPress={() => navigation.navigate('CertificadoAdmin')} style={Global.setas}>
-          <Text style={{ color: '#ED1C24', fontSize: 48 }}>⮕</Text>
+          <Text style={{ color: '#ED1C24', fontSize: 48 }}>↠</Text>
         </TouchableOpacity>
       </View>
 

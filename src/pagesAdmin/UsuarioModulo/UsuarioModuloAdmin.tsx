@@ -38,7 +38,7 @@ export const UsuarioModuloAdmin = () => {
     <SafeAreaView style={Global.container}>
       <View style={Global.content}>
         <TouchableOpacity onPress={() => navigation.navigate('ModuloAdmin')} style={Global.setas}>
-          <Text style={{color: '#ED1C24', fontSize: 48}}>{'⬅'}</Text>
+          <Text style={{color: '#ED1C24', fontSize: 48}}>{'↞'}</Text>
         </TouchableOpacity>
 
         <View style={Global.containerAba}>
@@ -46,7 +46,7 @@ export const UsuarioModuloAdmin = () => {
         </View>
 
         <TouchableOpacity onPress={() => navigation.navigate('AtividadeAdmin')} style={Global.setas}>
-          <Text style={{color: '#ED1C24', fontSize: 48}}>{'⮕'}</Text>
+          <Text style={{color: '#ED1C24', fontSize: 48}}>{'↠'}</Text>
         </TouchableOpacity>
       </View>
 
