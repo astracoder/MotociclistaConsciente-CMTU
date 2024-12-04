@@ -34,12 +34,28 @@ https://github.com/astracoder/MotociclistaConsciente-CMTU
 cd MotociclistaConsciente-CMTU
 ```
 
-3. Instale as dependências:
+3. Inicie o banco de dados e a API, acessando o repositório correspondente:
+   ```bash
+   https://github.com/Natan-Ferreira23/Back-End-CMTU-Node-js 
+  ```
+ ```
+5. Instale as dependências:
 ```bash
 npm install
 ```
 
-4. Execute o projeto:
+6.Configuração do IP da Rota para o Axios
+Caso deseje executar a aplicação em um dispositivo móvel, é necessário obter o endereço IP local de seu computador.
+
+Se estiver utilizando Windows, abra o prompt de comando (CMD) e digite o comando ipconfig. Você verá várias informações de rede.
+Procure pelo endereço IPV4, como: IPV4: 192.168.1.163.
+
+Após identificar o seu IP local, acesse o arquivo ipConfig.js e substitua o valor pelo seu IPV4, conforme exemplo:
+    ```bash
+   export const ipconfig = "seu IPV4";
+    ```
+    
+7. Execute o projeto:
 ```bash
 npm start
 ```
